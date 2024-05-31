@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { Property } from '../properties/index.ts';
-import pako from 'pako';
 
 export class ByteProperty extends Property {
   constructor() {
