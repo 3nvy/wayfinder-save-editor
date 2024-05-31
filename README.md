@@ -24,4 +24,4 @@ This is still experimental and very basic, but should provide the following:
 
 
 ### General credits
-to trumank for providing the groundwork for ue save decoding https://github.com/trumank/uesave-rs
+to ch1pset for providing the groundwork for ue save decoding https://github.com/ch1pset/UESaveTool
