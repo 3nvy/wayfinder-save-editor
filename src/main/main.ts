@@ -29,8 +29,8 @@ let mainWindow: BrowserWindow | null = null;
  * IPC PATHS
  */
 ipcMain.on('decode-file', async (event, buffer) => {
-  const { decodedSave, saveStructure } = decodeSave(buffer);
-  event.reply('decode-file', { decodedSave, saveStructure });
+  const { decodedSave, saveStructure, fileSaveType } = decodeSave(buffer);
+  event.reply('decode-file', { decodedSave, saveStructure, fileSaveType });
 });
 
 ipcMain.on(

@@ -8,14 +8,36 @@ export const decodeSave = (buffer: any) => {
   gvas.deserialize(serial);
 
   const decodedSave = JSON.parse(JSON.stringify(gvas));
-  const compressedSaveStructure = gvas.Properties.Properties[2].Property.Data;
-  const saveStructure = pako.inflate(compressedSaveStructure, {
-    to: 'string',
-  });
+
+  const fileSaveType = decodedSave.Properties.Name.replace(
+    /[^a-zA-Z0-9\/.]/g,
+    '',
+  );
+  let saveStructure;
+
+  if (fileSaveType === '/Script/Wayfinder.WFSaveGame') {
+    // returns the save file decoded structure
+    const compressedSaveStructure = gvas.Properties.Properties[2].Property.Data;
+    const decodedStructure = pako.inflate(compressedSaveStructure, {
+      to: 'string',
+    });
+    saveStructure = JSON.parse(decodedStructure);
+  } else {
+    // Returns META structure, containing the current and next save index
+    saveStructure =
+      decodedSave.Properties.Properties[0].Properties[0].Properties.reduce(
+        (acc, x) => {
+          acc[x.Name.replace(/[^a-zA-Z0-9\/.]/g, '')] = x.Property[1];
+          return acc;
+        },
+        {},
+      );
+  }
 
   return {
+    fileSaveType,
     decodedSave,
-    saveStructure: JSON.parse(saveStructure),
+    saveStructure,
   };
 };
 
