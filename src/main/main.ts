@@ -9,12 +9,13 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { decodeSave, encodeSave } from './save-decoder/save-decoder';
+import { RESOURCES_PATH } from './paths';
+import ipc from './ipc';
 
 class AppUpdater {
   constructor() {
@@ -25,21 +26,8 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
-/**
- * IPC PATHS
- */
-ipcMain.on('decode-file', async (event, buffer) => {
-  const { decodedSave, saveStructure, fileSaveType } = decodeSave(buffer);
-  event.reply('decode-file', { decodedSave, saveStructure, fileSaveType });
-});
 
-ipcMain.on(
-  'encode-file',
-  async (event, fileMetadata, decodedSave, newSaveData) => {
-    const resultCode = encodeSave(fileMetadata, decodedSave, newSaveData);
-    event.reply('encode-file', resultCode);
-  },
-);
+ipc.initialize();
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -71,10 +59,6 @@ const createWindow = async () => {
     await installExtensions();
   }
 
-  const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets');
-
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
@@ -86,6 +70,7 @@ const createWindow = async () => {
     // resizable: false,
     icon: getAssetPath('icon.png'),
     webPreferences: {
+      webSecurity: false,
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),

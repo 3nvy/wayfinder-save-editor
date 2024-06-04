@@ -1,5 +1,5 @@
 interface Window {
-    nodeAPI: {
-      createBuffer: any;
-    };
-  }
+  nodeAPI: {
+    createBuffer: any;
+  };
+}
