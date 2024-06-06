@@ -16,7 +16,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { MFungibleItem } from '../../saveFileTypes';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 const generateSchema = (fungibleItems: MFungibleItem[]) =>
   fungibleItems.reduce((acc, item) => {

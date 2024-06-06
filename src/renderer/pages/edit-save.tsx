@@ -6,6 +6,10 @@ import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
 import { useContext } from 'react';
 import { SaveEditorContext } from '../context/context';
+import { ItemCard } from '../components/item-card/item-card';
+import { CURRENCIES } from '../tables/currency';
+import { Cosmetics } from '../components/cosmetics/cosmetics';
+import { Inventory } from '../components/inventory/inventory';
 
 export const EditSavePage = () => {
   const { fileName } = useContext(SaveEditorContext);
@@ -18,26 +22,27 @@ export const EditSavePage = () => {
         <button onClick={() => window.location.reload()}>Reload</button>
       </div>
       <Tabs
-        defaultValue="account"
+        defaultValue="inventory"
         className="w-dvw h-dvh flex items-center flex-col p-5 pt-10"
       >
         <TabsList>
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="founder">Founder</TabsTrigger>
-          <TabsTrigger value="battlepass">Reward Tower</TabsTrigger>
+          <TabsTrigger value="inventory">Inventory</TabsTrigger>
           <TabsTrigger value="rawStructure">
             <ExclamationTriangleIcon className="mr-2" /> Raw Structure
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="account">
-          <AccountPropForm />
+        <TabsContent value="inventory">
+          <Inventory />
+        </TabsContent>
+        {/* <TabsContent value="cosmetics">
+          <Cosmetics />
         </TabsContent>
         <TabsContent value="founder">
           <FounderPropForm />
         </TabsContent>
         <TabsContent value="battlepass">
           <BattlePassPropForm />
-        </TabsContent>
+        </TabsContent> */}
         <TabsContent value="rawStructure">
           <RawPropForm />
         </TabsContent>
