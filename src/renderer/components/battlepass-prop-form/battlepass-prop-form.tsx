@@ -15,6 +15,8 @@ import {
 } from '@/components/ui/form';
 import { MBattlePassDataV2 } from '../../saveFileTypes';
 import { Input } from '@/components/ui/input';
+import { InventoryItemField } from '../forms/inventory-form';
+import { INVENTORY_ITEM } from '../../structures/structures';
 
 export const BattlePassPropForm = () => {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
@@ -50,42 +52,32 @@ export const BattlePassPropForm = () => {
     }
   }
 
+  const data = [
+    {
+      key: 'experience',
+      localizedString: 'Reward Tower Experience',
+      icon: 'Icons/Currency/icoon_currency_XP_01',
+    },
+    {
+      key: 'keys',
+      localizedString: 'Reward Tower Keys',
+      icon: 'Icons/Currency/icon_currency_BattlePassKey',
+    },
+  ] as any;
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="relative flex w-full h-full space-y-8 flex-col"
+        className="flex flex-col max-h-full h-full"
       >
-        {/* Experience Field */}
-        <FormField
-          control={form.control}
-          name="experience"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Reward Tower Experience</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-wrap items-center gap-5 h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
+          {/* Experience Field */}
+          <InventoryItemField form={form as any} item={data[0]} />
 
-        {/* Experience Field */}
-        <FormField
-          control={form.control}
-          name="keys"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Reward Tower Keys</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
+          {/* Experience Field */}
+          <InventoryItemField form={form as any} item={data[1]} />
+        </div>
         <Button className="w-full h-[50px] rounded-none" type="submit">
           Save
         </Button>

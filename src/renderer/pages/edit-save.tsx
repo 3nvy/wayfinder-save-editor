@@ -1,11 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { AccountPropForm } from '../components/account-prop-form/account-prop-form';
-import { FounderPropForm } from '../components/founder-prop-form/founder-prop-form';
 import { BattlePassPropForm } from '../components/battlepass-prop-form/battlepass-prop-form';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
 import { useContext } from 'react';
 import { SaveEditorContext } from '../context/context';
+import { Inventory } from '../components/inventory/inventory';
+import { ExperimentalTab } from '../components/experimental/experiemntal';
 
 export const EditSavePage = () => {
   const { fileName } = useContext(SaveEditorContext);
@@ -18,25 +18,25 @@ export const EditSavePage = () => {
         <button onClick={() => window.location.reload()}>Reload</button>
       </div>
       <Tabs
-        defaultValue="account"
+        defaultValue="inventory"
         className="w-dvw h-dvh flex items-center flex-col p-5 pt-10"
       >
         <TabsList>
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="founder">Founder</TabsTrigger>
-          <TabsTrigger value="battlepass">Reward Tower</TabsTrigger>
+          <TabsTrigger value="inventory">Inventory</TabsTrigger>
+          <TabsTrigger value="rewardTower">Reward Tower</TabsTrigger>
+          <TabsTrigger value="experimental">Experimental</TabsTrigger>
           <TabsTrigger value="rawStructure">
             <ExclamationTriangleIcon className="mr-2" /> Raw Structure
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="account">
-          <AccountPropForm />
+        <TabsContent value="inventory">
+          <Inventory />
         </TabsContent>
-        <TabsContent value="founder">
-          <FounderPropForm />
-        </TabsContent>
-        <TabsContent value="battlepass">
+        <TabsContent value="rewardTower">
           <BattlePassPropForm />
+        </TabsContent>
+        <TabsContent value="experimental">
+          <ExperimentalTab />
         </TabsContent>
         <TabsContent value="rawStructure">
           <RawPropForm />

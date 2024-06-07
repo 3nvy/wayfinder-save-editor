@@ -1,6 +1,14 @@
-import { useState, createContext, useCallback } from 'react';
+import {
+  useState,
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useContext,
+} from 'react';
 import { SaveData } from '../saveFileTypes';
 import { useToast } from '@/components/ui/use-toast';
+import { ipcChannels } from '@/src/config/ipc-channels';
 
 type Structure = { [key: string]: any };
 
@@ -8,6 +16,7 @@ type InitialValue = {
   decodedFile?: Structure;
   saveStructure?: SaveData;
   fileName?: string;
+  assetsPath?: string;
   saveDecodedStructure: ({
     fileMetadata,
     decodedSave,
@@ -31,6 +40,7 @@ export const SaveEditorProvider = ({ children }: any) => {
   const [fileMetadata, saveFileMetadata] = useState<any>();
   const [decodedFile, setDecodedFile] = useState<Structure>();
   const [saveStructure, setSaveStructure] = useState<SaveData>();
+  const [assetsPath, setAssetsPath] = useState('');
 
   const saveDecodedStructure = useCallback(
     ({ fileMetadata, decodedSave, saveStructure }: any) => {
@@ -67,17 +77,39 @@ export const SaveEditorProvider = ({ children }: any) => {
     [decodedFile, setSaveStructure, fileMetadata],
   );
 
+  useEffect(() => {
+    window.electron.ipcRenderer
+      .invoke(ipcChannels.GET_ASSETS_PATH)
+      .then(setAssetsPath);
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      saveDecodedStructure,
+      saveNewValues,
+      decodedFile,
+      saveStructure,
+      assetsPath,
+      fileName: fileMetadata?.name,
+    }),
+    [
+      saveDecodedStructure,
+      saveNewValues,
+      decodedFile,
+      saveStructure,
+      assetsPath,
+      fileMetadata?.name,
+    ],
+  );
+
   return (
-    <SaveEditorContext.Provider
-      value={{
-        saveDecodedStructure,
-        saveNewValues,
-        decodedFile,
-        saveStructure,
-        fileName: fileMetadata?.name,
-      }}
-    >
+    <SaveEditorContext.Provider value={value}>
       {children}
     </SaveEditorContext.Provider>
   );
+};
+
+export const useSaveContext = () => {
+  const context = useContext(SaveEditorContext);
+  return context;
 };
