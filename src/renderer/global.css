@@ -8,6 +8,7 @@
 }
 
 html {
+  overflow: hidden;
   font-family: Jura, sans-serif;
 }
 

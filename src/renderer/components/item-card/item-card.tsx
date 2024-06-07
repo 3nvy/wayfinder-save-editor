@@ -10,7 +10,7 @@ export function ItemCard({ item, children, ...props }: CardProps) {
   const { assetsPath } = useSaveContext();
   return (
     <Card
-      className="max-w-[150px] h-[240px] flex flex-col items-center pb-3 shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]"
+      className="w-[150px] h-[240px] flex flex-col items-center pb-3 shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]"
       {...props}
     >
       <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
