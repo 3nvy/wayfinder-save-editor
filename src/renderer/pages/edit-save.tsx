@@ -27,6 +27,7 @@ export const EditSavePage = () => {
       >
         <TabsList>
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
+          <TabsTrigger value="rewardTower">Reward Tower</TabsTrigger>
           <TabsTrigger value="rawStructure">
             <ExclamationTriangleIcon className="mr-2" /> Raw Structure
           </TabsTrigger>
@@ -34,15 +35,9 @@ export const EditSavePage = () => {
         <TabsContent value="inventory">
           <Inventory />
         </TabsContent>
-        {/* <TabsContent value="cosmetics">
-          <Cosmetics />
-        </TabsContent>
-        <TabsContent value="founder">
-          <FounderPropForm />
-        </TabsContent>
-        <TabsContent value="battlepass">
+        <TabsContent value="rewardTower">
           <BattlePassPropForm />
-        </TabsContent> */}
+        </TabsContent>
         <TabsContent value="rawStructure">
           <RawPropForm />
         </TabsContent>

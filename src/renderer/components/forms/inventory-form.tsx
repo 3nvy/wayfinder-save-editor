@@ -69,7 +69,7 @@ type InventoryItemField = {
   item: INVENTORY_ITEM;
 };
 
-const InventoryItemField = ({ form, item }: InventoryItemField) => {
+export const InventoryItemField = ({ form, item }: InventoryItemField) => {
   return (
     <FormField
       control={form.control}
