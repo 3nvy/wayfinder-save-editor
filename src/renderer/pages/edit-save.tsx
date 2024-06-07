@@ -1,14 +1,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { AccountPropForm } from '../components/account-prop-form/account-prop-form';
-import { FounderPropForm } from '../components/founder-prop-form/founder-prop-form';
 import { BattlePassPropForm } from '../components/battlepass-prop-form/battlepass-prop-form';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
 import { useContext } from 'react';
 import { SaveEditorContext } from '../context/context';
-import { ItemCard } from '../components/item-card/item-card';
-import { CURRENCIES } from '../tables/currency';
-import { Cosmetics } from '../components/cosmetics/cosmetics';
 import { Inventory } from '../components/inventory/inventory';
 
 export const EditSavePage = () => {

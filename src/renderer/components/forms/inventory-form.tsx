@@ -112,8 +112,6 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    debugger;
-
     const [fungibleItems, nonFungibleItems] = dataSet.reduce(
       (acc, i) => {
         if (i.bIsFungible) acc[0].push(i);
