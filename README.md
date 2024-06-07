@@ -32,6 +32,7 @@ Mind this are only the items belonging to the founders pack, it doesn't include 
 
 # Future Updates
 
+- Search Functionality
 - Premium Shop: This will include premium items such as battle tower rewards
 - Mounts
 - Personas
