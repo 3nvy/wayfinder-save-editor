@@ -5,6 +5,7 @@ import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
 import { useContext } from 'react';
 import { SaveEditorContext } from '../context/context';
 import { Inventory } from '../components/inventory/inventory';
+import { ExperimentalTab } from '../components/experimental/experiemntal';
 
 export const EditSavePage = () => {
   const { fileName } = useContext(SaveEditorContext);
@@ -23,6 +24,7 @@ export const EditSavePage = () => {
         <TabsList>
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
           <TabsTrigger value="rewardTower">Reward Tower</TabsTrigger>
+          <TabsTrigger value="experimental">Experimental</TabsTrigger>
           <TabsTrigger value="rawStructure">
             <ExclamationTriangleIcon className="mr-2" /> Raw Structure
           </TabsTrigger>
@@ -32,6 +34,9 @@ export const EditSavePage = () => {
         </TabsContent>
         <TabsContent value="rewardTower">
           <BattlePassPropForm />
+        </TabsContent>
+        <TabsContent value="experimental">
+          <ExperimentalTab />
         </TabsContent>
         <TabsContent value="rawStructure">
           <RawPropForm />
