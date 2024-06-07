@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { InventoryItemField } from '../forms/inventory-form';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 export const ExperimentalTab = () => {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
@@ -57,6 +59,14 @@ export const ExperimentalTab = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col max-h-full h-full"
       >
+        <Alert>
+          <ExclamationTriangleIcon className="h-4 w-4" />
+          <AlertTitle>Attention!</AlertTitle>
+          <AlertDescription>
+            These features are experimental and may cause bugs. Use at your own
+            risk!
+          </AlertDescription>
+        </Alert>
         <div className="flex flex-wrap items-center gap-5 h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
           {/* Experience Field */}
           <InventoryItemField form={form as any} item={data[0]} />
