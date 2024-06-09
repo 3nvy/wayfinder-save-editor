@@ -2,6 +2,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { CurrencyTab } from './currency/currency-tab';
 import { ResourcesTab } from './resources/resources-tab';
 import { FoundersTab } from './founders/founders-tab';
+import { MountsTab } from './mounts/mounts-tab';
 export const Inventory = () => {
   return (
     <Tabs
@@ -11,6 +12,7 @@ export const Inventory = () => {
       <TabsList>
         <TabsTrigger value="currency">Currency</TabsTrigger>
         <TabsTrigger value="resources">Resources</TabsTrigger>
+        <TabsTrigger value="mounts">Mounts</TabsTrigger>
         <TabsTrigger value="founders">Founders</TabsTrigger>
       </TabsList>
       <TabsContent value="currency">
@@ -18,6 +20,9 @@ export const Inventory = () => {
       </TabsContent>
       <TabsContent value="resources">
         <ResourcesTab />
+      </TabsContent>
+      <TabsContent value="mounts">
+        <MountsTab />
       </TabsContent>
       <TabsContent value="founders">
         <FoundersTab />
