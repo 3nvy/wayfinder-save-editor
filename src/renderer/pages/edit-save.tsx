@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { SaveEditorContext } from '../context/context';
 import { Inventory } from '../components/inventory/inventory';
 import { ExperimentalTab } from '../components/experimental/experiemntal';
+import { Echos } from '../components/echos/echos';
 
 export const EditSavePage = () => {
   const { fileName } = useContext(SaveEditorContext);
@@ -23,6 +24,7 @@ export const EditSavePage = () => {
       >
         <TabsList>
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
+          <TabsTrigger value="echos">Echos</TabsTrigger>
           <TabsTrigger value="rewardTower">Reward Tower</TabsTrigger>
           <TabsTrigger value="experimental">Experimental</TabsTrigger>
           <TabsTrigger value="rawStructure">
@@ -31,6 +33,9 @@ export const EditSavePage = () => {
         </TabsList>
         <TabsContent value="inventory">
           <Inventory />
+        </TabsContent>
+        <TabsContent value="echos">
+          <Echos />
         </TabsContent>
         <TabsContent value="rewardTower">
           <BattlePassPropForm />

@@ -137,25 +137,6 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
       [[] as INVENTORY_ITEM[], [] as INVENTORY_ITEM[]],
     );
 
-    // [nonFungibleItems[1]].reduce((acc, itm) => {
-    //   for (const addItem of itm.addItemsWhenCreated ?? []) {
-    //     acc.push({
-    //       ...itm,
-    //       key: addItem.rowName,
-    //       data: addItem,
-    //       equipmentSlot:
-    //         itm.equipmentSlot === 'EEquipmentSlotType::WEAPON'
-    //           ? 'EEquipmentSlotType::WEAPON_GLAMOUR'
-    //           : 'EEquipmentSlotType::ARMOR_GLAMOUR',
-    //     });
-    //   }
-    //   acc.push(itm);
-    //   return acc;
-    // }, [] as any);
-
-    // If Weapon, add awakening data
-    // If Armor, add to armor glamours
-
     if (!saveStructure?.playerData) return;
 
     const newSaveData = { ...saveStructure };
@@ -228,6 +209,7 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
             } as any);
         }
 
+        debugger;
         if (
           item.equipmentSlot?.startsWith('EEquipmentSlotType::COSMETIC') ||
           item.equipmentSlot?.startsWith('EEquipmentSlotType::ARMOR') ||

@@ -29,7 +29,6 @@ export const Inventory = () => {
       <TabsContent value="mounts">
         <MountsTab />
       </TabsContent>
-
       <TabsContent value="founders">
         <FoundersTab />
       </TabsContent>
