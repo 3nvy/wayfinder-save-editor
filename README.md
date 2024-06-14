@@ -6,7 +6,7 @@ You can download the latest version here
 
 This is still experimental and very basic, but should provide the following:
 
-## Manage Inventory Items, such as Currency and Resources
+## Manage Inventory Items, such as Currency, Resources, Imbudiments, Mounts and Awakening Stones
 
 ![alt text](image.png)
 
@@ -18,11 +18,19 @@ Mind this are only the items belonging to the founders pack, it doesn't include 
 
 ![alt text](image-2.png)
 
+## Add/Edit Echos
+
+This panel allows to add new echos to your inventory, and allows to edit the level and rarity of the ones you own
+
+![alt text](image-5.png)
+
 ## Experiemntal Features
 
 ### This will have a set of experimental features. Currently it has:
 
-- Replace current default appartment for a bigger one
+- Replace current default for a bigger one
+
+- Fix Kyros when added via Founders tab on previous versions
 
 ![alt text](image-3.png)
 
@@ -34,10 +42,7 @@ Mind this are only the items belonging to the founders pack, it doesn't include 
 
 - Search Functionality
 - Premium Shop: This will include premium items such as battle tower rewards
-- Mounts
 - Personas
-- Imbuements
-- Echos
 
 ### General credits
 
