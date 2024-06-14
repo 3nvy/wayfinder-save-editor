@@ -4,6 +4,7 @@ import { ResourcesTab } from './resources/resources-tab';
 import { FoundersTab } from './founders/founders-tab';
 import { MountsTab } from './mounts/mounts-tab';
 import { ImbuimentsTab } from './imbuements/imbuiments-tab';
+import { AwakeningStonesTab } from './awakening-stones/awakening-stones-tab';
 export const Inventory = () => {
   return (
     <Tabs
@@ -15,6 +16,7 @@ export const Inventory = () => {
         <TabsTrigger value="resources">Resources</TabsTrigger>
         <TabsTrigger value="imbuements">Imbuements</TabsTrigger>
         <TabsTrigger value="mounts">Mounts</TabsTrigger>
+        <TabsTrigger value="awakening">Awakening Stones</TabsTrigger>
         <TabsTrigger value="founders">Founders</TabsTrigger>
       </TabsList>
       <TabsContent value="currency">
@@ -28,6 +30,9 @@ export const Inventory = () => {
       </TabsContent>
       <TabsContent value="mounts">
         <MountsTab />
+      </TabsContent>
+      <TabsContent value="awakening">
+        <AwakeningStonesTab />
       </TabsContent>
       <TabsContent value="founders">
         <FoundersTab />

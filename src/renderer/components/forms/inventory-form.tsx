@@ -99,6 +99,14 @@ export type InventoryFormProps = {
   dataSet: INVENTORY_ITEM[];
 };
 
+const isArmorTypeItem = (item: INVENTORY_ITEM) => {
+  return (
+    item.equipmentSlot?.startsWith('EEquipmentSlotType::COSMETIC') ||
+    item.equipmentSlot?.startsWith('EEquipmentSlotType::ARMOR') ||
+    item.equipmentSlot?.startsWith('EEquipmentSlotType::PERSONA')
+  );
+};
+
 export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
 
@@ -149,12 +157,12 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
         (fi) => values[fi.name] === undefined,
       );
 
-      const newEntries = Object.entries(values)
-        .filter(([_, v]) => v)
-        .map(([k, v]) => ({
+      const newEntries = fungibleItems
+        .filter((item) => values[item.key])
+        .map((item) => ({
           ...FUNGIBLE_ITEM_STRUCTURE,
-          name: k,
-          count: v,
+          name: item.key,
+          count: values[item.key],
         }));
 
       const newFungibleItems = [
@@ -209,14 +217,8 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
             } as any);
         }
 
-        debugger;
-        if (
-          item.equipmentSlot?.startsWith('EEquipmentSlotType::COSMETIC') ||
-          item.equipmentSlot?.startsWith('EEquipmentSlotType::ARMOR') ||
-          item.equipmentSlot?.startsWith('EEquipmentSlotType::PERSONA')
-        ) {
+        if (isArmorTypeItem(item)) {
           // Check if it exists inArmorGlamours & add/remove
-          // Check if it exists in WeaponGlamours & add
           const hasArmourGlamour = !!currentArmorGlamours.find(
             (ci) => ci.rowName === item.key,
           );
@@ -224,9 +226,11 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
         }
 
         // Check if it exists in NonFungibleItems & add/remove
-        const hasNonFungibleItem = !!currentNonFungibleItems.find(
+        const matchingNonFungibleItem = currentNonFungibleItems.find(
           (ci) => ci.name === item.key,
         );
+        const hasNonFungibleItem = !!matchingNonFungibleItem;
+
         if (!hasNonFungibleItem) {
           const template = { ...NON_FUNGIBLE_ITEM_STRUCTURE };
           template.name = item.key;
@@ -237,7 +241,17 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
             1000000000 + Math.random() * 5000000000,
           );
 
+          if (isArmorTypeItem(item)) template.spec.itemSpec.itemFlags = 8;
+
           currentNonFungibleItems.push(template as MNonFungibleItem);
+        }
+        // Amends armor itemFlags. Still studying the effects of this, but most armor types have this value, so may aswell.
+        else if (
+          hasNonFungibleItem &&
+          isArmorTypeItem(item) &&
+          matchingNonFungibleItem.spec.itemSpec.itemFlags !== 8
+        ) {
+          matchingNonFungibleItem.spec.itemSpec.itemFlags = 8;
         }
 
         if (newSaveData.playerData) {
