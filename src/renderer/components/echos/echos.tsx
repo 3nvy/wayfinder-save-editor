@@ -21,6 +21,7 @@ export type EssentialEchoData = {
   currentXP: number;
   icon: string;
   name: string;
+  details: string;
 };
 
 export const Echos = () => {
@@ -41,10 +42,27 @@ export const Echos = () => {
           currentXP: 0,
           icon: echo.icon,
           name: echo.localizedString ?? 'N/A',
+          details: echo.echoData.description ?? 'N/A',
         });
 
         return acc;
-      }, []);
+      }, []).sort((a, b) => {
+        // First, check if the strings start with "trigger"
+        const aStartsWithTrigger =
+          a.details.includes('Triggered') || a.details.includes('DNT');
+        const bStartsWithTrigger =
+          b.details.includes('Triggered') || b.details.includes('DNT');
+
+        // If only one string starts with "trigger", put that one at the end
+        if (aStartsWithTrigger !== bStartsWithTrigger) {
+          return aStartsWithTrigger ? 1 : -1;
+        }
+        // If both or neither start with "trigger", sort alphabetically
+        else {
+          return a.name.localeCompare(b.name);
+        }
+      });
+      // .sort((a, b) => a.name.localeCompare(b.name));
     } else {
       return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
         .reduce<EssentialEchoData[]>((acc, item) => {
@@ -57,6 +75,11 @@ export const Echos = () => {
               currentXP: item.spec.itemSpec.currentExp,
               icon: matchingEcho.icon,
               name: matchingEcho.localizedString ?? 'N/A',
+              details: matchingEcho.echoData.description?.startsWith(
+                'Triggered',
+              )
+                ? 'Trigger Effect'
+                : matchingEcho.echoData.description ?? 'N/A',
             });
           return acc;
         }, [])

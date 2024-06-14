@@ -37,7 +37,9 @@ export function EchoCard({ echo, children, ...props }: CardProps) {
         />
         <CardTitle className="text-md/[18px]">{echo.name}</CardTitle>
         <CardDescription>
-          {echo.name?.startsWith('Trigger') ? 'Trigger Condition' : echo.name}
+          {echo.name?.startsWith('Trigger')
+            ? 'Trigger Condition'
+            : echo.details}
         </CardDescription>
       </CardHeader>
       <CardFooter className="w-full p-0">{children}</CardFooter>
