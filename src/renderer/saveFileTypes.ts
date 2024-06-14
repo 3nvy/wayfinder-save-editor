@@ -9,7 +9,7 @@
 
 export type SaveData = {
   header?: Header;
-  playerData?: PlayerData;
+  playerData: PlayerData;
   clientPlayerData?: ClientPlayerData;
 };
 
@@ -94,8 +94,10 @@ export type AbilitySlot = {
 };
 
 export enum EchoRarity {
-  NotAssigned = 'NotAssigned',
+  Common = 'Common',
   Uncommon = 'Uncommon',
+  Rare = 'Rare',
+  Epic = 'Epic',
 }
 
 export type FlaskSpec = {

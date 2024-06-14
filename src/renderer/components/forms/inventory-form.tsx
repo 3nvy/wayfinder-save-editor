@@ -20,7 +20,7 @@ import {
 import { ItemCard } from '../item-card/item-card';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
-import { v4 as uuidv4 } from 'uuid';
+import { generateSeed, generateUniqueID } from '../../utils';
 
 const generateSchema = (dataSet: INVENTORY_ITEM[]) =>
   dataSet.reduce((acc, item) => {
@@ -99,6 +99,14 @@ export type InventoryFormProps = {
   dataSet: INVENTORY_ITEM[];
 };
 
+const isArmorTypeItem = (item: INVENTORY_ITEM) => {
+  return (
+    item.equipmentSlot?.startsWith('EEquipmentSlotType::COSMETIC') ||
+    item.equipmentSlot?.startsWith('EEquipmentSlotType::ARMOR') ||
+    item.equipmentSlot?.startsWith('EEquipmentSlotType::PERSONA')
+  );
+};
+
 export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
 
@@ -137,25 +145,6 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
       [[] as INVENTORY_ITEM[], [] as INVENTORY_ITEM[]],
     );
 
-    // [nonFungibleItems[1]].reduce((acc, itm) => {
-    //   for (const addItem of itm.addItemsWhenCreated ?? []) {
-    //     acc.push({
-    //       ...itm,
-    //       key: addItem.rowName,
-    //       data: addItem,
-    //       equipmentSlot:
-    //         itm.equipmentSlot === 'EEquipmentSlotType::WEAPON'
-    //           ? 'EEquipmentSlotType::WEAPON_GLAMOUR'
-    //           : 'EEquipmentSlotType::ARMOR_GLAMOUR',
-    //     });
-    //   }
-    //   acc.push(itm);
-    //   return acc;
-    // }, [] as any);
-
-    // If Weapon, add awakening data
-    // If Armor, add to armor glamours
-
     if (!saveStructure?.playerData) return;
 
     const newSaveData = { ...saveStructure };
@@ -168,12 +157,12 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
         (fi) => values[fi.name] === undefined,
       );
 
-      const newEntries = Object.entries(values)
-        .filter(([_, v]) => v)
-        .map(([k, v]) => ({
+      const newEntries = fungibleItems
+        .filter((item) => values[item.key])
+        .map((item) => ({
           ...FUNGIBLE_ITEM_STRUCTURE,
-          name: k,
-          count: v,
+          name: item.key,
+          count: values[item.key],
         }));
 
       const newFungibleItems = [
@@ -228,13 +217,8 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
             } as any);
         }
 
-        if (
-          item.equipmentSlot?.startsWith('EEquipmentSlotType::COSMETIC') ||
-          item.equipmentSlot?.startsWith('EEquipmentSlotType::ARMOR') ||
-          item.equipmentSlot?.startsWith('EEquipmentSlotType::PERSONA')
-        ) {
+        if (isArmorTypeItem(item)) {
           // Check if it exists inArmorGlamours & add/remove
-          // Check if it exists in WeaponGlamours & add
           const hasArmourGlamour = !!currentArmorGlamours.find(
             (ci) => ci.rowName === item.key,
           );
@@ -242,20 +226,28 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
         }
 
         // Check if it exists in NonFungibleItems & add/remove
-        const hasNonFungibleItem = !!currentNonFungibleItems.find(
+        const matchingNonFungibleItem = currentNonFungibleItems.find(
           (ci) => ci.name === item.key,
         );
+        const hasNonFungibleItem = !!matchingNonFungibleItem;
+
         if (!hasNonFungibleItem) {
           const template = { ...NON_FUNGIBLE_ITEM_STRUCTURE };
           template.name = item.key;
-          template.iD = uuidv4()
-            .replace(/-/g, '')
-            .replace(/[a-zA-Z]/g, (match) => match.toUpperCase());
-          template.spec.itemSpec.initialSeed = Math.floor(
-            1000000000 + Math.random() * 5000000000,
-          );
+          template.iD = generateUniqueID();
+          template.spec.itemSpec.initialSeed = generateSeed();
+
+          if (isArmorTypeItem(item)) template.spec.itemSpec.itemFlags = 8;
 
           currentNonFungibleItems.push(template as MNonFungibleItem);
+        }
+        // Amends armor itemFlags. Still studying the effects of this, but most armor types have this value, so may aswell.
+        else if (
+          hasNonFungibleItem &&
+          isArmorTypeItem(item) &&
+          matchingNonFungibleItem.spec.itemSpec.itemFlags !== 8
+        ) {
+          matchingNonFungibleItem.spec.itemSpec.itemFlags = 8;
         }
 
         if (newSaveData.playerData) {
