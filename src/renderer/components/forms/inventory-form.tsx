@@ -20,7 +20,7 @@ import {
 import { ItemCard } from '../item-card/item-card';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
-import { v4 as uuidv4 } from 'uuid';
+import { generateSeed, generateUniqueID } from '../../utils';
 
 const generateSchema = (dataSet: INVENTORY_ITEM[]) =>
   dataSet.reduce((acc, item) => {
@@ -234,12 +234,8 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
         if (!hasNonFungibleItem) {
           const template = { ...NON_FUNGIBLE_ITEM_STRUCTURE };
           template.name = item.key;
-          template.iD = uuidv4()
-            .replace(/-/g, '')
-            .replace(/[a-zA-Z]/g, (match) => match.toUpperCase());
-          template.spec.itemSpec.initialSeed = Math.floor(
-            1000000000 + Math.random() * 5000000000,
-          );
+          template.iD = generateUniqueID();
+          template.spec.itemSpec.initialSeed = generateSeed();
 
           if (isArmorTypeItem(item)) template.spec.itemSpec.itemFlags = 8;
 

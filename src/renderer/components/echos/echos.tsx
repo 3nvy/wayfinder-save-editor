@@ -8,7 +8,7 @@ import { EchoCard } from './echo-card/echo-card';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '../../structures/structures';
-import { v4 as uuidv4 } from 'uuid';
+import { generateSeed, generateUniqueID } from '../../utils';
 
 export type InventoryEchoType = MNonFungibleItem & {
   rawEchoData: (typeof ECHOS)[0];
@@ -88,19 +88,15 @@ export const Echos = () => {
       const newEcho = {
         ...NON_FUNGIBLE_ITEM_STRUCTURE,
         name: values.key,
-        iD: uuidv4()
-          .replace(/-/g, '')
-          .replace(/[a-zA-Z]/g, (match) => match.toUpperCase()),
+        iD: generateUniqueID(),
       };
 
-      newEcho.spec.itemSpec.initialSeed = Math.floor(
-        1000000000 + Math.random() * 5000000000,
-      );
+      newEcho.spec.itemSpec.initialSeed = generateSeed();
 
       newEcho.spec.itemSpec.randomSeeds = [
         {
           name: 'FogSoul',
-          seed: Math.floor(1000000000 + Math.random() * 5000000000),
+          seed: generateSeed(),
         },
       ] as any;
 
@@ -118,7 +114,7 @@ export const Echos = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap gap-5 h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
+    <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
       {selectedEcho && (
         <EditEchoDialog
           echo={selectedEcho}
@@ -130,7 +126,7 @@ export const Echos = () => {
         Mode Management Card:
           - Controls if we are seeing existing echos or adding a new one
       */}
-      <Card className="relative w-[150px] m-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
+      <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
         <Button
           variant="ghost"
           className="flex items-center text-center justify-center flex-1 p-0 w-full"
