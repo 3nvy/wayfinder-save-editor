@@ -3,6 +3,7 @@ import {
   ECHO_BUDGET_COST,
   ECHO_DATA,
   ECHO_LEVEL_INCREMENT,
+  ECHO_LEVEL_REDUCTION_TABLE,
   EchoBudgetProperties,
 } from '../../tables/echos';
 import { EssentialEchoData } from './echos';
@@ -16,7 +17,7 @@ export const getEchoColor = (echo: EssentialEchoData) => {
 };
 
 /**
- * Get the level of an echo
+ * Convert Exp into Level
  */
 export const getCurrentLevel = (xp: number, rarity: EchoRarity) => {
   const currentXp = xp;
@@ -28,7 +29,7 @@ export const getCurrentLevel = (xp: number, rarity: EchoRarity) => {
 };
 
 /**
- * Get the cost of an echo
+ * Convert Exp into Equip Cost
  */
 export const getCurrentCost = (
   xp: number,
@@ -56,6 +57,9 @@ export const getCurrentCost = (
   );
 };
 
+/**
+ * Convert EquipCost into Exp
+ */
 export const convertCostToExp = (rarity: EchoRarity, cost: number) => {
   if (cost === 1) {
     return 0;
@@ -66,6 +70,9 @@ export const convertCostToExp = (rarity: EchoRarity, cost: number) => {
   }
 };
 
+/**
+ * Generates Equip Cost Table based on Echo Type and Rarity
+ */
 export const generateCostTable = (type: string, rarity: EchoRarity) => {
   const echoCostData = ECHO_BUDGET_COST[
     type as keyof typeof ECHO_BUDGET_COST
@@ -80,4 +87,31 @@ export const generateCostTable = (type: string, rarity: EchoRarity) => {
         +(echoCostData.increment * scalingValue * (idx + 1)).toFixed(2),
     )
     .map((i) => Math.floor(i));
+};
+
+/**
+ * Applies Cost Reduction Factor per Level Difference on Rush Type Echos
+ */
+export const getEquipCostReduction = (
+  type: string,
+  rarity: EchoRarity,
+  echoLevel: number,
+  costLevel: number,
+) => {
+  const baseEquipCost = getCurrentCost(
+    convertCostToExp(rarity, costLevel),
+    rarity,
+    type,
+  );
+
+  const levelDifference = echoLevel - costLevel;
+
+  const newEquipmentCost =
+    baseEquipCost -
+    baseEquipCost *
+      ECHO_LEVEL_REDUCTION_TABLE[
+        levelDifference <= 0 ? 0 : levelDifference >= 5 ? 5 : levelDifference
+      ];
+
+  return Math.floor(newEquipmentCost);
 };

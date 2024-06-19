@@ -12,7 +12,11 @@ import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
-import { generateCostTable, getCurrentCost, getCurrentLevel } from '../utils';
+import {
+  generateCostTable,
+  getCurrentLevel,
+  getEquipCostReduction,
+} from '../utils';
 import { EssentialEchoData } from '../echos';
 import {
   Dialog,
@@ -46,10 +50,21 @@ export const EditEchoDialog = ({
   const echoCostData =
     ECHO_BUDGET_COST[echo.type as keyof typeof ECHO_BUDGET_COST];
   const costEntryNumber = Math.ceil(echoCostData.cap / echoCostData.increment);
+  const initialCostValue = Math.min(
+    getCurrentLevel(echo.startingExp, echo.rarity),
+    40,
+  );
 
   const [currentSelectedRarity, setCurrentSelectedRarity] = useState(
     echo.rarity,
   );
+
+  const [currentSelectedLevel, setCurrentSelectedLevel] = useState(
+    getCurrentLevel(echo.currentXP, echo.rarity),
+  );
+
+  const [currentSelectedCostLevel, setCurrentSelectedCostLevel] =
+    useState(initialCostValue);
 
   const formSchema = useMemo(() => {
     return z.object({
@@ -66,10 +81,7 @@ export const EditEchoDialog = ({
     resolver: zodResolver(formSchema),
     defaultValues: {
       level: getCurrentLevel(echo.currentXP, echo.rarity),
-      cost: Math.min(
-        getCurrentLevel(echo.startingExp, echo.rarity),
-        40,
-      ).toString(),
+      cost: initialCostValue.toString(),
       rarity: echo.rarity,
     },
   });
@@ -134,7 +146,12 @@ export const EditEchoDialog = ({
                   <FormItem>
                     <FormLabel>Level</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        onChangeCapture={(e) => {
+                          setCurrentSelectedLevel(+e.currentTarget.value);
+                        }}
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -149,7 +166,10 @@ export const EditEchoDialog = ({
                   <FormItem>
                     <FormLabel>Equip Cost</FormLabel>
                     <Select
-                      onValueChange={field.onChange}
+                      onValueChange={(value) => {
+                        setCurrentSelectedCostLevel(+value);
+                        return field.onChange(value);
+                      }}
                       defaultValue={field.value}
                     >
                       <FormControl>
@@ -175,6 +195,18 @@ export const EditEchoDialog = ({
                   </FormItem>
                 )}
               />
+
+              {echo.type === 'E_Type' && (
+                <FormLabel>
+                  Equip Cost w/ Level Reduction:{' '}
+                  {getEquipCostReduction(
+                    echo.type,
+                    currentSelectedRarity,
+                    currentSelectedLevel,
+                    currentSelectedCostLevel,
+                  )}
+                </FormLabel>
+              )}
             </div>
 
             <DialogFooter className="sm:justify-start">

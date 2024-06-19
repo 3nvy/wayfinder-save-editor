@@ -25,6 +25,7 @@ export type EssentialEchoData = {
   name: string;
   details: string;
   type: string;
+  slotType: string;
 };
 
 export const Echos = () => {
@@ -48,6 +49,7 @@ export const Echos = () => {
           name: echo.localizedString ?? 'N/A',
           details: echo.echoData.description ?? 'N/A',
           type: echo.echoData.soulBudgetCost,
+          slotType: echo.echoData.type.split('::')[1],
         });
 
         return acc;
@@ -82,6 +84,7 @@ export const Echos = () => {
               icon: matchingEcho.icon,
               name: matchingEcho.localizedString ?? 'N/A',
               type: matchingEcho.echoData.soulBudgetCost,
+              slotType: matchingEcho.echoData.type.split('::')[1],
               details: matchingEcho.echoData.description?.startsWith(
                 'Triggered',
               )
@@ -135,6 +138,10 @@ export const Echos = () => {
       ] as any;
 
       newEcho.spec.itemSpec.currentExp = currentExp;
+      newEcho.spec.itemSpec.startingExp = convertCostToExp(
+        values.rarity,
+        +values.cost,
+      );
       newEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
 
       newStructure.playerData.m_InventoryData.m_NonFungibleItems.push(

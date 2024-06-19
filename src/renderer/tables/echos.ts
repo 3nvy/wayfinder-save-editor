@@ -19,6 +19,12 @@ export type EchoBudgetProperties = {
   };
 };
 
+/**
+ * Echo cost reduction factor by negative level difference (startExp < currentExp)
+ * Note: This only applies to Rush type echos (E_Type/Echo)
+ */
+export const ECHO_LEVEL_REDUCTION_TABLE = [0, 0.06, 0.12, 0.18, 0.24, 0.3];
+
 export const ECHO_BUDGET_COST = {
   ABC_Type: { increment: 2, cap: 80 },
   D_Type: { increment: 2, cap: 80 },
