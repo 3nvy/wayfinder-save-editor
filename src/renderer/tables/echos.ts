@@ -8,6 +8,32 @@ export const ECHO_DATA = {
   Epic: { initialXP: 576, color: '#8E7CC3' },
 };
 
+export type EchoBudgetProperties = {
+  increment: number;
+  cap: number;
+  rarityScale?: {
+    Common: number;
+    Uncommon: number;
+    Rare: number;
+    Epic: number;
+  };
+};
+
+export const ECHO_BUDGET_COST = {
+  ABC_Type: { increment: 2, cap: 80 },
+  D_Type: { increment: 2, cap: 80 },
+  E_Type: {
+    increment: 3,
+    cap: 120,
+    rarityScale: {
+      Common: 1.15,
+      Uncommon: 1.05,
+      Rare: 0.95,
+      Epic: 0.85,
+    },
+  },
+};
+
 export const ECHOS = [
   {
     key: 'GoldMiteEcho',
@@ -22,6 +48,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -59,7 +86,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'TwinHornEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Rating' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Rating',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -99,6 +130,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -136,7 +168,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'DeerEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Ability Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Ability Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -173,7 +209,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'StagEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Weapon Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Weapon Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -210,7 +250,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'RatEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Max Health' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Max Health',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -250,6 +294,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -287,7 +332,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'AggressiveRatEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Rating' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Rating',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -324,7 +373,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'FleaEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Resilience' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Resilience',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -361,7 +414,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'GloomFleaEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Ability Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Ability Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -398,7 +455,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'GloomFodderEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Max Health' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Max Health',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -438,6 +499,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -475,7 +537,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'GoblinPeonEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Break Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Break Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -512,7 +578,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'SlimelingEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Weapon Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Weapon Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -549,7 +619,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'SpiderBabyEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Rating' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Rating',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -589,6 +663,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -626,7 +701,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'RemnantPriestEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Max Health' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Max Health',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -666,6 +745,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -703,7 +783,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'BanditSentryEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Break Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Break Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -740,7 +824,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'BlasterEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -777,7 +865,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'HollowOneFodderEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Ability Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Ability Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -814,7 +906,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'ExplosiveIchorlingEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -854,6 +950,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -894,6 +991,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -934,6 +1032,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Magical Defense, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -974,6 +1073,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Magical Defense, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1014,6 +1114,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Weapon Power, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1054,6 +1155,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1094,6 +1196,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Max Health, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1134,6 +1237,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1174,6 +1278,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Weapon Power, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1214,6 +1319,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Ability Power, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1254,6 +1360,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Break Power, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1294,6 +1401,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1334,6 +1442,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1374,6 +1483,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1414,6 +1524,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Break Power, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1454,6 +1565,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1494,6 +1606,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1534,6 +1647,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Power, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1574,6 +1688,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Resilience, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1614,6 +1729,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1654,6 +1770,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Rating, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1694,6 +1811,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1734,6 +1852,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1774,6 +1893,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Max Health, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1814,6 +1934,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Max Health, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1854,6 +1975,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Magical Defense, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1894,6 +2016,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Break Power, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1934,6 +2057,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -1974,6 +2098,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2014,6 +2139,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2054,6 +2180,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2094,6 +2221,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2134,6 +2262,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2174,6 +2303,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2214,6 +2344,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Ability Power, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2254,6 +2385,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2294,6 +2426,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Break Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2334,6 +2467,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Weapon Power, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2374,6 +2508,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Rating, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2414,6 +2549,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Weapon Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2454,6 +2590,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2494,6 +2631,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Ability Power, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2534,6 +2672,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Crit Rating',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2574,6 +2713,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2614,6 +2754,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Weapon Power, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2654,6 +2795,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2694,6 +2836,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Resilience, Physical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2734,6 +2877,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Break Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2774,6 +2918,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2814,6 +2959,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Break Power, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2854,6 +3000,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Crit Rating',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2894,6 +3041,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Break Power, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2934,6 +3082,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Rating, Crit Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -2974,6 +3123,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3014,6 +3164,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Ability Power, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3054,6 +3205,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3094,6 +3246,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3134,6 +3287,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Break Power, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3174,6 +3328,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Power, Max Health',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3214,6 +3369,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Power, Physical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3254,6 +3410,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Ability Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3294,6 +3451,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3334,6 +3492,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3374,6 +3533,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3414,6 +3574,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Rating, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3454,6 +3615,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Crit Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3494,6 +3656,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3534,6 +3697,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Power, Physical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3574,6 +3738,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Resilience, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3614,6 +3779,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Resilience, Crit Rating',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3654,6 +3820,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Rating, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3694,6 +3861,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3734,6 +3902,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Break Power, Weapon Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3774,6 +3943,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3814,6 +3984,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Magical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3854,6 +4025,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Break Power, Ability Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3894,6 +4066,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Break Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3934,6 +4107,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -3974,6 +4148,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Ability Power, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4014,6 +4189,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4054,6 +4230,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Weapon Power, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4094,6 +4271,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4134,6 +4312,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Power, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4174,6 +4353,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4214,6 +4394,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Break Power, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4254,6 +4435,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Power, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4294,6 +4476,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4334,6 +4517,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Max Health, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4374,6 +4558,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4414,6 +4599,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Crit Rating',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4454,6 +4640,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Break Power, Ability Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4494,6 +4681,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Ability Power, Max Health',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4534,6 +4722,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Rating, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4574,6 +4763,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4614,6 +4804,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Resilience, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4654,6 +4845,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4694,6 +4886,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Magical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4734,6 +4927,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Crit Rating',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4774,6 +4968,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Ability Power, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4814,6 +5009,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4854,6 +5050,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Break Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4894,6 +5091,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4934,6 +5132,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -4974,6 +5173,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Magical Defense, Max Health',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5015,6 +5215,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Losing half your guardbreak meter  Effect: Grants damage shield equal to 25 max health  50 reduction to incoming break damage Expires when guardbroken or damage shield is spent 2 minute cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5056,6 +5257,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Losing half your guardbreak meter  Effect: Grants damage shield equal to 25 max health  50 reduction to incoming break damage Expires when guardbroken or damage shield is spent 2 minute cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5097,6 +5299,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Losing 40 of your guardbreak meter  Effect: Grants damage shield equal to 30 max health  60 reduction to incoming break damage Expires when guardbroken or damage shield is spent 2 minute cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5138,6 +5341,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: 25 chance when dodging in combat Effect: Aggroes up to 4 enemies and applies 04 debuffs25 chance each, randomly to their weapon power, ability power, resilience, andor break power for 20 seconds 20 second cooldown  ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5179,6 +5383,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Landing a jump heavy slam attack Effect: Causes physical damage equal to 150 of your weapon power to surrounding enemies, and reduces their movement speed by 50 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5220,6 +5425,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Landing a jump heavy slam attack Effect: Causes physical damage equal to 200 of your weapon power to surrounding enemies, and reduces their movement speed by 66 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5261,6 +5467,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Melee combo finishers and eagle eye shots Effect: Creates a large blast of physical damage equal to 125 of your weapon power 20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5302,6 +5509,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Melee combo finishers and eagle eye shots Effect: Creates a large blast of physical damage equal to 125 of your weapon power 20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5343,6 +5551,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Melee combo finishers and eagle eye shots Effect: Creates a large blast of physical damage equal to 175 of your weapon power 20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5384,6 +5593,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Being hit by an enemy Effect: Boneburrow echo bursts up from the ground causing physical damage equal to 125 of your weapon power Enemies hit will suffer magical damage equal to 35 your ability power every 15 seconds for 6 seconds afterward 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5425,6 +5635,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Hitting an enemy with the last shot in your clip Effect: Releases a godsbloodpowered beam of energy between you and your target, dealing magical damage equal to 300 of your ability power over 2 seconds to it and all enemies in between 20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5466,6 +5677,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Hitting an enemy with the last shot in your clip Effect: Releases a godsbloodpowered beam of energy between you and your target, dealing magical damage equal to 400 of your ability power over 2 seconds to it and all enemies in between 20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5507,6 +5719,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Using a weapon ability Effect: Creates a bomb above the closest enemy that will explode, causing magical damage and break damage equal to 300 of your ability power 40 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5548,6 +5761,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Using a weapon ability Effect: Creates a bomb above the closest enemy that will explode, causing magical damage and break damage equal to 400 of your ability power 40 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5589,6 +5803,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Equipping this echo Effect: Grants 30 to max stamina',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5630,6 +5845,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Causing direct magic damage after killing 4 enemies Effect: A burst of gloom energy causes magical damage equal to 250 of your ability power to all enemies in a moderate radius  20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5671,6 +5887,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Causing direct magic damage after killing 4 enemies Effect: A burst of gloom energy causes magical damage equal to 425 of your ability power to all enemies in a moderate radius  20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5712,6 +5929,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Double jumping in combat Effect: 10 to resilience, weapon power, and ability power for 10 seconds For you and all nearby Wayfinders 45 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5753,6 +5971,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Double jumping in combat Effect: 15 to resilience, weapon power, and ability power for 15 seconds For you and all nearby Wayfinders 45 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5794,6 +6013,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: 20 chance when killing an enemy Effect: Restore 15 of yourmax health over 6 Seconds 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5835,6 +6055,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Damaging the enemy that last damaged you Effect: Causes extra physical damage equal to 350 of your weapon power 12 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5876,6 +6097,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Damaging the enemy that last damaged you Effect: Causes extra physical damage equal to 450 of your weapon power 12 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5917,6 +6139,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Shooting enemies after a successful hotspot reload Effect: Fire a barrage of 3 arrows in front of you up to 3 times within 7 seconds 30 second cooldown, if used ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5958,6 +6181,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Shooting enemies after a successful hotspot reload Effect: Fire a barrage of 3 arrows in front of you up to 4 times within 9 seconds 30 second cooldown, if used ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -5999,6 +6223,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Dodging in combat Effect: Leaves behind a trap that pulls enemies in and explodes, dealing magical damage equal to 250 of your ability power 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6040,6 +6265,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Performing a parry or block counter Effect: Molten gold strikes enemies, dealing magical damage equal to 250 of your ability power instantly, then again over 5 seconds The molten gold then returns, granting a damage shield the less enemies hit, the stronger the shield 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6081,6 +6307,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Dodging in combat Effect: Leaves behind a trap that pulls enemies in and explodes, dealing magical damage equal to 375 of your ability power 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6122,6 +6349,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Landing a critical strike Effect: Proc one of the 3 beast effects: Vulture: Leaves a path of frost in its wake Panther: Increases Crit Rating by a significant amount Bear: Slams the target creating a small shockwave 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6163,6 +6391,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Landing a critical strike Effect: Proc one of the 3 mythic beast effects: Vulture: Leaves a path of frost in its wake Panther: Increases Crit Rating by a significant amount Bear: Slams the target creating a small shockwave 20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6204,6 +6433,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered By: Blocking 4 incoming attacks in succession Effect: Retaliates with Gloom energy dealing magical damage equal to 400 of your ability power 20 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6245,6 +6475,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Casting a Wayfinder ability in combat Effect: Increase ability power by 25 for 10 seconds 45 second cooldown ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6286,6 +6517,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Casting a Wayfinder ability in combat Effect: Increase ability power by 30 for 12 seconds 30 second cooldown ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6327,6 +6559,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Landing a jump heavy slam attack Effect: A small pool of overgrowth heals Wayfinders 4 of their max health every 2 seconds for 10 seconds, players need to stay in the growth to heal 60 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6368,6 +6601,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Landing a jump heavy slam attack Effect: A small pool of overgrowth heals Wayfinders 5 of their max health every 2 seconds for 12 seconds, players need to stay in the growth to heal 60 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6409,6 +6643,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Breaking an enemys guard Effect: Adds 10 crit rating  20 crit power for 10 seconds 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6450,6 +6685,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Breaking an enemys guard Effect: Adds 15 crit rating  25 crit power for 12 seconds 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6491,6 +6727,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Causing physical damage Effect: Spawns a spectral axe that causes physical damage equal to 350 your weapon power 15 second cooldown ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6532,6 +6769,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Causing physical damage Effect: Spawns a spectral axe that causes physical damage equal to 450 your weapon power 15 second cooldown ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6573,6 +6811,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Using a Dash attack in Combat Effect: The Talon of Pyres echo charges forward causing magical damage up to 525 of your ability power over 35 seconds 45 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6614,6 +6853,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Obtaining max combo meter Effect: Overcharges the Wayfinder for 10 seconds, causing additional magical damage equal to 100 of your ability power when hitting enemies 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6655,6 +6895,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Falling below 35 HP Effect: Roots nearby enemies for 12 seconds Hitting rooted enemies heals 3 of your total health 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6696,6 +6937,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Dodging backwards in combat Effect: Spawns 3 black holes around the Wayfinder that deal  magical damage equal to 500 of your ability power while pulling enemies in and exploding 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6737,6 +6979,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Having all 3 main abilities on cooldownEffect: Fires a barrage of piercing gloom needles at surrounding enemies over 5 seconds 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6778,6 +7021,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Using the last of your Stamina to dodge Effect: A ring of molten gold flows around the Wayfinder for 10 seconds Dealing magical damage equal to 150 of your ability power and igniting them, dealing up to 250 more damage per tick60 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6819,6 +7063,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Performing a dodge attack in combat Effect: Empowers the Wayfinders heavy attacks to knock back enemies a moderate distance for 12 seconds 36 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6860,6 +7105,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Landing a jump heavy slam attack Effect: Two flame globules explode in front of you, causing magical damage equal to 200 of your ability power, and burns them for another 200 over 8 seconds 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6901,6 +7147,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Dodging in combat Effect: Makes your Wayfinder invisible to enemies for 5 seconds, and grants 500  weapon power for a single physical attack while stealthed 30 second cooldown ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6942,6 +7189,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Damaging a Loot Goblin Effect: Weapon attacks apply a stack of bleed, Ability attacks apply a stack of Gloom Static No Cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -6983,6 +7231,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         'Triggered by: Dealing damage to an enemy in an eventide expedition or hunt Effect: An eventide present appears that offers a random buff to the wayfinder who picks it up Each buff has a 30 second duration and can stack up to 3 times 10 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7020,7 +7269,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'SapperEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -7057,7 +7310,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'SnowlingEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Resilience' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Resilience',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -7094,7 +7351,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'IceBlasterEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Break Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Break Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -7134,6 +7395,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Ability Power, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7174,6 +7436,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7214,6 +7477,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7254,6 +7518,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Rating, Physical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7294,6 +7559,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Ability Power, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7334,6 +7600,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7371,7 +7638,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'GoldSlimelingEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Max Health' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Max Health',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -7408,7 +7679,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'GoblinChemistEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Resilience' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Resilience',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -7445,7 +7720,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'WolfEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Weapon Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Weapon Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -7485,6 +7764,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Rating, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7525,6 +7805,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7565,6 +7846,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Rating, Ability Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7605,6 +7887,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7645,6 +7928,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7685,6 +7969,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Break Power, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7725,6 +8010,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7765,6 +8051,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7805,6 +8092,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Rating, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7845,6 +8133,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7885,6 +8174,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Crit Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7925,6 +8215,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Physical Defense, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -7965,6 +8256,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Physical Defense, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8005,6 +8297,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Crit Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8045,6 +8338,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Weapon Power, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8085,6 +8379,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Power, Magical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8125,6 +8420,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Break Power, Physical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8165,6 +8461,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Resilience, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8205,6 +8502,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8241,7 +8539,7 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'ExtendedMagEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Delta' },
+    echoData: { type: 'EFogSoulCategory::Delta', soulBudgetCost: 'D_Type' },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -8277,7 +8575,7 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'Test_Echo',
     },
-    echoData: { type: 'EFogSoulCategory::Echo' },
+    echoData: { type: 'EFogSoulCategory::Echo', soulBudgetCost: 'E_Type' },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -8318,6 +8616,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  Triggered by: Landing a jump heavy slam attack Effect: Marks all nearby enemies to be sacrificed, killing marked enemies instantly heals 5 of Max Hp and buffs the wayfinders damage for 2 for 20 seconds, up to 5 stacks 60 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8359,6 +8658,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  Triggered by: Landing a jump heavy slam attack Effect: Leaves a Pool of Rat Poison that deals Physical Damage to enemies every second for 6 seconds 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8400,6 +8700,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  Triggered by: Dash attacking in combat Effect: Targets enemies to the side of the wayfinder and shoots a blot at each, causing Magical Damage equal to 125 of your ability power 30 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8441,6 +8742,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  Triggered by: Using an air attack out of a Hookshot flight Effect:  60 second cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8482,6 +8784,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  50 chance to heal 50 of your health after being Hit while below 25 health 60 Second Cooldown',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8523,6 +8826,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  Grants 10 Resilience for 10 seconds after Performing a Dash Attack in combat, 15 second cooldown ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8564,6 +8868,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  10 chance to Petrify enemies hit by abilities, causing enemies to lose movement or use abilties for 3 seconds',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8605,6 +8910,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  Grants a 10 extra Breakpower after a kill for 10 seconds, 15 second cooldown ',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8646,6 +8952,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Echo',
       description:
         ' DNT  Damaging an enemy has a 10 chance to do Physicalor Magical Damage, 5 chance to do Both',
+      soulBudgetCost: 'E_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8687,6 +8994,7 @@ export const ECHOS = [
       type: 'EFogSoulCategory::Charlie',
       description:
         'An echo of unknown origin  Too unstable to equip, but brimming with power and able to offer a large amount of XP in echo fusion',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8724,7 +9032,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'TurtlesaurHatchlingEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Break Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Break Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -8761,7 +9073,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'TrainingDummyEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -8801,6 +9117,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8841,6 +9158,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8878,7 +9196,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'JellyfishTrapEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Weapon Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Weapon Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -8915,7 +9237,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'GloomSentryEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -8955,6 +9281,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -8995,6 +9322,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Break Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9035,6 +9363,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9075,6 +9404,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9115,6 +9445,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Physical Defense, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9155,6 +9486,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9195,6 +9527,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9235,6 +9568,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9275,6 +9609,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9315,6 +9650,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Resilience, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9355,6 +9691,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Power, Ability Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9395,6 +9732,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Physical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9435,6 +9773,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9475,6 +9814,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Max Health, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9515,6 +9855,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Resilience, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9555,6 +9896,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Crit Rating',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9595,6 +9937,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Resilience, Ability Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9635,6 +9978,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Crit Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9675,6 +10019,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Magical Defense, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9715,6 +10060,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Ability Power, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9755,6 +10101,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9795,6 +10142,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Magical Defense, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9835,6 +10183,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Physical Defense, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9875,6 +10224,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Max Health',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9915,6 +10265,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9955,6 +10306,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Break Power, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -9995,6 +10347,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Physical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10035,6 +10388,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10075,6 +10429,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10115,6 +10470,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Crit Rating',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10155,6 +10511,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Break Power, Weapon Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10195,6 +10552,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10235,6 +10593,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Physical Defense, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10275,6 +10634,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10315,6 +10675,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Ability Power, Max Health',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10355,6 +10716,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10395,6 +10757,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Weapon Power, Crit Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10435,6 +10798,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Ability Power, Max Health',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10475,6 +10839,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Break Power, Physical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10515,6 +10880,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Resilience',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10555,6 +10921,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10592,7 +10959,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'BristleShrimpEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Crit Rating' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Crit Rating',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -10632,6 +11003,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10672,6 +11044,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Physical Defense, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10712,6 +11085,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Power, Break Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10749,7 +11123,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'CoralBlasterEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Weapon Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Weapon Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -10786,7 +11164,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'MagmaBlasterEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Weapon Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Weapon Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -10826,6 +11208,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Weapon Power, Crit Rating',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10866,6 +11249,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Physical Defense, Magical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10906,6 +11290,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Crit Power, Magical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10946,6 +11331,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Ability Power, Crit Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -10986,6 +11372,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Power, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11026,6 +11413,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Weapon Power, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11066,6 +11454,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Alfa',
       description: 'Crit Rating, Ability Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11106,6 +11495,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11146,6 +11536,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Resilience, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11183,7 +11574,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'OwlGrowletEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Bravo', description: 'Resilience' },
+    echoData: {
+      type: 'EFogSoulCategory::Bravo',
+      description: 'Resilience',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -11220,7 +11615,11 @@ export const ECHOS = [
         "DataTable'/Game/Data/Inventory/CreatureEchoes/CreatureEchoItems.CreatureEchoItems'",
       rowName: 'PantherCubEcho',
     },
-    echoData: { type: 'EFogSoulCategory::Alfa', description: 'Weapon Power' },
+    echoData: {
+      type: 'EFogSoulCategory::Alfa',
+      description: 'Weapon Power',
+      soulBudgetCost: 'ABC_Type',
+    },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
@@ -11260,6 +11659,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11300,6 +11700,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Rating, Magical Defense',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11340,6 +11741,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Resilience, Weapon Power',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11380,6 +11782,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Bravo',
       description: 'Magical Defense, Resilience',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11420,6 +11823,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Charlie',
       description: 'Crit Power, Max Health',
+      soulBudgetCost: 'ABC_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11460,6 +11864,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Max Health, Break Power',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',
@@ -11500,6 +11905,7 @@ export const ECHOS = [
     echoData: {
       type: 'EFogSoulCategory::Delta',
       description: 'Ability Power, Magical Defense',
+      soulBudgetCost: 'D_Type',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',

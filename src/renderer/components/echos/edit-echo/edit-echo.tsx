@@ -2,19 +2,18 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useContext, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
-import { getCurrentLevel } from '../utils';
-import { EssentialEchoData, InventoryEchoType } from '../echos';
+import { generateCostTable, getCurrentCost, getCurrentLevel } from '../utils';
+import { EssentialEchoData } from '../echos';
 import {
   Dialog,
   DialogContent,
@@ -23,9 +22,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { EchoRarity, SaveData } from '@/src/renderer/saveFileTypes';
-import { ECHO_DATA } from '@/src/renderer/tables/echos';
-import { SaveEditorContext } from '@/src/renderer/context/context';
+import { ECHO_BUDGET_COST } from '@/src/renderer/tables/echos';
 import {
   Select,
   SelectContent,
@@ -33,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { EchoRarity } from '@/src/renderer/saveFileTypes';
 
 type EditEchoDialogProps = {
   echo: EssentialEchoData;
@@ -45,13 +43,21 @@ export const EditEchoDialog = ({
   onSave,
   onClose,
 }: EditEchoDialogProps) => {
-  const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
+  const echoCostData =
+    ECHO_BUDGET_COST[echo.type as keyof typeof ECHO_BUDGET_COST];
+  const costEntryNumber = Math.ceil(echoCostData.cap / echoCostData.increment);
+
+  const [currentSelectedRarity, setCurrentSelectedRarity] = useState(
+    echo.rarity,
+  );
+
   const formSchema = useMemo(() => {
     return z.object({
       level: z.coerce
         .number()
         .min(1)
         .max(50, { message: '50 is the max level' }),
+      cost: z.string(),
       rarity: z.string(),
     });
   }, [echo]);
@@ -59,7 +65,11 @@ export const EditEchoDialog = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      level: getCurrentLevel(echo),
+      level: getCurrentLevel(echo.currentXP, echo.rarity),
+      cost: Math.min(
+        getCurrentLevel(echo.startingExp, echo.rarity),
+        40,
+      ).toString(),
       rarity: echo.rarity,
     },
   });
@@ -70,32 +80,6 @@ export const EditEchoDialog = ({
       key: echo.key,
       ...values,
     });
-    // const { rawEchoData, ...newEcho } = echo;
-    // const newStructure = { ...saveStructure } as SaveData;
-
-    // const remainingNonFungibleItems =
-    //   newStructure.playerData.m_InventoryData.m_NonFungibleItems.filter(
-    //     (item) => item.iD !== echo.iD,
-    //   );
-
-    // /**
-    //  * Set New XP
-    //  */
-    // const initialXP = ECHO_DATA[values.rarity as EchoRarity].initialXP;
-    // newEcho.spec.itemSpec.currentExp =
-    //   values.level === 1 ? 0 : initialXP + 54 * Math.max(0, values.level - 2);
-
-    // /**
-    //  * Set New Rarity
-    //  */
-    // newEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
-
-    // newStructure.playerData.m_InventoryData.m_NonFungibleItems = [
-    //   ...remainingNonFungibleItems,
-    //   newEcho,
-    // ];
-
-    // saveNewValues(newStructure);
   }
 
   return (
@@ -109,7 +93,9 @@ export const EditEchoDialog = ({
                 {echo.id ? 'Editing Echo' : 'Adding Echo'}
               </DialogDescription>
             </DialogHeader>
+
             <div className="flex flex-col pt-5 pb-5 gap-3">
+              {/* Rarity Select */}
               <FormField
                 control={form.control}
                 name="rarity"
@@ -117,7 +103,10 @@ export const EditEchoDialog = ({
                   <FormItem>
                     <FormLabel>Rarity</FormLabel>
                     <Select
-                      onValueChange={field.onChange}
+                      onValueChange={(value) => {
+                        setCurrentSelectedRarity(value as EchoRarity);
+                        return field.onChange(value);
+                      }}
                       defaultValue={field.value}
                     >
                       <FormControl>
@@ -137,6 +126,7 @@ export const EditEchoDialog = ({
                 )}
               />
 
+              {/* Level Select */}
               <FormField
                 control={form.control}
                 name={'level'}
@@ -146,6 +136,41 @@ export const EditEchoDialog = ({
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Equip Cost Select */}
+              <FormField
+                control={form.control}
+                name="cost"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Equip Cost</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select echo cost" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {generateCostTable(
+                          echo.type,
+                          currentSelectedRarity,
+                        ).map((cost, idx) => {
+                          return (
+                            <SelectItem value={`${idx + 1}`}>
+                              {cost} (Lvl {idx + 1}
+                              {idx + 1 === costEntryNumber ? '+' : ''})
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}

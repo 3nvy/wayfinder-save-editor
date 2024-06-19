@@ -9,6 +9,7 @@ import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '../../structures/structures';
 import { generateSeed, generateUniqueID } from '../../utils';
+import { convertCostToExp } from './utils';
 
 export type InventoryEchoType = MNonFungibleItem & {
   rawEchoData: (typeof ECHOS)[0];
@@ -19,9 +20,11 @@ export type EssentialEchoData = {
   key: string;
   rarity: EchoRarity;
   currentXP: number;
+  startingExp: number;
   icon: string;
   name: string;
   details: string;
+  type: string;
 };
 
 export const Echos = () => {
@@ -40,9 +43,11 @@ export const Echos = () => {
           key: echo.key,
           rarity: EchoRarity.Common,
           currentXP: 0,
+          startingExp: 0,
           icon: echo.icon,
           name: echo.localizedString ?? 'N/A',
           details: echo.echoData.description ?? 'N/A',
+          type: echo.echoData.soulBudgetCost,
         });
 
         return acc;
@@ -73,8 +78,10 @@ export const Echos = () => {
               key: matchingEcho.key,
               rarity: item.spec.itemSpec.echoRarity,
               currentXP: item.spec.itemSpec.currentExp,
+              startingExp: item.spec.itemSpec.startingExp,
               icon: matchingEcho.icon,
               name: matchingEcho.localizedString ?? 'N/A',
+              type: matchingEcho.echoData.soulBudgetCost,
               details: matchingEcho.echoData.description?.startsWith(
                 'Triggered',
               )
@@ -100,13 +107,17 @@ export const Echos = () => {
       values.level === 1 ? 0 : initialXP + 54 * Math.max(0, values.level - 2);
 
     if (hasId) {
-      const newEcho =
+      const matchingEcho =
         newStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
           (item) => item.iD === values.id,
         ) as MNonFungibleItem;
 
-      newEcho.spec.itemSpec.currentExp = currentExp;
-      newEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
+      matchingEcho.spec.itemSpec.currentExp = currentExp;
+      matchingEcho.spec.itemSpec.startingExp = convertCostToExp(
+        values.rarity,
+        +values.cost,
+      );
+      matchingEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
     } else {
       const newEcho = {
         ...NON_FUNGIBLE_ITEM_STRUCTURE,
