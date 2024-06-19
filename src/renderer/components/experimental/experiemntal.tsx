@@ -61,7 +61,7 @@ export const ExperimentalTab = () => {
 
         if (!hasItem) {
           const newItem = {
-            ...NON_FUNGIBLE_ITEM_STRUCTURE,
+            ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
             name: itemName,
             iD: uniqueID,
           } as MNonFungibleItem;

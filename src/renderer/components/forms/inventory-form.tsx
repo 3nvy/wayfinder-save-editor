@@ -232,7 +232,9 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
         const hasNonFungibleItem = !!matchingNonFungibleItem;
 
         if (!hasNonFungibleItem) {
-          const template = { ...NON_FUNGIBLE_ITEM_STRUCTURE };
+          const template = {
+            ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
+          };
           template.name = item.key;
           template.iD = generateUniqueID();
           template.spec.itemSpec.initialSeed = generateSeed();

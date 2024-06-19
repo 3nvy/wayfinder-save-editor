@@ -123,7 +123,7 @@ export const Echos = () => {
       matchingEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
     } else {
       const newEcho = {
-        ...NON_FUNGIBLE_ITEM_STRUCTURE,
+        ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
         name: values.key,
         iD: generateUniqueID(),
       };
