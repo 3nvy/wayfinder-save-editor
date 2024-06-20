@@ -87,7 +87,8 @@ export const Accessories = () => {
       };
 
       newAccessory.spec.itemSpec.initialSeed = generateSeed();
-
+      newAccessory.spec.itemSpec.currentExp = values.level - 1;
+      newAccessory.spec.itemSpec.startingExp = values.level - 1;
       newStructure.playerData.m_InventoryData.m_NonFungibleItems.push(
         newAccessory as MNonFungibleItem,
       );
