@@ -12,7 +12,7 @@ export const MOUNTS = [
       {
         dataTable:
           "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
-        rowName: 'Horse_Base_Saddle01',
+        rowName: 'Saddle_001_Item',
       },
     ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
@@ -422,7 +422,7 @@ export const MOUNTS = [
       {
         dataTable:
           "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
-        rowName: 'None',
+        rowName: 'Saddle_Gorehound_002_Item',
       },
     ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
@@ -463,7 +463,7 @@ export const MOUNTS = [
       {
         dataTable:
           "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
-        rowName: 'None',
+        rowName: 'Saddle_Gorehound_003_Item',
       },
     ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
