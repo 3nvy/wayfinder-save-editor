@@ -87,7 +87,6 @@ export const Accessories = () => {
 
     const newStructure = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
 
-    debugger;
     if (hasId) {
       const matchingAccessory =
         newStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
