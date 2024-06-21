@@ -100,7 +100,7 @@ export const Echos = () => {
   const onSaveHandle = useCallback((values: any) => {
     const hasId = !!values.id;
 
-    const newStructure = { ...saveStructure } as SaveData;
+    const newStructure = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
 
     /**
      * Set New XP

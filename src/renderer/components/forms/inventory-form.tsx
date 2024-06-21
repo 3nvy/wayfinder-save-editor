@@ -147,7 +147,7 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
 
     if (!saveStructure?.playerData) return;
 
-    const newSaveData = { ...saveStructure };
+    const newSaveData = JSON.parse(JSON.stringify(saveStructure));
 
     if (fungibleItems.length) {
       const currentFungibleItems =
