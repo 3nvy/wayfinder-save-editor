@@ -10,6 +10,12 @@ import { MNonFungibleItem, SaveData } from '../../saveFileTypes';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '../../structures/structures';
 import { generateSeed, generateUniqueID } from '../../utils';
 
+export type SlotDataStructure = {
+  initialIdx: number;
+  name: string;
+  isEquipped: boolean;
+};
+
 export type EssentialAccessoryData = {
   id?: string;
   key: string;
@@ -18,6 +24,7 @@ export type EssentialAccessoryData = {
   startingExp: number;
   icon: string;
   name: string;
+  echoSlots: SlotDataStructure[];
 };
 
 export const Accessories = () => {
@@ -40,6 +47,7 @@ export const Accessories = () => {
           icon: accessory.icon,
           name: accessory.localizedString ?? 'N/A',
           attributes: accessory.equipmentData.attributes,
+          echoSlots: [],
         });
 
         return acc;
@@ -47,19 +55,27 @@ export const Accessories = () => {
     } else {
       return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
         .reduce<EssentialAccessoryData[]>((acc, item) => {
-          const matchinAccessory = ACCESSORIES.find(
+          const matchingAccessory = ACCESSORIES.find(
             (echo) => echo.key === item.name,
           );
-          if (matchinAccessory)
+          if (matchingAccessory) {
             acc.push({
               id: item.iD,
-              key: matchinAccessory.key,
+              key: matchingAccessory.key,
               currentXP: item.spec.itemSpec.currentExp,
               startingExp: item.spec.itemSpec.startingExp,
-              icon: matchinAccessory.icon,
-              name: matchinAccessory.localizedString ?? 'N/A',
-              attributes: matchinAccessory.equipmentData.attributes,
+              icon: matchingAccessory.icon,
+              name: matchingAccessory.localizedString ?? 'N/A',
+              attributes: matchingAccessory.equipmentData.attributes,
+              echoSlots: item.spec.itemSpec.m_GeneratedFogSoulSlots.map(
+                (slot, idx) => ({
+                  initialIdx: idx,
+                  name: slot.category,
+                  isEquipped: +item.spec.itemSpec.fogSouls[idx] !== 0,
+                }),
+              ),
             });
+          }
           return acc;
         }, [])
         .reverse();
@@ -69,8 +85,9 @@ export const Accessories = () => {
   const onSaveHandle = useCallback((values: any) => {
     const hasId = !!values.id;
 
-    const newStructure = { ...saveStructure } as SaveData;
+    const newStructure = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
 
+    debugger;
     if (hasId) {
       const matchingAccessory =
         newStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
@@ -79,6 +96,38 @@ export const Accessories = () => {
 
       matchingAccessory.spec.itemSpec.currentExp = values.level - 1;
       matchingAccessory.spec.itemSpec.startingExp = values.level - 1;
+
+      // Needs to change the fogSoul structure of the item and the loadout entry
+      const newFogSoulStructure = values.echoSlots.map(
+        (slot: SlotDataStructure) =>
+          matchingAccessory.spec.itemSpec.fogSouls[slot.initialIdx] ??
+          '00000000000000000000000000000000',
+      );
+      // Fog Soul sturcture for loadout entries
+      for (const loadout of newStructure.playerData.m_LoadoutData.m_Loadouts) {
+        for (const loadoutItem of loadout.items) {
+          if (loadoutItem.itemHandle.data.rowName === matchingAccessory.name)
+            loadoutItem.attachedFogSouls = newFogSoulStructure;
+        }
+      }
+
+      // Fog Soul structure for item entry
+      matchingAccessory.spec.itemSpec.fogSouls = newFogSoulStructure;
+
+      matchingAccessory.spec.itemSpec.m_GeneratedFogSoulSlots =
+        values.echoSlots.map((slot: SlotDataStructure, idx: number) => {
+          const existingSlot = matchingAccessory.spec.itemSpec
+            .m_GeneratedFogSoulSlots[idx] ?? {
+            category: '',
+            bAffectsBudgetCapacity: true,
+            bIsUnlocked: false,
+            bIsProgressionSlot: false,
+          };
+          return {
+            ...existingSlot,
+            category: slot.name,
+          };
+        });
     } else {
       const newAccessory = {
         ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
@@ -89,6 +138,18 @@ export const Accessories = () => {
       newAccessory.spec.itemSpec.initialSeed = generateSeed();
       newAccessory.spec.itemSpec.currentExp = values.level - 1;
       newAccessory.spec.itemSpec.startingExp = values.level - 1;
+      newAccessory.spec.itemSpec.fogSouls = Array(values.echoSlots.length).fill(
+        '00000000000000000000000000000000',
+      );
+      newAccessory.spec.itemSpec.m_GeneratedFogSoulSlots = values.echoSlots.map(
+        (slot: [number, string, number][]) => ({
+          category: slot[1],
+          bAffectsBudgetCapacity: true,
+          bIsUnlocked: false,
+          bIsProgressionSlot: false,
+        }),
+      );
+
       newStructure.playerData.m_InventoryData.m_NonFungibleItems.push(
         newAccessory as MNonFungibleItem,
       );

@@ -22,6 +22,15 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { getAccessoryLevel } from '../utils';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useState } from 'react';
+import { useSaveContext } from '@/src/renderer/context/context';
 
 type EditAccessoryDialogProps = {
   accessory: EssentialAccessoryData;
@@ -34,6 +43,10 @@ export const EditAccessoryDialog = ({
   onSave,
   onClose,
 }: EditAccessoryDialogProps) => {
+  const { assetsPath } = useSaveContext();
+
+  const [echoSlots, setEchoSlots] = useState([...accessory.echoSlots]);
+
   const formSchema = z.object({
     level: z.coerce.number().min(1).max(40, { message: '40 is the max level' }),
   });
@@ -45,10 +58,38 @@ export const EditAccessoryDialog = ({
     },
   });
 
+  const onAddSlotHandle = () => {
+    setEchoSlots((state) => [
+      ...state,
+      {
+        initialIdx: state[state.length - 1].initialIdx + 1,
+        name: 'Alfa',
+        isEquipped: false,
+      },
+    ]);
+  };
+
+  const onSlotTypeChange = (slotIdx: number, newType: string) => {
+    if (newType === 'delete') {
+      setEchoSlots((state) => {
+        const newState = [...state];
+        newState.splice(slotIdx, 1);
+        return newState;
+      });
+    } else {
+      setEchoSlots((state) => {
+        const newState = [...state];
+        newState[slotIdx] = { ...newState[slotIdx], name: newType };
+        return newState;
+      });
+    }
+  };
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     onSave({
       id: accessory.id,
       key: accessory.key,
+      echoSlots,
       ...values,
     });
   }
@@ -80,6 +121,77 @@ export const EditAccessoryDialog = ({
                   </FormItem>
                 )}
               />
+
+              <FormLabel>
+                Echo Slots (Equipped slots can't be modified)
+              </FormLabel>
+              <div className="flex flex-row flex-wrap gap-3">
+                {echoSlots.map((slot, idx) => (
+                  <div className="relative">
+                    <Select
+                      disabled={slot.isEquipped}
+                      defaultValue={slot.name}
+                      value={slot.name}
+                      onValueChange={(value) => onSlotTypeChange(idx, value)}
+                    >
+                      <SelectTrigger className="min-w-[100px]">
+                        <SelectValue placeholder="Select a slot type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Alfa">
+                          <div className="flex flex-row items-center p-0">
+                            <img
+                              src={`file://${assetsPath}/EchoMenu/echoSlot_Alfa.png`}
+                              width={25}
+                              height={25}
+                            />
+                            <span className="pr-[5px]">Attack</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Bravo">
+                          <div className="flex flex-row items-center p-0">
+                            <img
+                              src={`file://${assetsPath}/EchoMenu/echoSlot_Bravo.png`}
+                              width={25}
+                              height={25}
+                            />
+                            <span className="pr-[5px]">Guard</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Charlie">
+                          <div className="flex flex-row items-center p-0">
+                            <img
+                              src={`file://${assetsPath}/EchoMenu/echoSlot_Charlie.png`}
+                              width={25}
+                              height={25}
+                            />
+                            <span className="pr-[5px]">Balance</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Delta">
+                          <div className="flex flex-row items-center p-0">
+                            <img
+                              src={`file://${assetsPath}/EchoMenu/echoSlot_Delta.png`}
+                              width={25}
+                              height={25}
+                            />
+                            <span className="pr-[5px]">Cross</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="delete">Remove</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ))}
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="text-[20px]"
+                  onClick={onAddSlotHandle}
+                >
+                  +
+                </Button>
+              </div>
             </div>
 
             <DialogFooter className="sm:justify-start">

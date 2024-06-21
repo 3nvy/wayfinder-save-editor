@@ -27,6 +27,9 @@ export function AccessoryCard({ accessory, children, ...props }: CardProps) {
             <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex items-center gap-1 justify-center">
               {getAccessoryLevel(accessory.currentXP)}
             </div>
+            <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex items-center gap-1 justify-center">
+              Slots: {accessory.echoSlots.length}
+            </div>
           </div>
         )}
         <img
