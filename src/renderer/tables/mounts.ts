@@ -8,7 +8,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'Strider_001_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Horse_Base_Saddle01',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
@@ -43,7 +49,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'Strider_002_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Saddle_002_Item',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
@@ -78,7 +90,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'Strider_003_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Saddle_003_Item',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
@@ -195,7 +213,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'Cresthorn_003_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Saddle_Cresthorn_003_Item',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
@@ -230,7 +254,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'Panther_001_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Saddle_Bobtail_001_Item',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
@@ -306,7 +336,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'Panther_003_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Saddle_Bobtail_003_Item',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
@@ -464,7 +500,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'GloomPanther_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Saddle_Gloom_001_Item',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
@@ -499,7 +541,13 @@ export const MOUNTS = [
       dataTable: "DataTable'/Game/Data/Inventory/Mounts/MountItems.MountItems'",
       rowName: 'Astral_001_Token',
     },
-    addItemsWhenCreated: [],
+    addItemsWhenCreated: [
+      {
+        dataTable:
+          "DataTable'/Game/Data/Inventory/Mounts/SaddleItems.SaddleItems'",
+        rowName: 'Saddle_Astral_001_Item',
+      },
+    ],
     equipmentSlot: 'EEquipmentSlotType::MOUNT',
     bIsArchetype: false,
     bIsCharacter: false,
