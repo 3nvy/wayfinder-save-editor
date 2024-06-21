@@ -26,12 +26,14 @@ Mind this are only the items belonging to the founders pack, it doesn't include 
 This panel allows to add new echos to your inventory, and allows to edit the level, rarity and equip cost
 
 ![alt text](image-5.png)
+![alt text](image-6.png)
 
 ## Add/Edit Accessories
 
 This panel allows to add new accessories to your inventory, and allows to edit the level and echo slots
 
 ![alt text](image-11.png)
+![alt text](image-12.png)
 
 ## Experimental Features
 
@@ -42,7 +44,6 @@ This panel allows to add new accessories to your inventory, and allows to edit t
 - Fix Kyros when added via Founders tab on previous versions
 
 ![alt text](image-3.png)
-![alt text](image-6.png)
 
 ## Free text edit of the entire save structure (Advanced)
 
