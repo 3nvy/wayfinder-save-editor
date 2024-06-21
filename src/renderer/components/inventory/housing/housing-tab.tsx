@@ -49,7 +49,7 @@ export const HousingTab = () => {
           }
           return acc;
         }, [])
-        .reverse();
+        .sort((a, b) => a.name.localeCompare(b.name));
     }
   }, [saveStructure, isAddMode]);
 
