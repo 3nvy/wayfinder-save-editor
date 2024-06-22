@@ -110,6 +110,7 @@ export const getEquipCostReduction = (
     baseEquipCost -
     baseEquipCost *
       ECHO_LEVEL_REDUCTION_TABLE[
+        // eslint-disable-next-line no-nested-ternary
         levelDifference <= 0 ? 0 : levelDifference >= 5 ? 5 : levelDifference
       ];
 

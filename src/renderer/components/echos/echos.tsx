@@ -1,12 +1,12 @@
 import { useCallback, useContext, useMemo, useState } from 'react';
+import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { SaveEditorContext } from '../../context/context';
 import { ECHOS, ECHO_DATA } from '../../tables/echos';
 import { EchoRarity, MNonFungibleItem, SaveData } from '../../saveFileTypes';
-import { Button } from '@/components/ui/button';
 import { EditEchoDialog } from './edit-echo/edit-echo';
 import { EchoCard } from './echo-card/echo-card';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '../../structures/structures';
 import { generateSeed, generateUniqueID } from '../../utils';
 import { convertCostToExp } from './utils';
@@ -65,94 +65,95 @@ export const Echos = () => {
           return aStartsWithTrigger ? 1 : -1;
         }
         // If both or neither start with "trigger", sort alphabetically
-        else {
-          return a.name.localeCompare(b.name);
-        }
+
+        return a.name.localeCompare(b.name);
       });
       // .sort((a, b) => a.name.localeCompare(b.name));
-    } else {
-      return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
-        .reduce<EssentialEchoData[]>((acc, item) => {
-          const matchingEcho = ECHOS.find((echo) => echo.key === item.name);
-          if (matchingEcho)
-            acc.push({
-              id: item.iD,
-              key: matchingEcho.key,
-              rarity: item.spec.itemSpec.echoRarity,
-              currentXP: item.spec.itemSpec.currentExp,
-              startingExp: item.spec.itemSpec.startingExp,
-              icon: matchingEcho.icon,
-              name: matchingEcho.localizedString ?? 'N/A',
-              type: matchingEcho.echoData.soulBudgetCost,
-              slotType: matchingEcho.echoData.type.split('::')[1],
-              details: matchingEcho.echoData.description?.startsWith(
-                'Triggered',
-              )
-                ? 'Trigger Effect'
-                : matchingEcho.echoData.description ?? 'N/A',
-            });
-          return acc;
-        }, [])
-        .reverse();
     }
+    return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
+      .reduce<EssentialEchoData[]>((acc, item) => {
+        const matchingEcho = ECHOS.find((echo) => echo.key === item.name);
+        if (matchingEcho)
+          acc.push({
+            id: item.iD,
+            key: matchingEcho.key,
+            rarity: item.spec.itemSpec.echoRarity,
+            currentXP: item.spec.itemSpec.currentExp,
+            startingExp: item.spec.itemSpec.startingExp,
+            icon: matchingEcho.icon,
+            name: matchingEcho.localizedString ?? 'N/A',
+            type: matchingEcho.echoData.soulBudgetCost,
+            slotType: matchingEcho.echoData.type.split('::')[1],
+            details: matchingEcho.echoData.description?.startsWith('Triggered')
+              ? 'Trigger Effect'
+              : matchingEcho.echoData.description ?? 'N/A',
+          });
+        return acc;
+      }, [])
+      .reverse();
   }, [saveStructure, isAddMode]);
 
-  const onSaveHandle = useCallback((values: any) => {
-    const hasId = !!values.id;
+  const onSaveHandle = useCallback(
+    (values: any) => {
+      const hasId = !!values.id;
 
-    const newStructure = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
+      const newStructure = JSON.parse(
+        JSON.stringify(saveStructure),
+      ) as SaveData;
 
-    /**
-     * Set New XP
-     */
-    const initialXP = ECHO_DATA[values.rarity as EchoRarity].initialXP;
-    const currentExp =
-      values.level === 1 ? 0 : initialXP + 54 * Math.max(0, values.level - 2);
+      /**
+       * Set New XP
+       */
+      const { initialXP } = ECHO_DATA[values.rarity as EchoRarity];
+      const currentExp =
+        values.level === 1 ? 0 : initialXP + 54 * Math.max(0, values.level - 2);
 
-    if (hasId) {
-      const matchingEcho =
-        newStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
-          (item) => item.iD === values.id,
-        ) as MNonFungibleItem;
+      if (hasId) {
+        const matchingEcho =
+          newStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
+            (item) => item.iD === values.id,
+          ) as MNonFungibleItem;
 
-      matchingEcho.spec.itemSpec.currentExp = currentExp;
-      matchingEcho.spec.itemSpec.startingExp = convertCostToExp(
-        values.rarity,
-        +values.cost,
-      );
-      matchingEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
-    } else {
-      const newEcho = {
-        ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
-        name: values.key,
-        iD: generateUniqueID(),
-      };
+        matchingEcho.spec.itemSpec.currentExp = currentExp;
+        matchingEcho.spec.itemSpec.startingExp = convertCostToExp(
+          values.rarity,
+          +values.cost,
+        );
+        matchingEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
+      } else {
+        const newEcho = {
+          ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
+          name: values.key,
+          iD: generateUniqueID(),
+        };
 
-      newEcho.spec.itemSpec.initialSeed = generateSeed();
+        newEcho.spec.itemSpec.initialSeed = generateSeed();
 
-      newEcho.spec.itemSpec.randomSeeds = [
-        {
-          name: 'FogSoul',
-          seed: generateSeed(),
-        },
-      ] as any;
+        newEcho.spec.itemSpec.randomSeeds = [
+          {
+            name: 'FogSoul',
+            seed: generateSeed(),
+          },
+        ] as any;
 
-      newEcho.spec.itemSpec.currentExp = currentExp;
-      newEcho.spec.itemSpec.startingExp = convertCostToExp(
-        values.rarity,
-        +values.cost,
-      );
-      newEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
+        newEcho.spec.itemSpec.currentExp = currentExp;
+        newEcho.spec.itemSpec.startingExp = convertCostToExp(
+          values.rarity,
+          +values.cost,
+        );
+        newEcho.spec.itemSpec.echoRarity = values.rarity as EchoRarity;
 
-      newStructure.playerData.m_InventoryData.m_NonFungibleItems.push(
-        newEcho as MNonFungibleItem,
-      );
-    }
+        newStructure.playerData.m_InventoryData.m_NonFungibleItems.push(
+          newEcho as MNonFungibleItem,
+        );
+      }
 
-    saveNewValues(newStructure);
-    setSelectedEcho(undefined);
-    setIsAddMode(false);
-  }, []);
+      saveNewValues(newStructure);
+      setSelectedEcho(undefined);
+      setIsAddMode(false);
+    },
+    [saveNewValues, saveStructure],
+  );
 
   return (
     <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">

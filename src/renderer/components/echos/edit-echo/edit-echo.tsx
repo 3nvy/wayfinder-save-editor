@@ -8,16 +8,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
-import {
-  generateCostTable,
-  getCurrentLevel,
-  getEquipCostReduction,
-} from '../utils';
-import { EssentialEchoData } from '../echos';
 import {
   Dialog,
   DialogContent,
@@ -35,6 +29,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { EchoRarity } from '@/src/renderer/saveFileTypes';
+import { EssentialEchoData } from '../echos';
+import {
+  generateCostTable,
+  getCurrentLevel,
+  getEquipCostReduction,
+} from '../utils';
 
 type EditEchoDialogProps = {
   echo: EssentialEchoData;
@@ -42,11 +42,7 @@ type EditEchoDialogProps = {
   onClose: () => void;
 };
 
-export const EditEchoDialog = ({
-  echo,
-  onSave,
-  onClose,
-}: EditEchoDialogProps) => {
+export function EditEchoDialog({ echo, onSave, onClose }: EditEchoDialogProps) {
   const echoCostData =
     ECHO_BUDGET_COST[echo.type as keyof typeof ECHO_BUDGET_COST];
   const costEntryNumber = Math.ceil(echoCostData.cap / echoCostData.increment);
@@ -66,16 +62,11 @@ export const EditEchoDialog = ({
   const [currentSelectedCostLevel, setCurrentSelectedCostLevel] =
     useState(initialCostValue);
 
-  const formSchema = useMemo(() => {
-    return z.object({
-      level: z.coerce
-        .number()
-        .min(1)
-        .max(50, { message: '50 is the max level' }),
-      cost: z.string(),
-      rarity: z.string(),
-    });
-  }, [echo]);
+  const formSchema = z.object({
+    level: z.coerce.number().min(1).max(50, { message: '50 is the max level' }),
+    cost: z.string(),
+    rarity: z.string(),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -95,7 +86,7 @@ export const EditEchoDialog = ({
   }
 
   return (
-    <Dialog open={true} onOpenChange={onClose}>
+    <Dialog open onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -141,7 +132,7 @@ export const EditEchoDialog = ({
               {/* Level Select */}
               <FormField
                 control={form.control}
-                name={'level'}
+                name="level"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Level</FormLabel>
@@ -220,4 +211,4 @@ export const EditEchoDialog = ({
       </DialogContent>
     </Dialog>
   );
-};
+}

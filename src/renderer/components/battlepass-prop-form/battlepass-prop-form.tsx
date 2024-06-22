@@ -1,35 +1,24 @@
-import { useContext, useMemo } from 'react';
-import { SaveEditorContext } from '../../context/context';
+import { useContext } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form } from '@/components/ui/form';
+import { SaveEditorContext } from '../../context/context';
 import { MBattlePassDataV2 } from '../../saveFileTypes';
-import { Input } from '@/components/ui/input';
 import { InventoryItemField } from '../forms/inventory-form';
-import { INVENTORY_ITEM } from '../../structures/structures';
 
-export const BattlePassPropForm = () => {
+export function BattlePassPropForm() {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
 
   const battlePassData = saveStructure?.playerData
     ?.m_BattlePassDataV2 as MBattlePassDataV2;
 
-  const formSchema = useMemo(() => {
-    return z.object({
-      experience: z.coerce.number().min(0),
-      keys: z.coerce.number().min(0),
-    });
-  }, [saveStructure]);
+  const formSchema = z.object({
+    experience: z.coerce.number().min(0),
+    keys: z.coerce.number().min(0),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -84,4 +73,4 @@ export const BattlePassPropForm = () => {
       </form>
     </Form>
   );
-};
+}

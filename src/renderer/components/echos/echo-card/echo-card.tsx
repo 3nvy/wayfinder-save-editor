@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Card,
   CardDescription,
@@ -32,6 +33,7 @@ export function EchoCard({ echo, children, ...props }: CardProps) {
             <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex items-center gap-1 pr-2">
               <img
                 src={`file://${assetsPath}/EchoMenu/echoSlot_${echo.slotType}.png`}
+                alt={`${echo.slotType} Slot`}
                 width={20}
                 height={20}
               />
@@ -40,6 +42,7 @@ export function EchoCard({ echo, children, ...props }: CardProps) {
             <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tl-none rounded-br-none min-w-[30px] flex items-center gap-1">
               <img
                 src={`file://${assetsPath}/EchoMenu/boltCapacity_icon.png`}
+                alt="Echo Capacity"
                 width={16}
                 height={16}
               />
@@ -61,6 +64,7 @@ export function EchoCard({ echo, children, ...props }: CardProps) {
             '--customBg': getEchoColor(echo),
           }}
           src={`file://${assetsPath}/${echo.icon}.png`}
+          alt="Echo"
           width={60}
         />
         <CardTitle className="text-md/[18px]">{echo.name}</CardTitle>

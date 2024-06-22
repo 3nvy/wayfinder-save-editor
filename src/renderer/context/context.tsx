@@ -6,9 +6,9 @@ import {
   useMemo,
   useContext,
 } from 'react';
-import { SaveData } from '../saveFileTypes';
 import { useToast } from '@/components/ui/use-toast';
 import { ipcChannels } from '@/src/config/ipc-channels';
+import { SaveData } from '../saveFileTypes';
 
 type Structure = { [key: string]: any };
 
@@ -27,7 +27,7 @@ type InitialValue = {
 
 const initialValue: InitialValue = {
   decodedFile: {},
-  saveStructure: {},
+  saveStructure: {} as SaveData,
   fileName: '',
   saveDecodedStructure: () => {},
   saveNewValues: () => {},
@@ -43,6 +43,7 @@ export const SaveEditorProvider = ({ children }: any) => {
   const [assetsPath, setAssetsPath] = useState('');
 
   const saveDecodedStructure = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     ({ fileMetadata, decodedSave, saveStructure }: any) => {
       saveFileMetadata(fileMetadata);
       setDecodedFile(decodedSave);
@@ -74,10 +75,11 @@ export const SaveEditorProvider = ({ children }: any) => {
 
       setSaveStructure(newSaveData);
     },
-    [decodedFile, setSaveStructure, fileMetadata],
+    [fileMetadata, decodedFile, toast],
   );
 
   useEffect(() => {
+    // eslint-disable-next-line promise/catch-or-return
     window.electron.ipcRenderer
       .invoke(ipcChannels.GET_ASSETS_PATH)
       .then(setAssetsPath);

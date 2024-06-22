@@ -4,10 +4,10 @@ import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
 import { SaveEditorContext } from '@/src/renderer/context/context';
 import { HOUSING_ITEMS } from '@/src/renderer/tables/housing';
-import { ItemCard } from './item-card/item-card';
 import { MNonFungibleItem, SaveData } from '@/src/renderer/saveFileTypes';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '@/src/renderer/structures/structures';
 import { generateSeed, generateUniqueID } from '@/src/renderer/utils';
+import { ItemCard } from './item-card/item-card';
 
 export type EssentialItemData = {
   id?: string;
