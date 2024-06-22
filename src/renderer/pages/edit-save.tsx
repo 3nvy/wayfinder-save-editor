@@ -1,8 +1,9 @@
+/* eslint-disable react/button-has-type */
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { BattlePassPropForm } from '../components/battlepass-prop-form/battlepass-prop-form';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
-import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
 import { useContext } from 'react';
+import { BattlePassPropForm } from '../components/battlepass-prop-form/battlepass-prop-form';
+import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
 import { SaveEditorContext } from '../context/context';
 import { Inventory } from '../components/inventory/inventory';
 import { ExperimentalTab } from '../components/experimental/experiemntal';

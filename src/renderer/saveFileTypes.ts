@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 // To parse this data:
 //
 //   import { Convert, Welcome } from "./file";

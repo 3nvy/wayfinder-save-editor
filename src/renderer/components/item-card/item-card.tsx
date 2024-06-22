@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSaveContext } from '../../context/context';
 import { CURRENCIES } from '../../tables/currency';
@@ -14,7 +15,11 @@ export function ItemCard({ item, children, ...props }: CardProps) {
       {...props}
     >
       <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
-        <img src={`file://${assetsPath}/${item.icon}.png`} width={50} />
+        <img
+          src={`file://${assetsPath}/${item.icon}.png`}
+          alt={item.key}
+          width={50}
+        />
         <CardTitle className="text-md/[18px]">{item.localizedString}</CardTitle>
       </CardHeader>
       <CardFooter className="p-4">{children}</CardFooter>

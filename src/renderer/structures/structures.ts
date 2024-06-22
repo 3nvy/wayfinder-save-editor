@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 export type FUNGIBLE_ITEM_STRUCTURE = {
   name: string;
   count: number;

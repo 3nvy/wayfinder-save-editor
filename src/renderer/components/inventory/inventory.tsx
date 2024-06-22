@@ -6,6 +6,7 @@ import { MountsTab } from './mounts/mounts-tab';
 import { ImbuimentsTab } from './imbuements/imbuiments-tab';
 import { AwakeningStonesTab } from './awakening-stones/awakening-stones-tab';
 import { HousingTab } from './housing/housing-tab';
+
 export const Inventory = () => {
   return (
     <Tabs

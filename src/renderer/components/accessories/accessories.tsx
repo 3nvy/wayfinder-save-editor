@@ -1,9 +1,10 @@
+/* eslint-disable no-restricted-syntax */
 import { useCallback, useContext, useMemo, useState } from 'react';
-import { SaveEditorContext } from '../../context/context';
 import { Button } from '@/components/ui/button';
-import { AccessoryCard } from './accessory-card/accessory-card';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
+import { AccessoryCard } from './accessory-card/accessory-card';
+import { SaveEditorContext } from '../../context/context';
 import { ACCESSORIES } from '../../tables/accessories';
 import { EditAccessoryDialog } from './edit-accessory/edit-accessory';
 import { MNonFungibleItem, SaveData } from '../../saveFileTypes';
@@ -27,7 +28,7 @@ export type EssentialAccessoryData = {
   echoSlots: SlotDataStructure[];
 };
 
-export const Accessories = () => {
+export function Accessories() {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
 
   // Enable Add Mode
@@ -52,112 +53,117 @@ export const Accessories = () => {
 
         return acc;
       }, []).sort((a, b) => a.name.localeCompare(b.name));
-    } else {
-      return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
-        .reduce<EssentialAccessoryData[]>((acc, item) => {
-          const matchingAccessory = ACCESSORIES.find(
-            (echo) => echo.key === item.name,
-          );
-          if (matchingAccessory) {
-            acc.push({
-              id: item.iD,
-              key: matchingAccessory.key,
-              currentXP: item.spec.itemSpec.currentExp,
-              startingExp: item.spec.itemSpec.startingExp,
-              icon: matchingAccessory.icon,
-              name: matchingAccessory.localizedString ?? 'N/A',
-              attributes: matchingAccessory.equipmentData.attributes,
-              echoSlots: item.spec.itemSpec.m_GeneratedFogSoulSlots.map(
-                (slot, idx) => ({
-                  initialIdx: idx,
-                  name: slot.category,
-                  isEquipped: +item.spec.itemSpec.fogSouls[idx] !== 0,
-                }),
-              ),
-            });
-          }
-          return acc;
-        }, [])
-        .reverse();
     }
+
+    return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
+      .reduce<EssentialAccessoryData[]>((acc, item) => {
+        const matchingAccessory = ACCESSORIES.find(
+          (echo) => echo.key === item.name,
+        );
+        if (matchingAccessory) {
+          acc.push({
+            id: item.iD,
+            key: matchingAccessory.key,
+            currentXP: item.spec.itemSpec.currentExp,
+            startingExp: item.spec.itemSpec.startingExp,
+            icon: matchingAccessory.icon,
+            name: matchingAccessory.localizedString ?? 'N/A',
+            attributes: matchingAccessory.equipmentData.attributes,
+            echoSlots: item.spec.itemSpec.m_GeneratedFogSoulSlots.map(
+              (slot, idx) => ({
+                initialIdx: idx,
+                name: slot.category,
+                isEquipped: (+item.spec.itemSpec.fogSouls[idx] || 0) !== 0,
+              }),
+            ),
+          });
+        }
+        return acc;
+      }, [])
+      .reverse();
   }, [saveStructure, isAddMode]);
 
-  const onSaveHandle = useCallback((values: any) => {
-    const hasId = !!values.id;
+  const onSaveHandle = useCallback(
+    (values: any) => {
+      const hasId = !!values.id;
 
-    const newStructure = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
+      const newStructure = JSON.parse(
+        JSON.stringify(saveStructure),
+      ) as SaveData;
 
-    if (hasId) {
-      const matchingAccessory =
-        newStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
-          (item) => item.iD === values.id,
-        ) as MNonFungibleItem;
+      if (hasId) {
+        const matchingAccessory =
+          newStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
+            (item) => item.iD === values.id,
+          ) as MNonFungibleItem;
 
-      matchingAccessory.spec.itemSpec.currentExp = values.level - 1;
-      matchingAccessory.spec.itemSpec.startingExp = values.level - 1;
+        matchingAccessory.spec.itemSpec.currentExp = values.level - 1;
+        matchingAccessory.spec.itemSpec.startingExp = values.level - 1;
 
-      // Needs to change the fogSoul structure of the item and the loadout entry
-      const newFogSoulStructure = values.echoSlots.map(
-        (slot: SlotDataStructure) =>
-          matchingAccessory.spec.itemSpec.fogSouls[slot.initialIdx] ??
-          '00000000000000000000000000000000',
-      );
-      // Fog Soul sturcture for loadout entries
-      for (const loadout of newStructure.playerData.m_LoadoutData.m_Loadouts) {
-        for (const loadoutItem of loadout.items) {
-          if (loadoutItem.itemHandle.data.rowName === matchingAccessory.name)
-            loadoutItem.attachedFogSouls = newFogSoulStructure;
+        // Needs to change the fogSoul structure of the item and the loadout entry
+        const newFogSoulStructure = values.echoSlots.map(
+          (slot: SlotDataStructure) =>
+            matchingAccessory.spec.itemSpec.fogSouls[slot.initialIdx] ??
+            '00000000000000000000000000000000',
+        );
+        // Fog Soul sturcture for loadout entries
+        for (const loadout of newStructure.playerData.m_LoadoutData
+          .m_Loadouts) {
+          for (const loadoutItem of loadout.items) {
+            if (loadoutItem.itemHandle.data.rowName === matchingAccessory.name)
+              loadoutItem.attachedFogSouls = newFogSoulStructure;
+          }
         }
-      }
 
-      // Fog Soul structure for item entry
-      matchingAccessory.spec.itemSpec.fogSouls = newFogSoulStructure;
+        // Fog Soul structure for item entry
+        matchingAccessory.spec.itemSpec.fogSouls = newFogSoulStructure;
 
-      matchingAccessory.spec.itemSpec.m_GeneratedFogSoulSlots =
-        values.echoSlots.map((slot: SlotDataStructure, idx: number) => {
-          const existingSlot = matchingAccessory.spec.itemSpec
-            .m_GeneratedFogSoulSlots[idx] ?? {
-            category: '',
+        matchingAccessory.spec.itemSpec.m_GeneratedFogSoulSlots =
+          values.echoSlots.map((slot: SlotDataStructure, idx: number) => {
+            const existingSlot = matchingAccessory.spec.itemSpec
+              .m_GeneratedFogSoulSlots[idx] ?? {
+              category: '',
+              bAffectsBudgetCapacity: true,
+              bIsUnlocked: false,
+              bIsProgressionSlot: false,
+            };
+            return {
+              ...existingSlot,
+              category: slot.name,
+            };
+          });
+      } else {
+        const newAccessory = {
+          ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
+          name: values.key,
+          iD: generateUniqueID(),
+        };
+
+        newAccessory.spec.itemSpec.initialSeed = generateSeed();
+        newAccessory.spec.itemSpec.currentExp = values.level - 1;
+        newAccessory.spec.itemSpec.startingExp = values.level - 1;
+        newAccessory.spec.itemSpec.fogSouls = Array(
+          values.echoSlots.length,
+        ).fill('00000000000000000000000000000000');
+        newAccessory.spec.itemSpec.m_GeneratedFogSoulSlots =
+          values.echoSlots.map((slot: [number, string, number][]) => ({
+            category: slot[1],
             bAffectsBudgetCapacity: true,
             bIsUnlocked: false,
             bIsProgressionSlot: false,
-          };
-          return {
-            ...existingSlot,
-            category: slot.name,
-          };
-        });
-    } else {
-      const newAccessory = {
-        ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
-        name: values.key,
-        iD: generateUniqueID(),
-      };
+          }));
 
-      newAccessory.spec.itemSpec.initialSeed = generateSeed();
-      newAccessory.spec.itemSpec.currentExp = values.level - 1;
-      newAccessory.spec.itemSpec.startingExp = values.level - 1;
-      newAccessory.spec.itemSpec.fogSouls = Array(values.echoSlots.length).fill(
-        '00000000000000000000000000000000',
-      );
-      newAccessory.spec.itemSpec.m_GeneratedFogSoulSlots = values.echoSlots.map(
-        (slot: [number, string, number][]) => ({
-          category: slot[1],
-          bAffectsBudgetCapacity: true,
-          bIsUnlocked: false,
-          bIsProgressionSlot: false,
-        }),
-      );
+        newStructure.playerData.m_InventoryData.m_NonFungibleItems.push(
+          newAccessory as MNonFungibleItem,
+        );
+      }
 
-      newStructure.playerData.m_InventoryData.m_NonFungibleItems.push(
-        newAccessory as MNonFungibleItem,
-      );
-    }
-
-    saveNewValues(newStructure);
-    setSelectedAccessory(undefined);
-    setIsAddMode(false);
-  }, []);
+      saveNewValues(newStructure);
+      setSelectedAccessory(undefined);
+      setIsAddMode(false);
+    },
+    [saveNewValues, saveStructure],
+  );
 
   return (
     <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
@@ -213,4 +219,4 @@ export const Accessories = () => {
       ))}
     </div>
   );
-};
+}

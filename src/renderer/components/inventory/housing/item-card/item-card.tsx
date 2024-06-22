@@ -1,16 +1,16 @@
+import React, { useState } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSaveContext } from '@/src/renderer/context/context';
-import { EssentialItemData } from '../housing-tab';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useState } from 'react';
+import { EssentialItemData } from '../housing-tab';
 
 type CardProps = React.ComponentProps<typeof Card> & {
   item: EssentialItemData;
   onAdd: (value: number, itemKey: string) => void;
 };
 
-export function ItemCard({ item, onAdd, children, ...props }: CardProps) {
+export function ItemCard({ item, onAdd, ...props }: CardProps) {
   const { assetsPath } = useSaveContext();
 
   const [value, setValue] = useState(1);
@@ -24,6 +24,7 @@ export function ItemCard({ item, onAdd, children, ...props }: CardProps) {
         <img
           className="rounded-full p-[5px]"
           src={`file://${assetsPath}/${item.icon}.png`}
+          alt="Accessory"
           width={60}
         />
         <CardTitle className="text-md/[18px]">{item.name}</CardTitle>

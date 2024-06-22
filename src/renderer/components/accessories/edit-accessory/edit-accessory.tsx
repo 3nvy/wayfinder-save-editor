@@ -12,7 +12,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
 
-import { EssentialAccessoryData } from '../accessories';
 import {
   Dialog,
   DialogContent,
@@ -21,7 +20,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { getAccessoryLevel } from '../utils';
 import {
   Select,
   SelectContent,
@@ -31,6 +29,8 @@ import {
 } from '@/components/ui/select';
 import { useState } from 'react';
 import { useSaveContext } from '@/src/renderer/context/context';
+import { EssentialAccessoryData } from '../accessories';
+import { getAccessoryLevel } from '../utils';
 
 type EditAccessoryDialogProps = {
   accessory: EssentialAccessoryData;
@@ -38,11 +38,12 @@ type EditAccessoryDialogProps = {
   onClose: () => void;
 };
 
-export const EditAccessoryDialog = ({
+// eslint-disable-next-line import/prefer-default-export
+export function EditAccessoryDialog({
   accessory,
   onSave,
   onClose,
-}: EditAccessoryDialogProps) => {
+}: EditAccessoryDialogProps) {
   const { assetsPath } = useSaveContext();
 
   const [echoSlots, setEchoSlots] = useState([...accessory.echoSlots]);
@@ -62,6 +63,7 @@ export const EditAccessoryDialog = ({
     setEchoSlots((state) => [
       ...state,
       {
+        // eslint-disable-next-line no-unsafe-optional-chaining
         initialIdx: state[state.length - 1]?.initialIdx + 1 || 0,
         name: 'Alfa',
         isEquipped: false,
@@ -95,7 +97,7 @@ export const EditAccessoryDialog = ({
   }
 
   return (
-    <Dialog open={true} onOpenChange={onClose}>
+    <Dialog open onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -110,7 +112,7 @@ export const EditAccessoryDialog = ({
               {/* Level Select */}
               <FormField
                 control={form.control}
-                name={'level'}
+                name="level"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Level</FormLabel>
@@ -123,7 +125,7 @@ export const EditAccessoryDialog = ({
               />
 
               <FormLabel>
-                Echo Slots (Equipped slots can't be modified)
+                Echo Slots (Equipped slots can&apos;t be modified)
               </FormLabel>
               <div className="flex flex-row flex-wrap gap-3">
                 {echoSlots.map((slot, idx) => (
@@ -142,6 +144,7 @@ export const EditAccessoryDialog = ({
                           <div className="flex flex-row items-center p-0">
                             <img
                               src={`file://${assetsPath}/EchoMenu/echoSlot_Alfa.png`}
+                              alt="Attack Slot"
                               width={25}
                               height={25}
                             />
@@ -152,6 +155,7 @@ export const EditAccessoryDialog = ({
                           <div className="flex flex-row items-center p-0">
                             <img
                               src={`file://${assetsPath}/EchoMenu/echoSlot_Bravo.png`}
+                              alt="Guard Slot"
                               width={25}
                               height={25}
                             />
@@ -162,6 +166,7 @@ export const EditAccessoryDialog = ({
                           <div className="flex flex-row items-center p-0">
                             <img
                               src={`file://${assetsPath}/EchoMenu/echoSlot_Charlie.png`}
+                              alt="Balance Slot"
                               width={25}
                               height={25}
                             />
@@ -171,6 +176,7 @@ export const EditAccessoryDialog = ({
                         <SelectItem value="Delta">
                           <div className="flex flex-row items-center p-0">
                             <img
+                              alt="Cross Slot"
                               src={`file://${assetsPath}/EchoMenu/echoSlot_Delta.png`}
                               width={25}
                               height={25}
@@ -205,4 +211,4 @@ export const EditAccessoryDialog = ({
       </DialogContent>
     </Dialog>
   );
-};
+}

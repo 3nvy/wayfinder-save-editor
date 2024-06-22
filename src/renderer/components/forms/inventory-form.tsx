@@ -10,6 +10,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useContext, useMemo } from 'react';
 import { UseFormReturn, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
 import { SaveEditorContext } from '../../context/context';
 import { MFungibleItem, MNonFungibleItem, SaveData } from '../../saveFileTypes';
 import {
@@ -18,8 +20,6 @@ import {
   NON_FUNGIBLE_ITEM_STRUCTURE,
 } from '../../structures/structures';
 import { ItemCard } from '../item-card/item-card';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
 import { generateSeed, generateUniqueID } from '../../utils';
 
 const generateSchema = (dataSet: INVENTORY_ITEM[]) =>
@@ -64,12 +64,12 @@ type FormType = UseFormReturn<
   undefined
 >;
 
-type InventoryItemField = {
+type InventoryItemFieldProps = {
   form: FormType;
   item: INVENTORY_ITEM;
 };
 
-export const InventoryItemField = ({ form, item }: InventoryItemField) => {
+export const InventoryItemField = ({ form, item }: InventoryItemFieldProps) => {
   return (
     <FormField
       control={form.control}
@@ -112,7 +112,7 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
 
   const formSchema = useMemo(() => {
     return z.object(generateSchema(dataSet));
-  }, [saveStructure]);
+  }, [dataSet]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -123,21 +123,19 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
     const [fungibleItems, nonFungibleItems] = dataSet.reduce(
       (acc, i) => {
         if (i.bIsFungible) acc[0].push(i);
-        else {
-          if (values[i.key]) {
-            for (const addItem of i.addItemsWhenCreated ?? []) {
-              acc[1].push({
-                ...i,
-                key: addItem.rowName,
-                data: addItem,
-                equipmentSlot:
-                  i.equipmentSlot === 'EEquipmentSlotType::WEAPON'
-                    ? 'EEquipmentSlotType::WEAPON_GLAMOUR'
-                    : 'EEquipmentSlotType::ARMOR_GLAMOUR',
-              } as any);
-            }
-            acc[1].push(i);
+        else if (values[i.key]) {
+          for (const addItem of i.addItemsWhenCreated ?? []) {
+            acc[1].push({
+              ...i,
+              key: addItem.rowName,
+              data: addItem,
+              equipmentSlot:
+                i.equipmentSlot === 'EEquipmentSlotType::WEAPON'
+                  ? 'EEquipmentSlotType::WEAPON_GLAMOUR'
+                  : 'EEquipmentSlotType::ARMOR_GLAMOUR',
+            } as any);
           }
+          acc[1].push(i);
         }
 
         return acc;
@@ -177,19 +175,19 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
 
     if (nonFungibleItems.length) {
       const currentNonFungibleItems = [
-        ...saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems,
+        ...saveStructure.playerData.m_InventoryData.m_NonFungibleItems,
       ];
 
       const currentWeaponGlamours = [
-        ...saveStructure?.playerData?.m_InventoryData.m_WeaponGlamours,
+        ...saveStructure.playerData.m_InventoryData.m_WeaponGlamours,
       ];
 
       const currentArmorGlamours = [
-        ...saveStructure?.playerData?.m_InventoryData.m_ArmorGlamours,
+        ...saveStructure.playerData.m_InventoryData.m_ArmorGlamours,
       ];
 
       const currentAwakenedWeapons = [
-        ...saveStructure?.playerData?.m_AwakenedWeaponsData.m_AwakenedWeapons,
+        ...saveStructure.playerData.m_AwakenedWeaponsData.m_AwakenedWeapons,
       ];
 
       /**

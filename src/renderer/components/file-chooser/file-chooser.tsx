@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { SaveEditorContext } from '../../context/context';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -11,6 +10,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { SaveEditorContext } from '../../context/context';
 
 type FileMetadata = {
   name: string;
@@ -45,22 +45,6 @@ const FileChooser: React.FC = () => {
     );
   }, [navigate, saveDecodedStructure]);
 
-  const handleFileChange = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const buffer = await fileToBuffer(file);
-
-      fileMetadata.current = {
-        name: file.name,
-        path: file.path,
-      };
-
-      window.electron.ipcRenderer.sendMessage('decode-file', buffer);
-    }
-  };
-
   const fileToBuffer = (file: File): Promise<Buffer> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -76,6 +60,22 @@ const FileChooser: React.FC = () => {
 
   const onMetaDialogClose = () => {
     window.location.reload();
+  };
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const buffer = await fileToBuffer(file);
+
+      fileMetadata.current = {
+        name: file.name,
+        path: file.path,
+      };
+
+      window.electron.ipcRenderer.sendMessage('decode-file', buffer);
+    }
   };
 
   return (

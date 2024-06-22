@@ -1,12 +1,25 @@
 import { useCallback, useContext } from 'react';
-import { SaveEditorContext } from '../../context/context';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { CardDescription, CardFooter, CardTitle } from '@/components/ui/card';
+import { SaveEditorContext } from '../../context/context';
 import { MNonFungibleItem, SaveData } from '../../saveFileTypes';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '../../structures/structures';
 import { generateSeed, generateUniqueID } from '../../utils';
+
+/**
+ * Kyros Fix Related Stuff
+ */
+const kyrosMissingAbilityItems = [
+  'Battlemage_AspectOfMorath',
+  'Battlemage_AspectOfArkyn',
+  'Battlemage_AspectOfUrda',
+  'KyrosAbility1Upgrades',
+  'KyrosAbility2Upgrades',
+  'KyrosAbility3Upgrades',
+  'KyrosAbilityUltUpgrades',
+];
 
 export const ExperimentalTab = () => {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
@@ -26,20 +39,7 @@ export const ExperimentalTab = () => {
       'Apartment_01_Large';
 
     saveNewValues(newSaveStructure);
-  }, [saveStructure]);
-
-  /**
-   * Kyros Fix Related Stuff
-   */
-  const kyrosMissingAbilityItems = [
-    'Battlemage_AspectOfMorath',
-    'Battlemage_AspectOfArkyn',
-    'Battlemage_AspectOfUrda',
-    'KyrosAbility1Upgrades',
-    'KyrosAbility2Upgrades',
-    'KyrosAbility3Upgrades',
-    'KyrosAbilityUltUpgrades',
-  ];
+  }, [saveNewValues, saveStructure]);
 
   const onKyrosFix = useCallback(() => {
     const newSaveStructure = JSON.parse(
@@ -94,7 +94,7 @@ export const ExperimentalTab = () => {
 
       saveNewValues(newSaveStructure);
     }
-  }, [saveStructure]);
+  }, [saveNewValues, saveStructure]);
 
   return (
     <div className="flex flex-col max-h-full h-full">
@@ -137,8 +137,8 @@ export const ExperimentalTab = () => {
             save.
           </CardDescription>
           <CardDescription className="mt-2">
-            ATTENTION: Please ensure that you don't have Kyros equiped prior to
-            doing this!!!
+            ATTENTION: Please ensure that you don&apos;t have Kyros equipped
+            prior to doing this!!!
           </CardDescription>
           <Button className="mt-4" onClick={onKyrosFix}>
             Apply Fix
