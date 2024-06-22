@@ -62,7 +62,7 @@ export const EditAccessoryDialog = ({
     setEchoSlots((state) => [
       ...state,
       {
-        initialIdx: state[state.length - 1].initialIdx + 1,
+        initialIdx: state[state.length - 1]?.initialIdx + 1 || 0,
         name: 'Alfa',
         isEquipped: false,
       },
