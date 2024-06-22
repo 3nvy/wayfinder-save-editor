@@ -1,3 +1,4 @@
+import { HOUSING_ITEMS } from '../src/renderer/tables/housing';
 import { ACCESSORIES } from '../src/renderer/tables/accessories';
 import { AWAKENING_STONES } from '../src/renderer/tables/awakening-stones';
 import { CURRENCIES } from '../src/renderer/tables/currency';
@@ -24,6 +25,7 @@ const REQUIRED_ASSETS = [
   ...ECHOS,
   ...AWAKENING_STONES,
   ...ACCESSORIES,
+  ...HOUSING_ITEMS,
 ]
   .map((i) => `${i.icon}.png`)
   .concat([
