@@ -6,11 +6,14 @@ You can download the latest version here
 
 This is still experimental and very basic, but should provide the following:
 
-## Manage Inventory Items, such as Currency, Resources, Imbudiments, Mounts and Awakening Stones
+## Manage Inventory Items: Currencies, Resources, Imbuements, Mounts (w/ Saddles), Housing Items & Awakening Stones
 
 ![alt text](image.png)
-
 ![alt text](image-1.png)
+![alt text](image-7.png)
+![alt text](image-8.png)
+![alt text](image-9.png)
+![alt text](image-10.png)
 
 ## Add Items from Founder's Catalogue
 
@@ -20,11 +23,19 @@ Mind this are only the items belonging to the founders pack, it doesn't include 
 
 ## Add/Edit Echos
 
-This panel allows to add new echos to your inventory, and allows to edit the level and rarity of the ones you own
+This panel allows to add new echos to your inventory, and allows to edit the level, rarity and equip cost
 
 ![alt text](image-5.png)
+![alt text](image-6.png)
 
-## Experiemntal Features
+## Add/Edit Accessories
+
+This panel allows to add new accessories to your inventory, and allows to edit the level and echo slots
+
+![alt text](image-11.png)
+![alt text](image-12.png)
+
+## Experimental Features
 
 ### This will have a set of experimental features. Currently it has:
 
@@ -41,8 +52,9 @@ This panel allows to add new echos to your inventory, and allows to edit the lev
 # Future Updates
 
 - Search Functionality
+- Weapons
+- Personas / Cosmetics
 - Premium Shop: This will include premium items such as battle tower rewards
-- Personas
 
 ### General credits
 

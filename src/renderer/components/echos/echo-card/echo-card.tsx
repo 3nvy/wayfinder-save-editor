@@ -8,7 +8,12 @@ import {
 import { useSaveContext } from '../../../context/context';
 
 import { EssentialEchoData } from '../echos';
-import { getCurrentLevel, getEchoColor } from '../utils';
+import {
+  getCurrentCost,
+  getCurrentLevel,
+  getEchoColor,
+  getEquipCostReduction,
+} from '../utils';
 
 type CardProps = React.ComponentProps<typeof Card> & {
   echo: EssentialEchoData;
@@ -23,8 +28,31 @@ export function EchoCard({ echo, children, ...props }: CardProps) {
     >
       <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
         {echo.id && (
-          <div className="absolute top-0 left-0 bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px]">
-            {getCurrentLevel(echo)}
+          <div className="absolute top-0 flex justify-between w-full">
+            <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex items-center gap-1 pr-2">
+              <img
+                src={`file://${assetsPath}/EchoMenu/echoSlot_${echo.slotType}.png`}
+                width={20}
+                height={20}
+              />
+              {getCurrentLevel(echo.currentXP, echo.rarity)}
+            </div>
+            <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tl-none rounded-br-none min-w-[30px] flex items-center gap-1">
+              <img
+                src={`file://${assetsPath}/EchoMenu/boltCapacity_icon.png`}
+                width={16}
+                height={16}
+              />
+              {/* Applies cost reduction per level difference if echo is of Rush type */}
+              {echo.type === 'E_Type'
+                ? getEquipCostReduction(
+                    echo.type,
+                    echo.rarity,
+                    getCurrentLevel(echo.currentXP, echo.rarity),
+                    getCurrentLevel(echo.startingExp, echo.rarity),
+                  )
+                : getCurrentCost(echo.startingExp, echo.rarity, echo.type)}
+            </div>
           </div>
         )}
         <img

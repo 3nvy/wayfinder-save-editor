@@ -44,7 +44,7 @@ export const BattlePassPropForm = () => {
       battlePassData.m_Progression.m_progress.m_Experience = values.experience;
       battlePassData.m_Progression.m_progress.m_Keys = values.keys;
 
-      const newSaveData = { ...saveStructure };
+      const newSaveData = JSON.parse(JSON.stringify(saveStructure));
       if (newSaveData.playerData)
         newSaveData.playerData.m_BattlePassDataV2 = battlePassData;
 

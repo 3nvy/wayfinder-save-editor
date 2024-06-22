@@ -17,7 +17,9 @@ export const ExperimentalTab = () => {
   const canUnlockNewHouse =
     saveStructure?.playerData.m_HousingData.m_ApartmentManifest.iD !== 'None';
   const onUnlockHouse = useCallback(() => {
-    const newSaveStructure = { ...saveStructure } as SaveData;
+    const newSaveStructure = JSON.parse(
+      JSON.stringify(saveStructure),
+    ) as SaveData;
     newSaveStructure.playerData.m_HousingData.m_HouseDefinition.rowName =
       'Apartment_01_Large';
     newSaveStructure.playerData.m_HousingData.m_ApartmentManifest.lotInfo[0].houseDefinition.rowName =
@@ -40,7 +42,9 @@ export const ExperimentalTab = () => {
   ];
 
   const onKyrosFix = useCallback(() => {
-    const newSaveStructure = { ...saveStructure } as SaveData;
+    const newSaveStructure = JSON.parse(
+      JSON.stringify(saveStructure),
+    ) as SaveData;
     const kyrosCharacterEntry =
       newSaveStructure.playerData.m_InventoryData.m_NonFungibleItems.find(
         (item) => item.name === 'BattleMageCharacter',
@@ -61,7 +65,7 @@ export const ExperimentalTab = () => {
 
         if (!hasItem) {
           const newItem = {
-            ...NON_FUNGIBLE_ITEM_STRUCTURE,
+            ...JSON.parse(JSON.stringify(NON_FUNGIBLE_ITEM_STRUCTURE)),
             name: itemName,
             iD: uniqueID,
           } as MNonFungibleItem;
