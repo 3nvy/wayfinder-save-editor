@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 import { useSaveContext } from '../../../context/context';
 
 import { getWeaponLevel } from '../utils';
-import { EssentialWeaponData } from '../weapons';
+import { EssentialWeaponData } from '../inventory-weapons/inventory-weapons';
 
 type CardProps = ComponentProps<typeof Card> & {
   weapon: EssentialWeaponData;
