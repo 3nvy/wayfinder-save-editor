@@ -184,6 +184,17 @@ export function EditAccessoryDialog({
                             <span className="pr-[5px]">Cross</span>
                           </div>
                         </SelectItem>
+                        <SelectItem value="Echo">
+                          <div className="flex flex-row items-center p-0">
+                            <img
+                              alt="Rush Slot"
+                              src={`file://${assetsPath}/EchoMenu/echoSlot_Echo.png`}
+                              width={25}
+                              height={25}
+                            />
+                            <span className="pr-[5px]">Rush</span>
+                          </div>
+                        </SelectItem>
                         <SelectItem value="delete">Remove</SelectItem>
                       </SelectContent>
                     </Select>
