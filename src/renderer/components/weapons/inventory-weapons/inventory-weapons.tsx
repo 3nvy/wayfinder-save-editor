@@ -3,9 +3,9 @@ import { useCallback, useContext, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
-import { WeaponCard } from '../weapon-card/weapon-card';
+import { WeaponCard } from './weapon-card/weapon-card';
 import { SaveEditorContext } from '../../../context/context';
-import { EditWeaponDialog } from '../edit-weapon/edit-weapon';
+import { EditWeaponDialog } from './edit-weapon/edit-weapon';
 import { WEAPONS } from '../../../tables/weapons';
 import { MNonFungibleItem, SaveData } from '../../../saveFileTypes';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '../../../structures/structures';
@@ -224,10 +224,7 @@ export function InventoryWeapons() {
           onClose={() => setSelectedWeapon(undefined)}
         />
       )}
-      {/*
-        Mode Management Card:
-          - Controls if we are seeing existing echos or adding a new one
-      */}
+
       <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
         <Button
           variant="ghost"

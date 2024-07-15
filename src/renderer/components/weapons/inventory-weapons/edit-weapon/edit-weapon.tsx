@@ -29,8 +29,8 @@ import {
 } from '@/components/ui/select';
 import { useState } from 'react';
 import { useSaveContext } from '@/src/renderer/context/context';
-import { getWeaponLevel } from '../utils';
-import { EssentialWeaponData } from '../inventory-weapons/inventory-weapons';
+import { getWeaponLevel } from '../../utils';
+import { EssentialWeaponData } from '../inventory-weapons';
 
 type EditWeaponDialogProps = {
   weapon: EssentialWeaponData;
