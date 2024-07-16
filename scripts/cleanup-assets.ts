@@ -1,3 +1,4 @@
+import { WEAPONS } from '../src/renderer/tables/weapons';
 import { HOUSING_ITEMS } from '../src/renderer/tables/housing';
 import { ACCESSORIES } from '../src/renderer/tables/accessories';
 import { AWAKENING_STONES } from '../src/renderer/tables/awakening-stones';
@@ -10,6 +11,7 @@ import {
   UNIQUE_RESOURCES,
   ENEMY_RESOURCES,
 } from '../src/renderer/tables/resources';
+import { WEAPON_AWAKENING_PARTS } from '../src/renderer/tables/weapons/WeaponAwakeningParts';
 
 const fs = require('fs');
 const path = require('path');
@@ -26,6 +28,8 @@ const REQUIRED_ASSETS = [
   ...AWAKENING_STONES,
   ...ACCESSORIES,
   ...HOUSING_ITEMS,
+  ...WEAPONS,
+  ...WEAPON_AWAKENING_PARTS,
 ]
   .map((i) => `${i.icon}.png`)
   .concat([

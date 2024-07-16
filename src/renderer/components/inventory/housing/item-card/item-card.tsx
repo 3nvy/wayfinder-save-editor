@@ -7,10 +7,18 @@ import { EssentialItemData } from '../housing-tab';
 
 type CardProps = React.ComponentProps<typeof Card> & {
   item: EssentialItemData;
+  isAddMode: boolean;
   onAdd: (value: number, itemKey: string) => void;
+  onRemove: (value: number, itemKey: string) => void;
 };
 
-export function ItemCard({ item, onAdd, ...props }: CardProps) {
+export function ItemCard({
+  item,
+  isAddMode,
+  onAdd,
+  onRemove,
+  ...props
+}: CardProps) {
   const { assetsPath } = useSaveContext();
 
   const [value, setValue] = useState(1);
@@ -21,6 +29,16 @@ export function ItemCard({ item, onAdd, ...props }: CardProps) {
       {...props}
     >
       <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
+        <div className="absolute top-0 flex justify-between w-full">
+          <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex justify-center gap-1 pr-2">
+            {item.total}
+          </div>
+          {item.isPlaced && (
+            <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tl-none rounded-br-none min-w-[30px] flex justify-center gap-1">
+              Placed
+            </div>
+          )}
+        </div>
         <img
           className="rounded-full p-[5px]"
           src={`file://${assetsPath}/${item.icon}.png`}
@@ -29,7 +47,8 @@ export function ItemCard({ item, onAdd, ...props }: CardProps) {
         />
         <CardTitle className="text-md/[18px]">{item.name}</CardTitle>
       </CardHeader>
-      {!item.id && (
+
+      {isAddMode && (
         <CardFooter className="w-full p-0 mb-[-13px]">
           <Input
             className="min-h-[50px] rounded-tl-none rounded-tr-none rounded-br-none"
@@ -44,6 +63,25 @@ export function ItemCard({ item, onAdd, ...props }: CardProps) {
             onClick={() => onAdd(value, item.key)}
           >
             Add
+          </Button>
+        </CardFooter>
+      )}
+
+      {!isAddMode && !item.isPlaced && (
+        <CardFooter className="w-full p-0 mb-[-13px]">
+          <Input
+            className="min-h-[50px] rounded-tl-none rounded-tr-none rounded-br-none"
+            value={value}
+            onChange={(e) =>
+              setValue(Math.min(+e.currentTarget.value || 1, item.total))
+            }
+          />
+          <Button
+            className="w-full min-h-[50px] rounded-lg rounded-tl-none rounded-tr-none rounded-bl-none"
+            type="button"
+            onClick={() => onRemove(value, item.key)}
+          >
+            Remove
           </Button>
         </CardFooter>
       )}
