@@ -29,33 +29,33 @@ import {
 } from '@/components/ui/select';
 import { useState } from 'react';
 import { useSaveContext } from '@/src/renderer/context/context';
-import { EssentialAccessoryData } from '../accessories';
-import { getAccessoryLevel } from '../utils';
+import { getWeaponLevel } from '../../utils';
+import { EssentialWeaponData } from '../inventory-weapons';
 
-type EditAccessoryDialogProps = {
-  accessory: EssentialAccessoryData;
+type EditWeaponDialogProps = {
+  weapon: EssentialWeaponData;
   onSave: (values: any) => void;
   onClose: () => void;
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export function EditAccessoryDialog({
-  accessory,
+export function EditWeaponDialog({
+  weapon,
   onSave,
   onClose,
-}: EditAccessoryDialogProps) {
+}: EditWeaponDialogProps) {
   const { assetsPath } = useSaveContext();
 
-  const [echoSlots, setEchoSlots] = useState([...accessory.echoSlots]);
+  const [echoSlots, setEchoSlots] = useState([...weapon.echoSlots]);
 
   const formSchema = z.object({
-    level: z.coerce.number().min(1).max(40, { message: '40 is the max level' }),
+    level: z.coerce.number().min(1).max(38, { message: '38 is the max level' }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      level: getAccessoryLevel(accessory.currentXP),
+      level: getWeaponLevel(weapon.currentXP),
     },
   });
 
@@ -89,8 +89,8 @@ export function EditAccessoryDialog({
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     onSave({
-      id: accessory.id,
-      key: accessory.key,
+      id: weapon.id,
+      key: weapon.key,
       echoSlots,
       ...values,
     });
@@ -102,9 +102,9 @@ export function EditAccessoryDialog({
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <DialogHeader>
-              <DialogTitle>{accessory.name}</DialogTitle>
+              <DialogTitle>{weapon.name}</DialogTitle>
               <DialogDescription>
-                {accessory.id ? 'Editing Accessory' : 'Adding Accessory'}
+                {weapon.id ? 'Editing Weapon' : 'Adding Weapon'}
               </DialogDescription>
             </DialogHeader>
 

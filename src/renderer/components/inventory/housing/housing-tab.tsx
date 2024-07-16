@@ -14,6 +14,18 @@ export type EssentialItemData = {
   key: string;
   icon: string;
   name: string;
+  isPlaced: boolean;
+  total: number;
+};
+
+type GroupedItemData = {
+  [key: string]: {
+    key: string;
+    icon: string;
+    name: string;
+    placed: number;
+    notPlaced: number;
+  };
 };
 
 export const HousingTab = () => {
@@ -29,13 +41,15 @@ export const HousingTab = () => {
           key: houseItem.key,
           icon: houseItem.icon,
           name: houseItem.localizedString ?? 'N/A',
+          isPlaced: false,
+          total: 1,
         });
 
         return acc;
       }, []).sort((a, b) => a.name.localeCompare(b.name));
     } else {
-      return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
-        .reduce<EssentialItemData[]>((acc, item) => {
+      const items = saveStructure!.playerData.m_InventoryData.m_NonFungibleItems
+        .reduce<Omit<EssentialItemData, 'total'>[]>((acc, item) => {
           const matchingItem = HOUSING_ITEMS.find(
             (nfi) => nfi.key === item.name,
           );
@@ -45,14 +59,66 @@ export const HousingTab = () => {
               key: matchingItem.key,
               icon: matchingItem.icon,
               name: matchingItem.localizedString ?? 'N/A',
+              isPlaced: +item.spec.itemSpec.placedHouseProxyId !== 0,
             });
           }
           return acc;
         }, [])
         .sort((a, b) => a.name.localeCompare(b.name));
+
+      // Group House Items into "Placed" and "Not Placed" Categories
+      const groupedItems = items.reduce<GroupedItemData>(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        (acc, { id, isPlaced, ...value }) => {
+          if (!acc[value.key]) {
+            acc[value.key] = {
+              ...value,
+              placed: isPlaced ? 1 : 0,
+              notPlaced: isPlaced ? 0 : 1,
+            };
+          } else {
+            acc[value.key][isPlaced ? 'placed' : 'notPlaced'] += 1;
+          }
+
+          return acc;
+        },
+        {},
+      );
+
+      // Merges the items back into single "Placed" and "Not Placed" entires, with total number of items on each
+      const mergedItems = Object.values(groupedItems)
+        .reduce<EssentialItemData[]>((acc, item) => {
+          if (item.placed) {
+            acc.push({
+              key: item.key,
+              icon: item.icon,
+              name: item.name,
+              isPlaced: true,
+              total: item.placed,
+            });
+          }
+
+          if (item.notPlaced) {
+            acc.push({
+              key: item.key,
+              icon: item.icon,
+              name: item.name,
+              isPlaced: false,
+              total: item.notPlaced,
+            });
+          }
+
+          return acc;
+        }, [])
+        .sort((a) => (a.isPlaced ? -1 : 1));
+
+      return mergedItems;
     }
   }, [saveStructure, isAddMode]);
 
+  /**
+   * Handler for adding housing items
+   */
   const onAddItemHandler = (value: number, itemKey: string) => {
     const newStructure = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
 
@@ -69,6 +135,31 @@ export const HousingTab = () => {
 
     saveNewValues(newStructure);
     setIsAddMode(false);
+  };
+
+  /**
+   * Handler for removing housing items
+   *
+   * Note: Only non placed house items can be removed. This is to prevent the extra complexity of editing the placed proxy on the house data
+   */
+  const onRemoveItemHandler = (value: number, itemKey: string) => {
+    const newStructure = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
+
+    // Removable Item ID List, splitted by amount to remove
+    const itemIds = newStructure.playerData.m_InventoryData.m_NonFungibleItems
+      .filter(
+        (item) =>
+          item.name === itemKey && +item.spec.itemSpec.placedHouseProxyId === 0,
+      )
+      .slice(0, value)
+      .map((item) => item.iD);
+
+    newStructure.playerData.m_InventoryData.m_NonFungibleItems =
+      newStructure.playerData.m_InventoryData.m_NonFungibleItems.filter(
+        (item) => !itemIds.includes(item.iD),
+      );
+
+    saveNewValues(newStructure);
   };
 
   return (
@@ -100,9 +191,11 @@ export const HousingTab = () => {
       {/* Echo List */}
       {itemList?.map((item) => (
         <ItemCard
-          key={item.id ?? item.key}
+          key={`${item.key}_${item.isPlaced ? 'placed' : 'noPlaced'}`}
           item={item}
+          isAddMode={isAddMode}
           onAdd={onAddItemHandler}
+          onRemove={onRemoveItemHandler}
         />
       ))}
     </div>

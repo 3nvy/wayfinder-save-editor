@@ -35,6 +35,14 @@ This panel allows to add new accessories to your inventory, and allows to edit t
 ![alt text](image-11.png)
 ![alt text](image-12.png)
 
+## Weapon Manager
+
+### Allows to add/edit any weapon, add weapon crafting parts and edit weapon awakening level
+
+![alt text](image-13.png)
+![alt text](image-14.png)
+![alt text](image-15.png)
+
 ## Experimental Features
 
 ### This will have a set of experimental features. Currently it has:

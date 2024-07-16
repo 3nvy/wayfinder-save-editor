@@ -9,6 +9,7 @@ import { Inventory } from '../components/inventory/inventory';
 import { ExperimentalTab } from '../components/experimental/experiemntal';
 import { Echos } from '../components/echos/echos';
 import { Accessories } from '../components/accessories/accessories';
+import { WeaponsTab } from '../components/weapons/weapons';
 
 export const EditSavePage = () => {
   const { fileName } = useContext(SaveEditorContext);
@@ -28,6 +29,7 @@ export const EditSavePage = () => {
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
           <TabsTrigger value="echos">Echos</TabsTrigger>
           <TabsTrigger value="accessories">Accessories</TabsTrigger>
+          <TabsTrigger value="weapons">Weapons</TabsTrigger>
           <TabsTrigger value="rewardTower">Reward Tower</TabsTrigger>
           <TabsTrigger value="experimental">Experimental</TabsTrigger>
           <TabsTrigger value="rawStructure">
@@ -42,6 +44,9 @@ export const EditSavePage = () => {
         </TabsContent>
         <TabsContent value="accessories">
           <Accessories />
+        </TabsContent>
+        <TabsContent value="weapons">
+          <WeaponsTab />
         </TabsContent>
         <TabsContent value="rewardTower">
           <BattlePassPropForm />
