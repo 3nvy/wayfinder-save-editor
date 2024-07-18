@@ -10,6 +10,7 @@ import { ExperimentalTab } from '../components/experimental/experiemntal';
 import { Echos } from '../components/echos/echos';
 import { Accessories } from '../components/accessories/accessories';
 import { WeaponsTab } from '../components/weapons/weapons';
+import { Wayfinders } from '../components/wayfinders/wayfinders';
 
 export const EditSavePage = () => {
   const { fileName } = useContext(SaveEditorContext);
@@ -27,6 +28,7 @@ export const EditSavePage = () => {
       >
         <TabsList>
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
+          <TabsTrigger value="wayfinders">Wayfinders</TabsTrigger>
           <TabsTrigger value="echos">Echos</TabsTrigger>
           <TabsTrigger value="accessories">Accessories</TabsTrigger>
           <TabsTrigger value="weapons">Weapons</TabsTrigger>
@@ -38,6 +40,9 @@ export const EditSavePage = () => {
         </TabsList>
         <TabsContent value="inventory">
           <Inventory />
+        </TabsContent>
+        <TabsContent value="wayfinders">
+          <Wayfinders />
         </TabsContent>
         <TabsContent value="echos">
           <Echos />
