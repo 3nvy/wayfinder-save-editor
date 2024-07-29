@@ -5,7 +5,7 @@ import { NissArmorSet } from './niss-armor-set';
 import { SiloArmorSet } from './silo-armor-set';
 import { WingraveArmorSet } from './wingrave-armor-set';
 import { VenomessArmorSet } from './venomess-armor-set';
-import { LoraArmorSet } from './lora-armor-set';
+import { GrendelArmorSet } from './grendel-armor-set';
 
 export const ArmorSetsTab = () => {
   return (
@@ -20,7 +20,7 @@ export const ArmorSetsTab = () => {
         <TabsTrigger value="armor-set-silo">Silo</TabsTrigger>
         <TabsTrigger value="armor-set-venomess">Venomess</TabsTrigger>
         <TabsTrigger value="armor-set-wingrave">Wingrave</TabsTrigger>
-        <TabsTrigger value="armor-set-lora">[DNT] Lora</TabsTrigger>
+        <TabsTrigger value="armor-set-grendel">Grendel</TabsTrigger>
       </TabsList>
       <TabsContent value="armor-set-kyros">
         <KyrosArmorSet />
@@ -40,8 +40,8 @@ export const ArmorSetsTab = () => {
       <TabsContent value="armor-set-wingrave">
         <WingraveArmorSet />
       </TabsContent>
-      <TabsContent value="armor-set-lora">
-        <LoraArmorSet />
+      <TabsContent value="armor-set-grendel">
+        <GrendelArmorSet />
       </TabsContent>
     </Tabs>
   );
