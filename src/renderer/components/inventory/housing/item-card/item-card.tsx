@@ -30,9 +30,16 @@ export function ItemCard({
     >
       <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
         <div className="absolute top-0 flex justify-between w-full">
-          <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex justify-center gap-1 pr-2">
-            {item.total}
-          </div>
+          {isAddMode && item.packName && (
+            <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex justify-center gap-1 pr-2">
+              {item.packName}
+            </div>
+          )}
+          {!isAddMode && (
+            <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tr-none rounded-bl-none min-w-[30px] flex justify-center gap-1 pr-2">
+              {item.total}
+            </div>
+          )}
           {item.isPlaced && (
             <div className=" bg-black/50 px-[5px] py-[1px] rounded-lg rounded-tl-none rounded-br-none min-w-[30px] flex justify-center gap-1">
               Placed

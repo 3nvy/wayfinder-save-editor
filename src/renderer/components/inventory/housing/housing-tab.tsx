@@ -3,7 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
 import { SaveEditorContext } from '@/src/renderer/context/context';
-import { HOUSING_ITEMS } from '@/src/renderer/tables/housing';
+import {
+  STANDARD_HOUSING_ITEMS,
+  CRITICAL_PACK_HOUSING_ITEMS,
+  EVENTIDE_PACK_HOUSING_ITEMS,
+} from '@/src/renderer/tables/housing';
 import { MNonFungibleItem, SaveData } from '@/src/renderer/saveFileTypes';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '@/src/renderer/structures/structures';
 import { generateSeed, generateUniqueID } from '@/src/renderer/utils';
@@ -16,6 +20,7 @@ export type EssentialItemData = {
   name: string;
   isPlaced: boolean;
   total: number;
+  packName?: string;
 };
 
 type GroupedItemData = {
@@ -27,6 +32,18 @@ type GroupedItemData = {
     notPlaced: number;
   };
 };
+
+const HOUSING_ITEMS = [
+  ...CRITICAL_PACK_HOUSING_ITEMS.sort((a, b) =>
+    a.localizedString.localeCompare(b.localizedString),
+  ),
+  ...EVENTIDE_PACK_HOUSING_ITEMS.sort((a, b) =>
+    a.localizedString.localeCompare(b.localizedString),
+  ),
+  ...STANDARD_HOUSING_ITEMS.sort((a, b) =>
+    a.localizedString.localeCompare(b.localizedString),
+  ),
+];
 
 export const HousingTab = () => {
   const { saveStructure, saveNewValues } = useContext(SaveEditorContext);
@@ -43,10 +60,11 @@ export const HousingTab = () => {
           name: houseItem.localizedString ?? 'N/A',
           isPlaced: false,
           total: 1,
+          packName: houseItem.packName,
         });
 
         return acc;
-      }, []).sort((a, b) => a.name.localeCompare(b.name));
+      }, []);
     } else {
       const items = saveStructure!.playerData.m_InventoryData.m_NonFungibleItems
         .reduce<Omit<EssentialItemData, 'total'>[]>((acc, item) => {

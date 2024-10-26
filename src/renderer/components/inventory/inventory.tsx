@@ -6,6 +6,8 @@ import { MountsTab } from './mounts/mounts-tab';
 import { ImbuimentsTab } from './imbuements/imbuiments-tab';
 import { HousingTab } from './housing/housing-tab';
 import { EventItemsTab } from './event-items/event-items';
+import { CriticalTab } from './critical/critical-tab';
+import { DLCTab } from './dlc/dlc-tab';
 
 export const Inventory = () => {
   return (
@@ -21,6 +23,8 @@ export const Inventory = () => {
         <TabsTrigger value="mounts">Mounts</TabsTrigger>
         <TabsTrigger value="housing">Housing</TabsTrigger>
         <TabsTrigger value="founders">Founders</TabsTrigger>
+        <TabsTrigger value="critical">Critical Pack</TabsTrigger>
+        <TabsTrigger value="dlc">Extra DLC Stuff</TabsTrigger>
       </TabsList>
       <TabsContent value="currency">
         <CurrencyTab />
@@ -42,6 +46,12 @@ export const Inventory = () => {
       </TabsContent>
       <TabsContent value="founders">
         <FoundersTab />
+      </TabsContent>
+      <TabsContent value="critical">
+        <CriticalTab />
+      </TabsContent>
+      <TabsContent value="dlc">
+        <DLCTab />
       </TabsContent>
     </Tabs>
   );

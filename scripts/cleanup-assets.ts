@@ -128,7 +128,7 @@ filesToKeep
     // Compress the PNG file
     sharp(inputBuffer)
       .png({
-        quality: 40, // Adjust the quality level (0-100)
+        quality: 30, // Adjust the quality level (0-100)
         progressive: true, // Enable progressive rendering
         adaptiveFiltering: true, // Enable adaptive filtering
       })
