@@ -33,7 +33,7 @@ export const EditSavePage = () => {
           <TabsTrigger value="accessories">Accessories</TabsTrigger>
           <TabsTrigger value="weapons">Weapons</TabsTrigger>
           <TabsTrigger value="rewardTower">Reward Tower</TabsTrigger>
-          <TabsTrigger value="experimental">Experimental</TabsTrigger>
+          {/* <TabsTrigger value="experimental">Experimental</TabsTrigger> */}
           <TabsTrigger value="rawStructure">
             <ExclamationTriangleIcon className="mr-2" /> Raw Structure
           </TabsTrigger>
@@ -56,9 +56,9 @@ export const EditSavePage = () => {
         <TabsContent value="rewardTower">
           <BattlePassPropForm />
         </TabsContent>
-        <TabsContent value="experimental">
+        {/* <TabsContent value="experimental">
           <ExperimentalTab />
-        </TabsContent>
+        </TabsContent> */}
         <TabsContent value="rawStructure">
           <RawPropForm />
         </TabsContent>
