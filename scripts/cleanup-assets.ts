@@ -1,5 +1,10 @@
+import { POTIONS } from '../src/renderer/tables/potions';
 import { WEAPONS } from '../src/renderer/tables/weapons';
-import { HOUSING_ITEMS } from '../src/renderer/tables/housing';
+import {
+  CRITICAL_PACK_HOUSING_ITEMS,
+  EVENTIDE_PACK_HOUSING_ITEMS,
+  STANDARD_HOUSING_ITEMS,
+} from '../src/renderer/tables/housing';
 import { ACCESSORIES } from '../src/renderer/tables/accessories';
 import { AWAKENING_STONES } from '../src/renderer/tables/awakening-stones';
 import { CURRENCIES } from '../src/renderer/tables/currency';
@@ -29,6 +34,10 @@ import { NISS_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/NissPerson
 import { SILO_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/TacticianPersonaItems';
 import { VENOMESS_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/VenomessPersonaItems';
 import { WEAPON_CHARMS } from '../src/renderer/tables/cosmetics/WeaponCharms';
+import { CRITICAL_PACK, DLC_PACK } from '../src/renderer/tables/critical-pack';
+import { EVENT_ITEMS } from '../src/renderer/tables/event-items';
+import { LORA_ARMOR_SET } from '../src/renderer/tables/armorItems/LoraArmorItems';
+import { LORA_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/LoraPersonaItems';
 
 const fs = require('fs');
 const path = require('path');
@@ -44,7 +53,7 @@ const REQUIRED_ASSETS = [
   ...ECHOS,
   ...AWAKENING_STONES,
   ...ACCESSORIES,
-  ...HOUSING_ITEMS,
+  ...STANDARD_HOUSING_ITEMS,
   ...WEAPONS,
   ...WEAPON_AWAKENING_PARTS,
   ...GRENDEL_ARMOR_SET,
@@ -64,6 +73,14 @@ const REQUIRED_ASSETS = [
   ...SILO_PERSONAL_ITEMS,
   ...VENOMESS_PERSONAL_ITEMS,
   ...WEAPON_CHARMS,
+  ...EVENTIDE_PACK_HOUSING_ITEMS,
+  ...CRITICAL_PACK,
+  ...CRITICAL_PACK_HOUSING_ITEMS,
+  ...DLC_PACK,
+  ...POTIONS,
+  ...EVENT_ITEMS,
+  ...LORA_ARMOR_SET,
+  ...LORA_PERSONAL_ITEMS,
 ]
   .map((i) => `${i.icon}.png`)
   .concat([
