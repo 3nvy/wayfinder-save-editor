@@ -11,6 +11,8 @@ import {
 import { MNonFungibleItem, SaveData } from '@/src/renderer/saveFileTypes';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '@/src/renderer/structures/structures';
 import { generateSeed, generateUniqueID } from '@/src/renderer/utils';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import { ItemCard } from './item-card/item-card';
 
 export type EssentialItemData = {
@@ -51,9 +53,13 @@ export const HousingTab = () => {
   // Enable Add Mode
   const [isAddMode, setIsAddMode] = useState(false);
 
+  const [searchValue, setSearchValue] = useState('');
+
   const itemList = useMemo(() => {
     if (isAddMode) {
-      return HOUSING_ITEMS.reduce<EssentialItemData[]>((acc, houseItem) => {
+      return HOUSING_ITEMS.filter((i) =>
+        i.localizedString.match(new RegExp(searchValue, 'ig')),
+      ).reduce<EssentialItemData[]>((acc, houseItem) => {
         acc.push({
           key: houseItem.key,
           icon: houseItem.icon,
@@ -67,6 +73,7 @@ export const HousingTab = () => {
       }, []);
     } else {
       const items = saveStructure!.playerData.m_InventoryData.m_NonFungibleItems
+
         .reduce<Omit<EssentialItemData, 'total'>[]>((acc, item) => {
           const matchingItem = HOUSING_ITEMS.find(
             (nfi) => nfi.key === item.name,
@@ -130,9 +137,11 @@ export const HousingTab = () => {
         }, [])
         .sort((a) => (a.isPlaced ? -1 : 1));
 
-      return mergedItems;
+      return mergedItems.filter((i) =>
+        i.name.match(new RegExp(searchValue, 'ig')),
+      );
     }
-  }, [saveStructure, isAddMode]);
+  }, [isAddMode, searchValue, saveStructure]);
 
   /**
    * Handler for adding housing items
@@ -182,40 +191,50 @@ export const HousingTab = () => {
 
   return (
     <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
-      <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
-        <Button
-          variant="ghost"
-          className="flex items-center text-center justify-center flex-1 p-0 w-full"
-          onClick={() => setIsAddMode((state) => !state)}
-        >
-          <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
-            <CardTitle className="flex flex-col items-center gap-2 text-md/[18px] text-wrap">
-              {isAddMode ? (
-                <>
-                  <ArrowLeftIcon />
-                  <span>Back To Owned Housing Items</span>
-                </>
-              ) : (
-                <>
-                  <PlusIcon />
-                  Add Housing Item
-                </>
-              )}
-            </CardTitle>
-          </CardHeader>
-        </Button>
-      </Card>
-
-      {/* Echo List */}
-      {itemList?.map((item) => (
-        <ItemCard
-          key={`${item.key}_${item.isPlaced ? 'placed' : 'noPlaced'}`}
-          item={item}
-          isAddMode={isAddMode}
-          onAdd={onAddItemHandler}
-          onRemove={onRemoveItemHandler}
+      <div className="bg-card flex p-3 items-center gap-5">
+        <Label htmlFor="email">Search: </Label>
+        <Input
+          name="email"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
-      ))}
+      </div>
+      <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
+        <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
+          <Button
+            variant="ghost"
+            className="flex items-center text-center justify-center flex-1 p-0 w-full"
+            onClick={() => setIsAddMode((state) => !state)}
+          >
+            <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
+              <CardTitle className="flex flex-col items-center gap-2 text-md/[18px] text-wrap">
+                {isAddMode ? (
+                  <>
+                    <ArrowLeftIcon />
+                    <span>Back To Owned Housing Items</span>
+                  </>
+                ) : (
+                  <>
+                    <PlusIcon />
+                    Add Housing Item
+                  </>
+                )}
+              </CardTitle>
+            </CardHeader>
+          </Button>
+        </Card>
+
+        {/* Echo List */}
+        {itemList?.map((item) => (
+          <ItemCard
+            key={`${item.key}_${item.isPlaced ? 'placed' : 'noPlaced'}`}
+            item={item}
+            isAddMode={isAddMode}
+            onAdd={onAddItemHandler}
+            onRemove={onRemoveItemHandler}
+          />
+        ))}
+      </div>
     </div>
   );
 };

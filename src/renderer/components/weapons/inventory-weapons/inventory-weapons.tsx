@@ -3,6 +3,8 @@ import { useCallback, useContext, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import { WeaponCard } from './weapon-card/weapon-card';
 import { SaveEditorContext } from '../../../context/context';
 import { EditWeaponDialog } from './edit-weapon/edit-weapon';
@@ -37,20 +39,26 @@ export function InventoryWeapons() {
   // Sets Selected Echo
   const [selectedWeapon, setSelectedWeapon] = useState<EssentialWeaponData>();
 
+  const [searchValue, setSearchValue] = useState('');
+
   const weaponsList = useMemo(() => {
     if (isAddMode) {
-      return WEAPONS.reduce<EssentialWeaponData[]>((acc, weapon) => {
-        acc.push({
-          key: weapon.key,
-          currentXP: 0,
-          startingExp: 0,
-          icon: weapon.icon,
-          name: weapon.localizedString ?? 'N/A',
-          echoSlots: [],
-        });
+      return WEAPONS.filter((i) =>
+        i.localizedString.match(new RegExp(searchValue, 'ig')),
+      )
+        .reduce<EssentialWeaponData[]>((acc, weapon) => {
+          acc.push({
+            key: weapon.key,
+            currentXP: 0,
+            startingExp: 0,
+            icon: weapon.icon,
+            name: weapon.localizedString ?? 'N/A',
+            echoSlots: [],
+          });
 
-        return acc;
-      }, []).sort((a, b) => a.name.localeCompare(b.name));
+          return acc;
+        }, [])
+        .sort((a, b) => a.name.localeCompare(b.name));
     }
 
     return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
@@ -77,8 +85,13 @@ export function InventoryWeapons() {
         }
         return acc;
       }, [])
+      .filter((i) => i.name.match(new RegExp(searchValue, 'ig')))
       .reverse();
-  }, [saveStructure, isAddMode]);
+  }, [
+    isAddMode,
+    saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems,
+    searchValue,
+  ]);
 
   const onSaveHandle = useCallback(
     (values: any) => {
@@ -217,50 +230,61 @@ export function InventoryWeapons() {
 
   return (
     <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
-      {selectedWeapon && (
-        <EditWeaponDialog
-          weapon={selectedWeapon}
-          onSave={onSaveHandle}
-          onClose={() => setSelectedWeapon(undefined)}
+      <div className="bg-card flex p-3 items-center gap-5">
+        <Label htmlFor="email">Search: </Label>
+        <Input
+          name="email"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
-      )}
+      </div>
 
-      <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
-        <Button
-          variant="ghost"
-          className="flex items-center text-center justify-center flex-1 p-0 w-full"
-          onClick={() => setIsAddMode((state) => !state)}
-        >
-          <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
-            <CardTitle className="flex flex-col items-center gap-2 text-md/[18px] text-wrap">
-              {isAddMode ? (
-                <>
-                  <ArrowLeftIcon />
-                  <span>Back To Owned Weapons</span>
-                </>
-              ) : (
-                <>
-                  <PlusIcon />
-                  Add Weapon
-                </>
-              )}
-            </CardTitle>
-          </CardHeader>
-        </Button>
-      </Card>
+      <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
+        {selectedWeapon && (
+          <EditWeaponDialog
+            weapon={selectedWeapon}
+            onSave={onSaveHandle}
+            onClose={() => setSelectedWeapon(undefined)}
+          />
+        )}
 
-      {/* Weapon List */}
-      {weaponsList?.map((weapon) => (
-        <WeaponCard key={weapon.id ?? weapon.key} weapon={weapon}>
+        <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
           <Button
-            className="w-full min-h-[50px] mb-[-13px] rounded-lg rounded-tl-none rounded-tr-none"
-            type="submit"
-            onClick={() => setSelectedWeapon(weapon)}
+            variant="ghost"
+            className="flex items-center text-center justify-center flex-1 p-0 w-full"
+            onClick={() => setIsAddMode((state) => !state)}
           >
-            {isAddMode ? 'Add' : 'Edit'}
+            <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
+              <CardTitle className="flex flex-col items-center gap-2 text-md/[18px] text-wrap">
+                {isAddMode ? (
+                  <>
+                    <ArrowLeftIcon />
+                    <span>Back To Owned Weapons</span>
+                  </>
+                ) : (
+                  <>
+                    <PlusIcon />
+                    Add Weapon
+                  </>
+                )}
+              </CardTitle>
+            </CardHeader>
           </Button>
-        </WeaponCard>
-      ))}
+        </Card>
+
+        {/* Weapon List */}
+        {weaponsList?.map((weapon) => (
+          <WeaponCard key={weapon.id ?? weapon.key} weapon={weapon}>
+            <Button
+              className="w-full min-h-[50px] mb-[-13px] rounded-lg rounded-tl-none rounded-tr-none"
+              type="submit"
+              onClick={() => setSelectedWeapon(weapon)}
+            >
+              {isAddMode ? 'Add' : 'Edit'}
+            </Button>
+          </WeaponCard>
+        ))}
+      </div>
     </div>
   );
 }
