@@ -7,11 +7,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { UseFormReturn, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import { SaveEditorContext } from '../../context/context';
 import { MFungibleItem, MNonFungibleItem, SaveData } from '../../saveFileTypes';
 import {
@@ -267,14 +268,30 @@ export const InventoryForm = ({ dataSet }: InventoryFormProps) => {
     saveNewValues(newSaveData);
   }
 
+  const [searchValue, setSearchValue] = useState('');
+
+  const items = useMemo(() => {
+    return dataSet.filter((i) =>
+      i.localizedString.match(new RegExp(searchValue, 'ig')),
+    );
+  }, [dataSet, searchValue]);
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col max-h-full"
+        className="flex flex-col max-h-full items-center"
       >
+        <div className="bg-card flex p-3 items-center gap-5 m-2">
+          <Label htmlFor="email">Search: </Label>
+          <Input
+            name="email"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+        </div>
         <div className="flex flex-wrap gap-5 h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
-          {dataSet.map((c) => {
+          {items.map((c) => {
             return <InventoryItemField key={c.key} form={form} item={c} />;
           })}
         </div>

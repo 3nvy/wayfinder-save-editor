@@ -1,5 +1,10 @@
+import { POTIONS } from '../src/renderer/tables/potions';
 import { WEAPONS } from '../src/renderer/tables/weapons';
-import { HOUSING_ITEMS } from '../src/renderer/tables/housing';
+import {
+  CRITICAL_PACK_HOUSING_ITEMS,
+  EVENTIDE_PACK_HOUSING_ITEMS,
+  STANDARD_HOUSING_ITEMS,
+} from '../src/renderer/tables/housing';
 import { ACCESSORIES } from '../src/renderer/tables/accessories';
 import { AWAKENING_STONES } from '../src/renderer/tables/awakening-stones';
 import { CURRENCIES } from '../src/renderer/tables/currency';
@@ -12,6 +17,27 @@ import {
   ENEMY_RESOURCES,
 } from '../src/renderer/tables/resources';
 import { WEAPON_AWAKENING_PARTS } from '../src/renderer/tables/weapons/WeaponAwakeningParts';
+import { GRENDEL_ARMOR_SET } from '../src/renderer/tables/armorItems/GrendelArmorItems';
+import { KYROS_ARMOR_SET } from '../src/renderer/tables/armorItems/KyrosArmorItems';
+import { NISS_ARMOR_SET } from '../src/renderer/tables/armorItems/NissArmorItems';
+import { SENJA_ARMOR_SET } from '../src/renderer/tables/armorItems/SenjaArmorItems';
+import { SILO_ARMOR_SET } from '../src/renderer/tables/armorItems/SiloArmorItems';
+import { VENOMESS_ARMOR_SET } from '../src/renderer/tables/armorItems/VenomessArmorItems';
+import { WINGRAVE_ARMOR_SET } from '../src/renderer/tables/armorItems/WingraveArmorItems';
+import { BATTLEMAGE_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/BattleMagePersonaItems';
+import { CHARACTER_TRINKETS } from '../src/renderer/tables/cosmetics/Character_Trinkets';
+import { WINGRAVE_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/CrusaderPersonaItems';
+import { EVENTIDE_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/EventidePersonaItems';
+import { SENJA_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/GladiatorPersonaItems';
+import { GLOOM_DAGGERS } from '../src/renderer/tables/cosmetics/GloomDaggerItems';
+import { NISS_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/NissPersonaItems';
+import { SILO_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/TacticianPersonaItems';
+import { VENOMESS_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/VenomessPersonaItems';
+import { WEAPON_CHARMS } from '../src/renderer/tables/cosmetics/WeaponCharms';
+import { CRITICAL_PACK, DLC_PACK } from '../src/renderer/tables/critical-pack';
+import { EVENT_ITEMS } from '../src/renderer/tables/event-items';
+import { LORA_ARMOR_SET } from '../src/renderer/tables/armorItems/LoraArmorItems';
+import { LORA_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/LoraPersonaItems';
 
 const fs = require('fs');
 const path = require('path');
@@ -27,9 +53,34 @@ const REQUIRED_ASSETS = [
   ...ECHOS,
   ...AWAKENING_STONES,
   ...ACCESSORIES,
-  ...HOUSING_ITEMS,
+  ...STANDARD_HOUSING_ITEMS,
   ...WEAPONS,
   ...WEAPON_AWAKENING_PARTS,
+  ...GRENDEL_ARMOR_SET,
+  ...KYROS_ARMOR_SET,
+  ...NISS_ARMOR_SET,
+  ...SENJA_ARMOR_SET,
+  ...SILO_ARMOR_SET,
+  ...VENOMESS_ARMOR_SET,
+  ...WINGRAVE_ARMOR_SET,
+  ...BATTLEMAGE_PERSONAL_ITEMS,
+  ...CHARACTER_TRINKETS,
+  ...WINGRAVE_PERSONAL_ITEMS,
+  ...EVENTIDE_PERSONAL_ITEMS,
+  ...SENJA_PERSONAL_ITEMS,
+  ...GLOOM_DAGGERS,
+  ...NISS_PERSONAL_ITEMS,
+  ...SILO_PERSONAL_ITEMS,
+  ...VENOMESS_PERSONAL_ITEMS,
+  ...WEAPON_CHARMS,
+  ...EVENTIDE_PACK_HOUSING_ITEMS,
+  ...CRITICAL_PACK,
+  ...CRITICAL_PACK_HOUSING_ITEMS,
+  ...DLC_PACK,
+  ...POTIONS,
+  ...EVENT_ITEMS,
+  ...LORA_ARMOR_SET,
+  ...LORA_PERSONAL_ITEMS,
 ]
   .map((i) => `${i.icon}.png`)
   .concat([
@@ -94,7 +145,7 @@ filesToKeep
     // Compress the PNG file
     sharp(inputBuffer)
       .png({
-        quality: 40, // Adjust the quality level (0-100)
+        quality: 30, // Adjust the quality level (0-100)
         progressive: true, // Enable progressive rendering
         adaptiveFiltering: true, // Enable adaptive filtering
       })

@@ -3,6 +3,8 @@ import { useCallback, useContext, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import { AccessoryCard } from './accessory-card/accessory-card';
 import { SaveEditorContext } from '../../context/context';
 import { ACCESSORIES } from '../../tables/accessories';
@@ -38,21 +40,27 @@ export function Accessories() {
   const [selectedAccessory, setSelectedAccessory] =
     useState<EssentialAccessoryData>();
 
+  const [searchValue, setSearchValue] = useState('');
+
   const accessoriesList = useMemo(() => {
     if (isAddMode) {
-      return ACCESSORIES.reduce<EssentialAccessoryData[]>((acc, accessory) => {
-        acc.push({
-          key: accessory.key,
-          currentXP: 0,
-          startingExp: 0,
-          icon: accessory.icon,
-          name: accessory.localizedString ?? 'N/A',
-          attributes: accessory.equipmentData.attributes,
-          echoSlots: [],
-        });
+      return ACCESSORIES.filter((i) =>
+        i.localizedString?.match(new RegExp(searchValue, 'ig')),
+      )
+        .reduce<EssentialAccessoryData[]>((acc, accessory) => {
+          acc.push({
+            key: accessory.key,
+            currentXP: 0,
+            startingExp: 0,
+            icon: accessory.icon,
+            name: accessory.localizedString ?? 'N/A',
+            attributes: accessory.equipmentData.attributes,
+            echoSlots: [],
+          });
 
-        return acc;
-      }, []).sort((a, b) => a.name.localeCompare(b.name));
+          return acc;
+        }, [])
+        .sort((a, b) => a.name.localeCompare(b.name));
     }
 
     return saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems
@@ -80,8 +88,13 @@ export function Accessories() {
         }
         return acc;
       }, [])
+      .filter((i) => i.name.match(new RegExp(searchValue, 'ig')))
       .reverse();
-  }, [saveStructure, isAddMode]);
+  }, [
+    isAddMode,
+    saveStructure?.playerData?.m_InventoryData.m_NonFungibleItems,
+    searchValue,
+  ]);
 
   const onSaveHandle = useCallback(
     (values: any) => {
@@ -167,56 +180,66 @@ export function Accessories() {
 
   return (
     <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
-      {selectedAccessory && (
-        <EditAccessoryDialog
-          accessory={selectedAccessory}
-          onSave={onSaveHandle}
-          onClose={() => setSelectedAccessory(undefined)}
+      <div className="bg-card flex p-3 items-center gap-5">
+        <Label htmlFor="email">Search: </Label>
+        <Input
+          name="email"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
-      )}
-      {/*
+      </div>
+      <div className="flex flex-wrap gap-5 max-h-full overflow-auto justify-center w-full pt-[10px] pb-[20px]">
+        {selectedAccessory && (
+          <EditAccessoryDialog
+            accessory={selectedAccessory}
+            onSave={onSaveHandle}
+            onClose={() => setSelectedAccessory(undefined)}
+          />
+        )}
+        {/*
         Mode Management Card:
           - Controls if we are seeing existing echos or adding a new one
       */}
-      <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
-        <Button
-          variant="ghost"
-          className="flex items-center text-center justify-center flex-1 p-0 w-full"
-          onClick={() => setIsAddMode((state) => !state)}
-        >
-          <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
-            <CardTitle className="flex flex-col items-center gap-2 text-md/[18px] text-wrap">
-              {isAddMode ? (
-                <>
-                  <ArrowLeftIcon />
-                  <span>Back To Owned Accessories</span>
-                </>
-              ) : (
-                <>
-                  <PlusIcon />
-                  Add Accessory
-                </>
-              )}
-            </CardTitle>
-          </CardHeader>
-        </Button>
-      </Card>
-
-      {/* Echo List */}
-      {accessoriesList?.map((accessory) => (
-        <AccessoryCard
-          key={accessory.id ?? accessory.key}
-          accessory={accessory}
-        >
+        <Card className="relative w-[150px] min-h-[240px] flex flex-col items-center p-0 border-[2px] border-dashed border-accent shadow-[11px_1px_35px_#00000052,0_0px_25px_#00000038,0_10px_10px_#0000002d,0_5px_5px_#00000024,0_3px_3px_#00000019]">
           <Button
-            className="w-full min-h-[50px] mb-[-13px] rounded-lg rounded-tl-none rounded-tr-none"
-            type="submit"
-            onClick={() => setSelectedAccessory(accessory)}
+            variant="ghost"
+            className="flex items-center text-center justify-center flex-1 p-0 w-full"
+            onClick={() => setIsAddMode((state) => !state)}
           >
-            {isAddMode ? 'Add' : 'Edit'}
+            <CardHeader className="flex items-center text-center justify-center flex-1 p-4">
+              <CardTitle className="flex flex-col items-center gap-2 text-md/[18px] text-wrap">
+                {isAddMode ? (
+                  <>
+                    <ArrowLeftIcon />
+                    <span>Back To Owned Accessories</span>
+                  </>
+                ) : (
+                  <>
+                    <PlusIcon />
+                    Add Accessory
+                  </>
+                )}
+              </CardTitle>
+            </CardHeader>
           </Button>
-        </AccessoryCard>
-      ))}
+        </Card>
+
+        {/* Echo List */}
+        {accessoriesList?.map((accessory) => (
+          <AccessoryCard
+            key={accessory.id ?? accessory.key}
+            accessory={accessory}
+          >
+            <Button
+              className="w-full min-h-[50px] mb-[-13px] rounded-lg rounded-tl-none rounded-tr-none"
+              type="submit"
+              onClick={() => setSelectedAccessory(accessory)}
+            >
+              {isAddMode ? 'Add' : 'Edit'}
+            </Button>
+          </AccessoryCard>
+        ))}
+      </div>
     </div>
   );
 }
