@@ -10,6 +10,7 @@ import { CharacterTrinkets } from './character-trinkets';
 import { EventidePersonalItems } from './eventide-personal-items';
 import { GloomDaggers } from './gloom-daggers';
 import { WeaponCharms } from './weapon-charms';
+import { LoraPersonalItems } from './lora-personal-items';
 
 export const CosmeticsTab = () => {
   return (
@@ -25,6 +26,7 @@ export const CosmeticsTab = () => {
         <TabsTrigger value="cosmetic-venomess">Venomess</TabsTrigger>
         <TabsTrigger value="cosmetic-wingrave">Wingrave</TabsTrigger>
         <TabsTrigger value="cosmetic-grendel">Grendel</TabsTrigger>
+        <TabsTrigger value="cosmetic-lora">Lora</TabsTrigger>
         <TabsTrigger value="cosmetic-eventide">Eventide</TabsTrigger>
         <TabsTrigger value="cosmetic-character-trinkets">Trinkets</TabsTrigger>
         <TabsTrigger value="cosmetic-weapon-charms">Charms</TabsTrigger>
@@ -50,6 +52,9 @@ export const CosmeticsTab = () => {
       </TabsContent>
       <TabsContent value="cosmetic-grendel">
         <GrendelPersonalItems />
+      </TabsContent>
+      <TabsContent value="cosmetic-lora">
+        <LoraPersonalItems />
       </TabsContent>
       <TabsContent value="cosmetic-eventide">
         <EventidePersonalItems />
