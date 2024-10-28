@@ -1,9 +1,18 @@
-export const UNIQUE_RESOURCES = [
+import { INVENTORY_ITEM } from '../structures/structures';
+
+export const UNIQUE_RESOURCES: INVENTORY_ITEM[] = [
   {
     key: 'Ichorstone',
     localizedString: 'Corrupt Arachnicite',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_CorruptArachnicite',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'Ichorstone',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -33,6 +42,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Treasure Phoenix Down',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_TreasurePhoenixDown',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'PhoenixDown',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -62,6 +78,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Crystal Spinneret',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_CrystalSpinneret',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'CrystalSpinneret',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -91,6 +114,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Ichor Pearl',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_SlimePearl',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'SlimePearl',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -120,6 +150,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Remnant Nexus',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_RemnantEther',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'RemnantEther',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -149,6 +186,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Halcyon Orb',
     type: 'Crafting',
     icon: 'Icons/Accessories/AccessoryIcon_HalcyonOrb',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'Floatstone',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -178,6 +222,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Overloaded Arc Element',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_OverloadedArcElement',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'OverloadedArcElement',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -207,6 +258,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Archaic Bone',
     type: 'Crafting',
     icon: 'Icons/Accessories/AccessoryIcon_ArchaicBone',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'WhatLiesBeneathResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -236,6 +294,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: "Archon's Prisma",
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_Darkether',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'Darkether',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -265,6 +330,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: "Night's Maw Viscera",
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_EndlessHungerViscera',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'EndlessHungerResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -294,6 +366,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Corrupt M.L.U.',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_CorruptMLU',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'CorruptMLU',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -323,6 +402,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Prismatic Arcanite',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_PrismaticArcanite',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'PrismaticArcanite',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -352,6 +438,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: "Devourer's Talon",
     type: 'Crafting',
     icon: 'Icons/Accessories/AccessoryIcon_GloomTouchedClaws',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'ScavengerClaw',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -381,6 +474,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Radiant Octachron',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_RadiantOctachron',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'RadiantOctachron',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -410,6 +510,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Umbral Eye',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_UmbralEye',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GloomPantherResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -439,6 +546,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: "Storm Twin's Ire",
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_StormTwinsIre',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'ReaverTwinsResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -468,6 +582,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Grand Iriscite',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_GreenIriscite',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GreenIriscite',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -497,6 +618,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: "Master's Call",
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_MastersCall',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'BeastmasterResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -526,6 +654,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Tainted Core',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_TaintedCore',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GloomLancerCore',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -555,6 +690,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Elemental Shell',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_ElementalShellBasic',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'ElementalShell',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -584,6 +726,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Optic Cortex',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_Optic_Cortex_png',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'OpticCortex',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -613,6 +762,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Witchcharmed Effigy',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_CrackedOrb',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'LeyLinesResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -642,6 +798,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Wormwood Ether',
     type: 'Crafting',
     icon: 'Icons/Accessories/AccessoryIcon_HollowOneEther2',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'HollowOneResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -671,6 +834,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Opal of the King',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_BlackfireOpal',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'BlackfireOpal',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -700,6 +870,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: "Pyre's Torch",
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_PyresTorch',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'FireLordResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -729,6 +906,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Glowing Solution',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_GlowingSolution',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GlowingSolution',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -758,6 +942,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Warbear Blood',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_WarbearBlood',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'WarbearBlood',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -787,6 +978,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Moonshadow Orb',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_MoonshadowOrd',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'MoonshadowOrb',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -816,6 +1014,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Wraith Heart Arrowhead',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_WraithHeartArrowhead',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'WraithHeartArrowhead',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -845,6 +1050,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Jagged Incisor',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_JaggedIncisor',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GiantRatTooth',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -874,6 +1086,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Precursor Idol',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_PrecursorIdol',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'PrecursorIdol',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -903,6 +1122,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Mote of Light',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_MoteOfLight',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'MoteOfLight',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -932,6 +1158,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Stormcrystal Egg',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_StormcrystalEgg',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'StormcrystalEgg',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -961,6 +1194,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Cracked Orb',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_CrackedOrb',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'CrackedOrb',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -990,6 +1230,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Turtlesaur Shellplate',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_TurtlesaurShellplate',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'TurtlesaurShellplate',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1019,6 +1266,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Warpskein',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_Warpeskin',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'Warpskein',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1048,6 +1302,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Radiant Focus',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_RadiantFocus',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'RadiantFocus',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1077,6 +1338,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Gloom Focus',
     type: 'Crafting',
     icon: 'Icons/T_UI_MissingTextureIcon',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GloomFocus',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1106,6 +1374,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'ElementalCore',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_ShieldedElementalCore',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'ElementalCore',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1135,6 +1410,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Gem of Avarice',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_GemOfAvarice',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'LootGoblinResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1164,6 +1446,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: "Trickster's Coin",
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_TrickstersCoin',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'TricksterResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1193,6 +1482,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Dim Spark',
     type: 'Crafting',
     icon: 'Icons/T_UI_MissingTextureIcon',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GorgeEventResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1219,9 +1515,16 @@ export const UNIQUE_RESOURCES = [
   },
   {
     key: 'UndeadRatResource',
-    localizedString: 'Undead Rat Resource',
+    localizedString: "Plaguebearer's Claw",
     type: 'Crafting',
-    icon: 'Icons/Resources/ResourceIcon_BlackfireOpal',
+    icon: 'Icons/Resources/Plaguebearer_s_Claw',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'UndeadRatResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1248,9 +1551,16 @@ export const UNIQUE_RESOURCES = [
   },
   {
     key: 'GorgeHollowResource',
-    localizedString: 'Gorge Hollow Resource',
+    localizedString: 'Severed Root',
     type: 'Crafting',
-    icon: 'Icons/Resources/ResourceIcon_BlackfireOpal',
+    icon: 'Icons/Resources/Severed_Root',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'GorgeHollowResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1277,9 +1587,52 @@ export const UNIQUE_RESOURCES = [
   },
   {
     key: 'HorrorSplitterResource',
-    localizedString: 'Horror Splitter Resource',
+    localizedString: 'Horror Splitter',
     type: 'Crafting',
     icon: 'Icons/Resources/ResourceIcon_BlackfireOpal',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'HorrorSplitterResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
+    bIsArchetype: false,
+    bIsCharacter: false,
+    bIsCraftingMaterial: true,
+    bIsCraftable: false,
+    bIsEquipable: false,
+    bIsFogSoul: false,
+    bIsTalent: false,
+    bIsHousingItem: false,
+    bIsPlayerSpray: false,
+    bIsConsumable: false,
+    bIsFlask: false,
+    bIsNone: false,
+    bIsFungible: true,
+    bIsQuestRestricted: false,
+    bIsEventItem: false,
+    bIsImbuementVessel: false,
+    bIsImbuement: false,
+    bIsPseudoItem: false,
+    bIsIOUItem: false,
+    bIsFungibleMultiplierItem: false,
+    bIsDye: false,
+    bIsPlayerAction: false,
+    bIsPlayerBadgeCustomization: false,
+  },
+  {
+    key: 'PrimalCoreResource',
+    localizedString: 'Primal Core',
+    type: 'Crafting',
+    icon: 'Icons/Resources/Shielded_Elemental_Core_copy_RAINBOW',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'PrimalCoreResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1308,7 +1661,14 @@ export const UNIQUE_RESOURCES = [
     key: 'TeryssaResource',
     localizedString: "Raven's Mask",
     type: 'Crafting',
-    icon: 'Icons/Resources/ResourceIcon_BlackfireOpal',
+    icon: 'Icons/Resources/Raven_s_Mask',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'TeryssaResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1338,6 +1698,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Traditional Contraband',
     type: 'LiveEventResource',
     icon: 'Icons/Accessories/AccessoryIcon_Box_Generic',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'EventideGoblinResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1367,6 +1734,13 @@ export const UNIQUE_RESOURCES = [
     localizedString: 'Eventide Vessel',
     type: 'LiveEventResource',
     icon: 'Icons/Resources/ResourceIcon_ValeCrystal',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/UniqueResourceItems.UniqueResourceItems'",
+      rowName: 'EventideYetiResource',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1393,12 +1767,19 @@ export const UNIQUE_RESOURCES = [
   },
 ];
 
-export const ENEMY_RESOURCES = [
+export const ENEMY_RESOURCES: INVENTORY_ITEM[] = [
   {
     key: 'Spectra_Raw',
     localizedString: 'Raw Spectra',
     type: 'None',
     icon: 'Icons/Resources/ResourceIcon_RawSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Raw',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1428,6 +1809,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Cragged Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_CraggedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_C_T1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1457,6 +1845,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Glimmering Cragged Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_GlimmeringCraggedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_C_T2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1486,6 +1881,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Pristine Cragged Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_PristineCraggedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_C_T3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1515,6 +1917,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Exalted Cragged Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ExaltedCraggedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_C_T4',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1544,6 +1953,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Verdant Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_VerdantSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_UC_T1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1573,6 +1989,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Glimmering Verdant Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_GlimmeringVerdantSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_UC_T2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1602,6 +2025,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Pristine Verdant Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_PristineVerdantSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_UC_T3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1631,6 +2061,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Exalted Verdant Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ExaltedVerdantSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Highlands_UC_T4',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1660,6 +2097,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Shadow-Warped Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ShadowWarpedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Shadow_UC_T1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1689,6 +2133,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Glimmering Shadow-Warped Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_GlimmeringShadowWarpedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Shadow_UC_T2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1718,6 +2169,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Pristine Shadow-Warped Spectra',
     type: 'None',
     icon: 'Icons/Resources/ResourceIcon_UmbralSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Shadow_UC_T3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1747,6 +2205,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Exalted Shadow-Warped Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ExaltedShadowWarpedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Shadow_UC_T4',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1776,6 +2241,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Unstable Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_UnstableSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Chaos_UC_T1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1805,6 +2277,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Glimmering Unstable Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_GlimmeringUnstableSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Chaos_UC_T2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1834,6 +2313,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Pristine Unstable Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_PristineUnstableSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Chaos_UC_T3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1863,6 +2349,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Exalted Unstable Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ExaltedUnstableSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Chaos_UC_T4',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1892,6 +2385,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Molten Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_MoltenSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Solar_UC_T1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1921,6 +2421,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Glimmering Molten Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_GlimmeringMoltenSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Solar_UC_T2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1950,6 +2457,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Pristine Molten Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_PristineMoltenSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Solar_UC_T3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -1979,6 +2493,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Exalted Molten Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ExaltedMoltenSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Solar_UC_T4',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2008,6 +2529,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Veridian Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_VeridianSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Flora_UC_T1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2037,6 +2565,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Glimmering Veridian Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_GlimmeringVeridianSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Flora_UC_T2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2066,6 +2601,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Pristine Veridian Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_PristineVeridantSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Flora_UC_T3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2095,6 +2637,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Exalted Veridian Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ExaltedVeridianSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Flora_UC_T4',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2124,6 +2673,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Silver Spectra ',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_SilverSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Ruins_C_GW1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2153,6 +2709,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Argent Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_ArgentSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Ruins_C_GW2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2182,6 +2745,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Alloyed Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_AlloyedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Ruins_C_GW3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2211,6 +2781,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Bloodtouched Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_BloodtouchedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Mines_C_GW1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2240,6 +2817,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Bloodwarped Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_BloodwarpedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Mines_C_GW2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2269,6 +2853,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Deepearth Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_DeepearthSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Mines_C_GW3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2298,6 +2889,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Deepwood Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_DeepwoodSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_ReaverWoods_C_GW1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2327,6 +2925,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Calcified Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_CalcifiedSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_ReaverWoods_C_GW2',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2356,6 +2961,13 @@ export const ENEMY_RESOURCES = [
     localizedString: 'Hollow Spectra',
     type: 'None',
     icon: 'Icons/Resources/Spectra/ResourceIcon_HollowSpectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_ReaverWoods_C_GW3',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
@@ -2382,38 +2994,16 @@ export const ENEMY_RESOURCES = [
   },
   {
     key: 'Spectra_Gorge_C_GW1',
-    localizedString: 'Spectra Gorge C GW1',
+    localizedString: 'Tangled Spectra',
     type: 'None',
-    icon: 'Icons/Resources/Spectra/ResourceIcon_DeepwoodSpectra',
-    bIsArchetype: false,
-    bIsCharacter: false,
-    bIsCraftingMaterial: true,
-    bIsCraftable: false,
-    bIsEquipable: false,
-    bIsFogSoul: false,
-    bIsTalent: false,
-    bIsHousingItem: false,
-    bIsPlayerSpray: false,
-    bIsConsumable: false,
-    bIsFlask: false,
-    bIsNone: false,
-    bIsFungible: true,
-    bIsQuestRestricted: false,
-    bIsEventItem: false,
-    bIsImbuementVessel: false,
-    bIsImbuement: false,
-    bIsPseudoItem: false,
-    bIsIOUItem: false,
-    bIsFungibleMultiplierItem: false,
-    bIsDye: false,
-    bIsPlayerAction: false,
-    bIsPlayerBadgeCustomization: false,
-  },
-  {
-    key: 'Spectra_Gorge_C_GW2',
-    localizedString: 'Spectra Gorge C GW2',
-    type: 'None',
-    icon: 'Icons/Resources/ResourceIcon_Missing',
+    icon: 'Icons/Resources/Spectra/Gorge_Spectra',
+    data: {
+      dataTable:
+        "DataTable'/Game/Data/Inventory/Crafting/EnemyResourceItems.EnemyResourceItems'",
+      rowName: 'Spectra_Gorge_C_GW1',
+    },
+    addItemsWhenCreated: [],
+    equipmentSlot: 'EEquipmentSlotType::INVALID',
     bIsArchetype: false,
     bIsCharacter: false,
     bIsCraftingMaterial: true,
