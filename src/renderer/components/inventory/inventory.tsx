@@ -9,6 +9,7 @@ import { EventItemsTab } from './event-items/event-items';
 import { CriticalTab } from './critical/critical-tab';
 import { DLCTab } from './dlc/dlc-tab';
 import { PotionsTab } from './potions/potions-tab';
+import { DyesTab } from './dyes/dyes-tab';
 
 export const Inventory = () => {
   return (
@@ -20,6 +21,7 @@ export const Inventory = () => {
         <TabsTrigger value="currency">Currency</TabsTrigger>
         <TabsTrigger value="resources">Resources</TabsTrigger>
         <TabsTrigger value="potions">Potions</TabsTrigger>
+        <TabsTrigger value="dyes">Dyes</TabsTrigger>
         <TabsTrigger value="event-items">Event Items</TabsTrigger>
         <TabsTrigger value="imbuements">Imbuements</TabsTrigger>
         <TabsTrigger value="mounts">Mounts</TabsTrigger>
@@ -36,6 +38,9 @@ export const Inventory = () => {
       </TabsContent>
       <TabsContent value="potions">
         <PotionsTab />
+      </TabsContent>
+      <TabsContent value="dyes">
+        <DyesTab />
       </TabsContent>
       <TabsContent value="event-items">
         <EventItemsTab />
