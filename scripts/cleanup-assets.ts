@@ -1,5 +1,5 @@
 import { POTIONS } from '../src/renderer/tables/potions';
-import { WEAPONS } from '../src/renderer/tables/weapons';
+import { WEAPONS } from '../src/renderer/tables/weapons/weapons';
 import {
   CRITICAL_PACK_HOUSING_ITEMS,
   EVENTIDE_PACK_HOUSING_ITEMS,
@@ -38,6 +38,8 @@ import { CRITICAL_PACK, DLC_PACK } from '../src/renderer/tables/critical-pack';
 import { EVENT_ITEMS } from '../src/renderer/tables/event-items';
 import { LORA_ARMOR_SET } from '../src/renderer/tables/armorItems/LoraArmorItems';
 import { LORA_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/LoraPersonaItems';
+import { XP_SCROLL_ITEMS } from '../src/renderer/tables/exp-scrolls';
+import { DYES_ITEMS } from '../src/renderer/tables/dyes';
 
 const fs = require('fs');
 const path = require('path');
@@ -81,6 +83,8 @@ const REQUIRED_ASSETS = [
   ...EVENT_ITEMS,
   ...LORA_ARMOR_SET,
   ...LORA_PERSONAL_ITEMS,
+  ...XP_SCROLL_ITEMS,
+  ...DYES_ITEMS,
 ]
   .map((i) => `${i.icon}.png`)
   .concat([

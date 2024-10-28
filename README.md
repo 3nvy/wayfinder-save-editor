@@ -1,10 +1,24 @@
 ﻿# Wayfinder Save Editor
 
-### This tool is experimental, MAKE SURE YOU BACKUP YOUR SAVE BEFORE USING IT!!!! I'm not responsible if this breaks your save
+### MAKE SURE YOU BACKUP YOUR SAVE BEFORE USING IT!!!! I'm not responsible if this breaks your save
 
-You can download the latest version here
+## Save files location
 
-This is still experimental and very basic, but should provide the following:
+Save files are located at **%localappdata%/Wayfinder/Saved/SaveGames**
+
+## How to use it
+
+Download and unzip the latest release at https://github.com/3nvy/wayfinder-save-editor/releases/latest
+
+Then run the **Wayfinder - Save Editor.exe** file to start the save editor
+
+Once booted, press the button to load the save file from the location above.
+
+The save file you want to edit is usually the last modified one, but if you are in doubt, you can load the "\_Meta" file, and it will tell you which save file you need to load
+
+## Steam Cloud Saves
+
+Steam cloud saves are known for causing conflicts with the modified saves. If you are having issues editing your save, try disabling it.
 
 ## Manage Inventory Items: Currencies, Resources, Imbuements, Mounts (w/ Saddles), Housing Items & Awakening Stones
 
@@ -56,13 +70,6 @@ This panel allows to add new accessories to your inventory, and allows to edit t
 ## Free text edit of the entire save structure (Advanced)
 
 ![alt text](image-4.png)
-
-# Future Updates
-
-- Search Functionality
-- Weapons
-- Personas / Cosmetics
-- Premium Shop: This will include premium items such as battle tower rewards
 
 ### General credits
 

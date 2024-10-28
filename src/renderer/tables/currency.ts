@@ -1,4 +1,6 @@
-export const CURRENCIES = [
+import { INVENTORY_ITEM } from '../structures/structures';
+
+export const CURRENCIES: INVENTORY_ITEM[] = [
   {
     key: 'Coinage',
     localizedString: 'Gold',
@@ -945,14 +947,13 @@ export const CURRENCIES = [
     bIsPlayerBadgeCustomization: false,
   },
   {
-    key: 'Housing_Coin',
-    localizedString: 'Housing Coin',
+    key: 'GorgeMark',
+    localizedString: 'Arc Shards',
     type: 'Currency',
-    icon: 'Icons/WF_Icon_Item_LuckyCoin_01',
+    icon: 'Icons/Currency/gorge_currency',
     data: {
-      dataTable:
-        "DataTable'/Game/Data/Inventory/Housing/HousingInventoryItems.HousingInventoryItems'",
-      rowName: 'Housing_Coin',
+      dataTable: "DataTable'/Game/Data/Inventory/CurrencyItems.CurrencyItems'",
+      rowName: 'GorgeMark',
     },
     addItemsWhenCreated: [],
     equipmentSlot: 'EEquipmentSlotType::INVALID',

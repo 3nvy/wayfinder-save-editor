@@ -1,4 +1,6 @@
-export const AWAKENING_STONES = [
+import { INVENTORY_ITEM } from '../structures/structures';
+
+export const AWAKENING_STONES: INVENTORY_ITEM[] = [
   {
     key: 'AS_C_Kyros',
     localizedString: "Kyros' Summoning Stone",
@@ -253,7 +255,7 @@ export const AWAKENING_STONES = [
   },
   {
     key: 'AS_C_Lora',
-    localizedString: "[DNT] Lora's Summoning Stone",
+    localizedString: "Lora's Summoning Stone",
     type: 'AwakeningStone',
     icon: 'Icons/Resources/ResourceIcon_AwakeningStone_Lora',
     data: {
