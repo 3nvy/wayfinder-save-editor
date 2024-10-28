@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { MAwakenedWeapon } from '@/src/renderer/saveFileTypes';
-import { WEAPONS } from '@/src/renderer/tables/weapons';
+import { WEAPONS } from '@/src/renderer/tables/weapons/weapons';
 import { ComponentProps, useMemo, useState } from 'react';
 import { useSaveContext } from '@/src/renderer/context/context';
 import { Button } from '@/components/ui/button';

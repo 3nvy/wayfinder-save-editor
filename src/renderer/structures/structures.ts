@@ -110,6 +110,11 @@ export type INVENTORY_ITEM = {
     dataTable: string;
     rowName: string;
   }[];
+  echoData?: {
+    type: string;
+    description: string;
+    soulBudgetCost: string;
+  };
   equipmentSlot?: string;
   packName?: string;
 };

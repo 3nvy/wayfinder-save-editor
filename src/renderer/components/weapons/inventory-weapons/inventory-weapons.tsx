@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { WeaponCard } from './weapon-card/weapon-card';
 import { SaveEditorContext } from '../../../context/context';
 import { EditWeaponDialog } from './edit-weapon/edit-weapon';
-import { WEAPONS } from '../../../tables/weapons';
+import { WEAPONS } from '../../../tables/weapons/weapons';
 import { MNonFungibleItem, SaveData } from '../../../saveFileTypes';
 import { NON_FUNGIBLE_ITEM_STRUCTURE } from '../../../structures/structures';
 import { generateSeed, generateUniqueID } from '../../../utils';

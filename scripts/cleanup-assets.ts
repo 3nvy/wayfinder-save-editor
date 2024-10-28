@@ -1,5 +1,5 @@
 import { POTIONS } from '../src/renderer/tables/potions';
-import { WEAPONS } from '../src/renderer/tables/weapons';
+import { WEAPONS } from '../src/renderer/tables/weapons/weapons';
 import {
   CRITICAL_PACK_HOUSING_ITEMS,
   EVENTIDE_PACK_HOUSING_ITEMS,
