@@ -209,8 +209,8 @@ export function InventoryWeapons() {
           '00000000000000000000000000000000',
         );
         newWeapon.spec.itemSpec.m_GeneratedFogSoulSlots = values.echoSlots.map(
-          (slot: [number, string, number][]) => ({
-            category: slot[1],
+          (slot: SlotDataStructure) => ({
+            category: slot.name,
             bAffectsBudgetCapacity: true,
             bIsUnlocked: false,
             bIsProgressionSlot: false,
