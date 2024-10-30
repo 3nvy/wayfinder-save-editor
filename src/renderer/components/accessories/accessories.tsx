@@ -159,8 +159,8 @@ export function Accessories() {
           values.echoSlots.length,
         ).fill('00000000000000000000000000000000');
         newAccessory.spec.itemSpec.m_GeneratedFogSoulSlots =
-          values.echoSlots.map((slot: [number, string, number][]) => ({
-            category: slot[1],
+          values.echoSlots.map((slot: SlotDataStructure) => ({
+            category: slot.name,
             bAffectsBudgetCapacity: true,
             bIsUnlocked: false,
             bIsProgressionSlot: false,
