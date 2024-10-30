@@ -8,6 +8,12 @@ Save files are located at **%localappdata%/Wayfinder/Saved/SaveGames**
 
 ## How to use it
 
+### BEFORE YOU EDIT YOUR SAVE
+
+There's a known bug with certain languages with special characters where the save isn't encoded correctly and breaks. To avoid this, change your game language to **English** first and then edit your save. You are free to revert to the original language after you have done the edits.
+
+---
+
 Download and unzip the latest release at https://github.com/3nvy/wayfinder-save-editor/releases/latest
 
 Then run the **Wayfinder - Save Editor.exe** file to start the save editor
