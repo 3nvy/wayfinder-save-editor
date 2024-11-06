@@ -54,7 +54,7 @@ export function Accessories() {
             startingExp: 0,
             icon: accessory.icon,
             name: accessory.localizedString ?? 'N/A',
-            attributes: accessory.equipmentData.attributes,
+            attributes: accessory.equipmentData?.attributes ?? [],
             echoSlots: [],
           });
 
@@ -76,7 +76,7 @@ export function Accessories() {
             startingExp: item.spec.itemSpec.startingExp,
             icon: matchingAccessory.icon,
             name: matchingAccessory.localizedString ?? 'N/A',
-            attributes: matchingAccessory.equipmentData.attributes,
+            attributes: matchingAccessory.equipmentData?.attributes ?? [],
             echoSlots: item.spec.itemSpec.m_GeneratedFogSoulSlots.map(
               (slot, idx) => ({
                 initialIdx: idx,
