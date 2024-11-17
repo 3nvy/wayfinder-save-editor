@@ -540,3 +540,16 @@ export type UnlockedSignalFire = {
   unlockedSignalFireId: string;
   unlockedSignalFireDisplayName: string;
 };
+
+export type ArchetypeTreeEntry = {
+  id: string;
+  type: string;
+  bIsNetworked: boolean;
+  connectedNodes: { id: string; type: string; index: number }[];
+  connectedNodeNetwork: { id: string; type: string; index: number }[];
+  position: {
+    X: number;
+    Y: number;
+  };
+  color: string;
+};

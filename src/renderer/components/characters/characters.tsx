@@ -17,6 +17,7 @@ import {
 } from '../../curves/character-level-curve';
 import { TalentCard } from './talent-card';
 import { MNonFungibleItem, SaveData } from '../../saveFileTypes';
+import { ArchetypeTree } from './archetype-tree';
 
 const expToRankLevel = (exp: number, curveObject: number[]) => {
   const levelCurveNumber = curveObject.reduce((acc, levelExp, idx) => {
@@ -131,6 +132,7 @@ export const Characters = () => {
 
   return (
     <div className="flex flex-col max-h-full">
+      <ArchetypeTree />
       <Label htmlFor="wayfinderRank">Wayfinder Rank</Label>
       <Select
         name="wayfinderRank"
