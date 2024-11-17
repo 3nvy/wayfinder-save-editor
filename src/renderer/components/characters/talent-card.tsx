@@ -36,12 +36,12 @@ export const TalentCard = ({
   const talentName = talent.talentItem.data.rowName;
 
   const icon = talentName.includes('Aspect')
-    ? AspectInfo[talentName.split('_')[1] as keyof AspectInfo].icon
-    : AbilitiesInfo[talentName]?.icon;
+    ? AspectInfo[talentName.split('_')[1] as keyof typeof AspectInfo].icon
+    : AbilitiesInfo[talentName as keyof typeof AbilitiesInfo]?.icon;
 
   const name = talentName.includes('Aspect')
-    ? AspectInfo[talentName.split('_')[1] as keyof AspectInfo].name
-    : AbilitiesInfo[talentName]?.name;
+    ? AspectInfo[talentName.split('_')[1] as keyof typeof AspectInfo].name
+    : AbilitiesInfo[talentName as keyof typeof AbilitiesInfo]?.name;
 
   const handlePointsChange = useCallback(
     (val: string) => {

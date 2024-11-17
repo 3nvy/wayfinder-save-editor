@@ -6,7 +6,6 @@ import { BattlePassPropForm } from '../components/battlepass-prop-form/battlepas
 import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
 import { SaveEditorContext } from '../context/context';
 import { Inventory } from '../components/inventory/inventory';
-import { ExperimentalTab } from '../components/experimental/experiemntal';
 import { Echos } from '../components/echos/echos';
 import { Accessories } from '../components/accessories/accessories';
 import { WeaponsTab } from '../components/weapons/weapons';
@@ -35,7 +34,6 @@ export const EditSavePage = () => {
           <TabsTrigger value="accessories">Accessories</TabsTrigger>
           <TabsTrigger value="weapons">Weapons</TabsTrigger>
           <TabsTrigger value="rewardTower">Reward Tower</TabsTrigger>
-          {/* <TabsTrigger value="experimental">Experimental</TabsTrigger> */}
           <TabsTrigger value="rawStructure">
             <ExclamationTriangleIcon className="mr-2" /> Raw Structure
           </TabsTrigger>
@@ -61,9 +59,6 @@ export const EditSavePage = () => {
         <TabsContent value="rewardTower">
           <BattlePassPropForm />
         </TabsContent>
-        {/* <TabsContent value="experimental">
-          <ExperimentalTab />
-        </TabsContent> */}
         <TabsContent value="rawStructure">
           <RawPropForm />
         </TabsContent>

@@ -12,27 +12,25 @@ import { Button } from '@/components/ui/button';
 import { useSaveContext } from '../../context/context';
 import {
   CharacterInfo,
+  CharacterLevelCurve,
   WayfinderRankLevelCurve,
 } from '../../curves/character-level-curve';
 import { TalentCard } from './talent-card';
 import { MNonFungibleItem, SaveData } from '../../saveFileTypes';
 
-const expToRankLevel = (exp: number) => {
-  const levelCurveNumber = WayfinderRankLevelCurve.reduce(
-    (acc, levelExp, idx) => {
-      if (levelExp <= exp) {
-        return idx;
-      }
-      return acc;
-    },
-    0,
-  );
+const expToRankLevel = (exp: number, curveObject: number[]) => {
+  const levelCurveNumber = curveObject.reduce((acc, levelExp, idx) => {
+    if (levelExp <= exp) {
+      return idx;
+    }
+    return acc;
+  }, 0);
 
   return levelCurveNumber;
 };
 
-const rankLevelToExp = (level: number) => {
-  return WayfinderRankLevelCurve[level];
+const rankLevelToExp = (level: number, curveObject: number[]) => {
+  return curveObject[level];
 };
 
 export const Characters = () => {
@@ -43,6 +41,7 @@ export const Characters = () => {
   const [currentWayfinderRank, setCurrentWayfinderRank] = useState(() =>
     expToRankLevel(
       saveStructure?.playerData.m_WayfinderRankData.m_WayfinderExperience ?? 0,
+      WayfinderRankLevelCurve,
     ),
   );
 
@@ -56,6 +55,7 @@ export const Characters = () => {
     },
   );
 
+  // Updates assigned points for characters talent entries
   const onTalentChange = useCallback(
     (character: string, talent: string, points: number) => {
       setCharactersData((current) => {
@@ -75,8 +75,31 @@ export const Characters = () => {
     [],
   );
 
+  const onWayfinderLevelChange = useCallback(
+    (character: string, level: number) => {
+      setCharactersData((current) => {
+        const newItems = current.map((item) => {
+          if (item.name === character) {
+            item.spec.itemSpec.currentExp = rankLevelToExp(
+              level,
+              CharacterLevelCurve,
+            );
+          }
+          return item;
+        });
+        return [...newItems];
+      });
+    },
+    [],
+  );
+
   const onSaveChanges = useCallback(() => {
     const newSaveData = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
+
+    // Save WayfinderRank Data
+    newSaveData.playerData.m_WayfinderRankData.m_WayfinderExperience =
+      rankLevelToExp(currentWayfinderRank, WayfinderRankLevelCurve);
+    newSaveData.header.wayfinderRank = currentWayfinderRank;
 
     const newNonFungibleItems =
       newSaveData.playerData.m_InventoryData.m_NonFungibleItems.map((item) => {
@@ -84,12 +107,10 @@ export const Characters = () => {
           (cd) => cd.name === item.name,
         );
 
-        // Save WayfinderRank Data
-        newSaveData.playerData.m_WayfinderRankData.m_WayfinderExperience =
-          rankLevelToExp(currentWayfinderRank);
-        newSaveData.header.wayfinderRank = currentWayfinderRank;
-
-        // Save Wayfinder Data
+        /**
+         * Affinities and Abilities have their own separate entries that need to be updated
+         * So this finds them based on their IDs and syncs the points
+         */
         if (characterEntry) {
           for (const talent of characterEntry.spec.itemSpec.talentItems) {
             const talentEntry =
@@ -137,11 +158,40 @@ export const Characters = () => {
         {charactersData?.map((character) => (
           <>
             <div className="flex flex-wrap gap-[25px]">
-              <img
-                className="w-[150px] h-[150px]"
-                src={`file://${assetsPath}/${CharacterInfo[character.name]?.icon}.png`}
-                alt={character.name}
-              />
+              <div className="flex flex-col gap-2">
+                <img
+                  className="w-[150px] h-[150px]"
+                  src={`file://${assetsPath}/${CharacterInfo[character.name as keyof typeof CharacterInfo]?.icon}.png`}
+                  alt={character.name}
+                />
+                <Select
+                  defaultValue={`${expToRankLevel(
+                    character.spec.itemSpec.currentExp,
+                    CharacterLevelCurve,
+                  )}`}
+                  value={`${expToRankLevel(
+                    character.spec.itemSpec.currentExp,
+                    CharacterLevelCurve,
+                  )}`}
+                  onValueChange={(level) =>
+                    onWayfinderLevelChange(character.name, +level)
+                  }
+                >
+                  <SelectTrigger className="min-w-[100px]">
+                    <SelectValue placeholder="Select Awakening Level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Array(30)
+                      .fill(0)
+                      .map((_, idx) => (
+                        <SelectItem value={`${idx}`}>{`${idx + 1}`}</SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+                <Button className="w-full" onClick={() => {}}>
+                  Talent Tree
+                </Button>
+              </div>
               {character.spec.itemSpec.talentItems.map((talent) => (
                 <TalentCard
                   key={talent.talentItem.iD}
