@@ -1,6 +1,6 @@
-import { Gvas, Serializer } from '../gvas-decoder';
 import pako from 'pako';
 import fs from 'fs';
+import { Gvas, Serializer } from '../gvas-decoder';
 
 export const decodeSave = (buffer: any) => {
   const gvas = new Gvas();

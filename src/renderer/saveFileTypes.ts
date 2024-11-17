@@ -9,7 +9,7 @@
 // match the expected interface, even if the JSON is valid.
 
 export type SaveData = {
-  header?: Header;
+  header: Header;
   playerData: PlayerData;
   clientPlayerData?: ClientPlayerData;
 };

@@ -11,6 +11,7 @@ import { Echos } from '../components/echos/echos';
 import { Accessories } from '../components/accessories/accessories';
 import { WeaponsTab } from '../components/weapons/weapons';
 import { Wayfinders } from '../components/wayfinders/wayfinders';
+import { Characters } from '../components/characters/characters';
 
 export const EditSavePage = () => {
   const { fileName } = useContext(SaveEditorContext);
@@ -27,6 +28,7 @@ export const EditSavePage = () => {
         className="w-dvw h-dvh flex items-center flex-col p-5 pt-10"
       >
         <TabsList>
+          <TabsTrigger value="characters">Characters</TabsTrigger>
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
           <TabsTrigger value="wayfinders">Wayfinders</TabsTrigger>
           <TabsTrigger value="echos">Echos</TabsTrigger>
@@ -38,6 +40,9 @@ export const EditSavePage = () => {
             <ExclamationTriangleIcon className="mr-2" /> Raw Structure
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="characters">
+          <Characters />
+        </TabsContent>
         <TabsContent value="inventory">
           <Inventory />
         </TabsContent>
