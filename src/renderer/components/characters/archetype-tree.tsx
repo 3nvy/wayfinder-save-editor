@@ -44,7 +44,7 @@ const theme: Theme = {
   },
   edge: {
     fill: '#D8E6EA',
-    activeFill: '#1DE9AC',
+    activeFill: '#963ded',
     opacity: 1,
     selectedOpacity: 1,
     inactiveOpacity: 0.1,
@@ -136,13 +136,22 @@ export const ArchetypeTree = () => {
   }, [assetsPath]);
 
   const edges = useMemo(() => {
-    return ArcanistTreeNodes.flatMap((node) =>
-      node.connectedNodes.flatMap((cn) => ({
-        id: `${node.type}:${node.id}->${cn.type}:${cn.id}`,
-        source: `${node.type}:${node.id}`,
-        target: `${cn.type}:${cn.id}`,
-      })),
+    const edgesMap = new Map();
+
+    ArcanistTreeNodes.forEach((node) =>
+      node.connectedNodes.forEach((cn) => {
+        const idx = [`${node.type}:${node.id}`, `${cn.type}:${cn.id}`]
+          .sort()
+          .toString();
+        edgesMap.set(idx, {
+          id: `${node.type}:${node.id}->${cn.type}:${cn.id}`,
+          source: `${node.type}:${node.id}`,
+          target: `${cn.type}:${cn.id}`,
+          size: 4,
+        });
+      }),
     );
+    return [...edgesMap].map(([, v]) => v);
   }, []);
 
   return (
@@ -250,18 +259,27 @@ export const ArchetypeTree = () => {
             />
           );
         }}
-        onNodeClick={({ id }, props, event) => {
+        onNodeClick={({ id }, _, event) => {
           event?.stopPropagation();
 
           if (id === 'All:0') return;
 
-          setActiveNodes((nodes) => {
-            const hasEntry = nodes.find((nodeID) => nodeID === id);
-            if (!hasEntry) {
-              return [...nodes, id];
-            } else {
-              return nodes.filter((nodeID) => nodeID !== id);
-            }
+          setActiveNodes((currentActiveNodes) => {
+            const hasEntry = currentActiveNodes.find((nodeID) => nodeID === id);
+            const newData = (
+              hasEntry
+                ? currentActiveNodes.filter((nodeID) => nodeID !== id)
+                : [...currentActiveNodes, id]
+            ).filter((nodeID) => !nodeID.includes('->'));
+
+            const selectedEdges = edges
+              .filter((edge) => {
+                const [id1, id2] = edge.id.split('->');
+                return newData.includes(id1) && newData.includes(id2);
+              })
+              .map((edge) => edge.id);
+
+            return [...newData, ...selectedEdges];
           });
         }}
         onNodePointerOver={(node) => {
