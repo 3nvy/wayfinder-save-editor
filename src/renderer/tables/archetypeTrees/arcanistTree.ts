@@ -13,6 +13,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 0 },
     color: 'F9C140',
+    attributes: [],
+    icon: '',
   },
   {
     id: '73',
@@ -25,6 +27,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 3 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '74',
@@ -37,6 +41,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -4, Y: 5 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '75',
@@ -50,6 +56,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -8, Y: 7 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '76',
@@ -62,6 +70,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -12, Y: 9 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '77',
@@ -74,6 +84,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -16, Y: 11 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '78',
@@ -86,6 +98,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -20, Y: 13 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_Repulsion',
   },
   {
     id: '79',
@@ -98,6 +112,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -17, Y: 16 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '80',
@@ -114,6 +130,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: -13, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '81',
@@ -130,6 +148,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: -10, Y: 18.5 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '82',
@@ -146,6 +166,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: -10.5, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '83',
@@ -159,6 +181,10 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -7, Y: 12 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '84',
@@ -171,6 +197,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -6, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '85',
@@ -183,6 +211,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -3.5, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '86',
@@ -196,6 +226,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 18 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '87',
@@ -208,6 +240,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 3.5, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '88',
@@ -220,6 +254,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 6, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '89',
@@ -232,6 +268,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -9, Y: 22 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '90',
@@ -244,6 +282,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -5, Y: 26 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '91',
@@ -256,6 +296,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 28 },
     color: '7B78FF',
+    attributes: [],
+    icon: 'Icons/UI_EchoSlot_TypeSymbol_2A_trim_Small',
   },
   {
     id: '92',
@@ -268,6 +310,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 5, Y: 26 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '93',
@@ -280,6 +324,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 9, Y: 22 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '94',
@@ -296,6 +342,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: 10, Y: 18.5 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '95',
@@ -312,6 +360,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: 13, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '96',
@@ -328,6 +378,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: 10.5, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '97',
@@ -341,6 +393,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 7, Y: 12 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '98',
@@ -355,6 +409,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 12 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 4 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '99',
@@ -367,6 +423,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 17, Y: 16 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '111',
@@ -379,6 +437,11 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -13.7, Y: 6.3 },
     color: '67FFC8',
+    attributes: [
+      { name: 'AbilityPower', value: 10.8 },
+      { name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 },
+    ],
+    icon: 'Icons/Talents/T_UI_Talent_Crossover1',
   },
   {
     id: '100',
@@ -391,6 +454,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 20, Y: 13 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_Feedback',
   },
   {
     id: '101',
@@ -403,6 +468,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 16, Y: 11 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '102',
@@ -415,6 +482,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 12, Y: 9 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '103',
@@ -428,6 +497,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 8, Y: 7 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '104',
@@ -440,6 +511,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 4, Y: 5 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '105',
@@ -452,6 +525,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 4, Y: 9.5 },
     color: '963DED',
+    attributes: [{ name: 'MagicalDefense', value: 12 }],
+    icon: '',
   },
   {
     id: '106',
@@ -464,6 +539,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -4, Y: 9.5 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '107',
@@ -476,6 +553,10 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 20.5 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '108',
@@ -485,6 +566,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 24 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_Reactivity',
   },
 ];
 const Offensive: ArchetypeTreeEntry[] = [
@@ -499,6 +582,11 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -13.7, Y: 6.3 },
     color: '67FFC8',
+    attributes: [
+      { name: 'AbilityPower', value: 10.8 },
+      { name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 },
+    ],
+    icon: 'Icons/Talents/T_UI_Talent_Crossover1',
   },
   {
     id: '1',
@@ -511,6 +599,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 3 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '2',
@@ -523,6 +613,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -4, Y: 5 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '3',
@@ -536,6 +628,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -8, Y: 7 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '4',
@@ -548,6 +642,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -12, Y: 9 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '5',
@@ -560,6 +656,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -16, Y: 11 },
     color: '963DED',
+    attributes: [{ name: 'CritRating', value: 7.2 }],
+    icon: '',
   },
   {
     id: '6',
@@ -572,6 +670,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -20, Y: 13 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_QuickeningInnervation',
   },
   {
     id: '7',
@@ -584,6 +684,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -17, Y: 16 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '8',
@@ -600,6 +702,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: -13, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'CritRating', value: 7.2 }],
+    icon: '',
   },
   {
     id: '9',
@@ -616,6 +720,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: -10.5, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '10',
@@ -632,6 +738,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: -10, Y: 18.5 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '11',
@@ -645,6 +753,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -7, Y: 12 },
     color: '963DED',
+    attributes: [{ name: 'CritRating', value: 7.2 }],
+    icon: '',
   },
   {
     id: '12',
@@ -657,6 +767,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -4, Y: 9.5 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '13',
@@ -671,6 +783,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 12 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 4 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '14',
@@ -683,6 +797,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -6, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '15',
@@ -695,6 +811,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -3.5, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'CritRating', value: 7.2 }],
+    icon: '',
   },
   {
     id: '16',
@@ -707,6 +825,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 6, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '17',
@@ -720,6 +840,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 7, Y: 12 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '18',
@@ -736,6 +858,10 @@ const Offensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: 10.5, Y: 15 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '19',
@@ -752,6 +878,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: 13, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'CritRating', value: 7.2 }],
+    icon: '',
   },
   {
     id: '20',
@@ -768,6 +896,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     ],
     position: { X: 10, Y: 18.5 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '21',
@@ -780,6 +910,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 9, Y: 22 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '22',
@@ -792,6 +924,10 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 5, Y: 26 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '23',
@@ -804,6 +940,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 28 },
     color: '7B78FF',
+    attributes: [],
+    icon: 'Icons/UI_EchoSlot_TypeSymbol_1A_trim_Small',
   },
   {
     id: '24',
@@ -816,6 +954,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -5, Y: 26 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '25',
@@ -828,6 +968,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -9, Y: 22 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '26',
@@ -840,6 +982,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 17, Y: 16 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '27',
@@ -852,6 +996,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 20, Y: 13 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_BountifulInnervation',
   },
   {
     id: '28',
@@ -864,6 +1010,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 16, Y: 11 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '29',
@@ -876,6 +1024,10 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 12, Y: 9 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '30',
@@ -889,6 +1041,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 8, Y: 7 },
     color: '963DED',
+    attributes: [{ name: 'CritRating', value: 7.2 }],
+    icon: '',
   },
   {
     id: '31',
@@ -901,6 +1055,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 4, Y: 5 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '32',
@@ -913,6 +1069,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 4, Y: 9.5 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '33',
@@ -925,6 +1083,10 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 3.5, Y: 17 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '34',
@@ -938,6 +1100,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 18 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '35',
@@ -950,6 +1114,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 20.5 },
     color: '963DED',
+    attributes: [{ name: 'CritRating', value: 7.2 }],
+    icon: '',
   },
   {
     id: '36',
@@ -959,6 +1125,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 24 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_OverwhelmingArcana',
   },
 ];
 const Support: ArchetypeTreeEntry[] = [
@@ -973,6 +1141,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 3 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '38',
@@ -985,6 +1155,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -4, Y: 5 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '39',
@@ -998,6 +1170,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -8, Y: 7 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '40',
@@ -1010,6 +1184,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -12, Y: 9 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '41',
@@ -1022,6 +1198,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -16, Y: 11 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '42',
@@ -1034,6 +1212,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -20, Y: 13 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_TemporalCoherence',
   },
   {
     id: '43',
@@ -1046,6 +1226,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -17, Y: 16 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '44',
@@ -1062,6 +1244,8 @@ const Support: ArchetypeTreeEntry[] = [
     ],
     position: { X: -13, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '45',
@@ -1078,6 +1262,10 @@ const Support: ArchetypeTreeEntry[] = [
     ],
     position: { X: -10, Y: 18.5 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '46',
@@ -1094,6 +1282,8 @@ const Support: ArchetypeTreeEntry[] = [
     ],
     position: { X: -10.5, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '47',
@@ -1107,6 +1297,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -7, Y: 12 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '48',
@@ -1119,6 +1311,10 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -4, Y: 9 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '49',
@@ -1133,6 +1329,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 11 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 4 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '50',
@@ -1146,6 +1344,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 7, Y: 12 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '51',
@@ -1158,6 +1358,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -6, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '52',
@@ -1170,6 +1372,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -3.5, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '53',
@@ -1183,6 +1387,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 18 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '54',
@@ -1195,6 +1401,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 3.5, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '55',
@@ -1207,6 +1415,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 6, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'MaxStamina', value: 4 }],
+    icon: '',
   },
   {
     id: '56',
@@ -1223,6 +1433,8 @@ const Support: ArchetypeTreeEntry[] = [
     ],
     position: { X: 10, Y: 18.5 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '57',
@@ -1239,6 +1451,8 @@ const Support: ArchetypeTreeEntry[] = [
     ],
     position: { X: 13, Y: 17 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '58',
@@ -1255,6 +1469,8 @@ const Support: ArchetypeTreeEntry[] = [
     ],
     position: { X: 10.5, Y: 15 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '59',
@@ -1267,6 +1483,10 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 17, Y: 16 },
     color: '963DED',
+    attributes: [
+      { name: 'AbilityGlobalCooldownDurationReductionPercentage', value: 4.25 },
+    ],
+    icon: '',
   },
   {
     id: '60',
@@ -1279,6 +1499,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 20, Y: 13 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_ProbabilityDensity',
   },
   {
     id: '61',
@@ -1291,6 +1513,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 16, Y: 11 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '62',
@@ -1303,6 +1527,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 12, Y: 9 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '63',
@@ -1316,6 +1542,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 8, Y: 7 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '64',
@@ -1328,6 +1556,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 4, Y: 5 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '65',
@@ -1340,6 +1570,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 4, Y: 9 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '66',
@@ -1352,6 +1584,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -9, Y: 22 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '109',
@@ -1364,6 +1598,11 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -13.7, Y: 6.3 },
     color: '67FFC8',
+    attributes: [
+      { name: 'AbilityPower', value: 10.8 },
+      { name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 },
+    ],
+    icon: 'Icons/Talents/T_UI_Talent_Crossover1',
   },
   {
     id: '67',
@@ -1376,6 +1615,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: -5, Y: 26 },
     color: '963DED',
+    attributes: [{ name: 'AttackPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '68',
@@ -1388,6 +1629,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 28 },
     color: '7B78FF',
+    attributes: [],
+    icon: 'Icons/UI_EchoSlot_TypeSymbol_3A_trim_Small',
   },
   {
     id: '69',
@@ -1400,6 +1643,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 5, Y: 26 },
     color: '963DED',
+    attributes: [{ name: 'UltMeterGenerationPercentage', value: 3 }],
+    icon: '',
   },
   {
     id: '70',
@@ -1412,6 +1657,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 9, Y: 22 },
     color: '7B78FF',
+    attributes: [{ name: 'ArchetypeTreeLevelMaxFogSoulBudgetValue', value: 2 }],
+    icon: 'Icons/ui_boltCapacity_icon2b',
   },
   {
     id: '71',
@@ -1424,6 +1671,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 20.5 },
     color: '963DED',
+    attributes: [{ name: 'AbilityPower', value: 7.2 }],
+    icon: '',
   },
   {
     id: '72',
@@ -1433,6 +1682,8 @@ const Support: ArchetypeTreeEntry[] = [
     connectedNodeNetwork: [],
     position: { X: 0, Y: 24 },
     color: 'FFAD00',
+    attributes: [],
+    icon: 'Icons/Talents/T_UI_Talent_Arcanist_WaveFunctionCollapse',
   },
 ];
 

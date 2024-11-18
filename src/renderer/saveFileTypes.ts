@@ -168,7 +168,24 @@ export type MInprogressAchivement = {
 
 export type MArchetypeTreeData = {
   m_Version: number;
-  m_UnlockedTreeData: any[];
+  m_UnlockedTreeData: MUnlockedTreeData[];
+};
+
+export type MUnlockedTreeData = {
+  characterName: string;
+  unlockedNodes: {
+    nodeId: string;
+    bIsNetworked: boolean;
+    bIsNetworkUnlocked: boolean;
+    treeType: string;
+    treeIndex: number;
+  }[];
+  unlockableNodes: {
+    connectedNodeId: string;
+    treeType: string;
+    index: number;
+  }[];
+  fogSoulSlotIndexes: number[];
 };
 
 export type MAwakenedWeaponsData = {
@@ -552,4 +569,9 @@ export type ArchetypeTreeEntry = {
     Y: number;
   };
   color: string;
+  attributes: {
+    name: string;
+    value: number;
+  }[];
+  icon: string;
 };
