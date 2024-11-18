@@ -574,4 +574,5 @@ export type ArchetypeTreeEntry = {
     value: number;
   }[];
   icon: string;
+  description?: string;
 };

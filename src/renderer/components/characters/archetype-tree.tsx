@@ -116,6 +116,25 @@ export const ArchetypeTree = () => {
   // END TEMP
   const [selectedNodeData, setSelectedNodeData] = useState<InternalGraphNode>();
 
+  const nodes = useMemo(() => {
+    return ArcanistTreeNodes.map((node) => ({
+      id: `${node.type}:${node.id}`,
+      // label: `${node.type}:${node.id}`,
+      subLabel: node.description,
+      fill: `#${node.color}`,
+      data: {
+        ...node.position,
+        attributes: node.attributes,
+      },
+      cluster: node.type,
+      icon: `file://${assetsPath}/${node.icon || AttributesMetadata[node.attributes[0]?.name as AttributesMetadataProps]?.icon}.png`,
+      ...(node.type === 'All' && {
+        icon: 'file://D:wayfinder-save-editor/assets/Icons/Characters/WF_BattleMage.png',
+      }),
+      size: node.type === 'All' ? 100 : 30,
+    }));
+  }, [assetsPath]);
+
   const edges = useMemo(() => {
     return ArcanistTreeNodes.flatMap((node) =>
       node.connectedNodes.flatMap((cn) => ({
@@ -134,15 +153,22 @@ export const ArchetypeTree = () => {
             <p>{selectedNodeData.data.cluster}</p>
           </div>
           <div className="p-[5px_10px]">
-            {selectedNodeData.data.attributes.map((attr: any) => (
-              <p>
-                +
-                {attr.value *
-                  AttributesMetadata[attr.name as AttributesMetadataProps]
-                    .multiplier}{' '}
-                {AttributesMetadata[attr.name as AttributesMetadataProps].name}
-              </p>
-            ))}
+            {selectedNodeData.subLabel ? (
+              <p>{selectedNodeData.subLabel}</p>
+            ) : (
+              selectedNodeData.data.attributes.map((attr: any) => (
+                <p>
+                  +
+                  {attr.value *
+                    AttributesMetadata[attr.name as AttributesMetadataProps]
+                      .multiplier}{' '}
+                  {
+                    AttributesMetadata[attr.name as AttributesMetadataProps]
+                      .name
+                  }
+                </p>
+              ))
+            )}
           </div>
         </div>
       )}
@@ -151,21 +177,7 @@ export const ArchetypeTree = () => {
         theme={theme}
         actives={activeNodes.concat('All:0')}
         selections={['All:0']}
-        nodes={ArcanistTreeNodes.map((node) => ({
-          id: `${node.type}:${node.id}`,
-          // label: `${node.type}:${node.id}`,
-          fill: `#${node.color}`,
-          data: {
-            ...node.position,
-            attributes: node.attributes,
-          },
-          cluster: node.type,
-          icon: `file://${assetsPath}/${node.icon || AttributesMetadata[node.attributes[0]?.name as AttributesMetadataProps]?.icon}.png`,
-          ...(node.type === 'All' && {
-            icon: 'file://D:wayfinder-save-editor/assets/Icons/Characters/WF_BattleMage.png',
-          }),
-          size: node.type === 'All' ? 100 : 30,
-        }))}
+        nodes={nodes}
         edges={edges}
         defaultNodeSize={30}
         minNodeSize={30}

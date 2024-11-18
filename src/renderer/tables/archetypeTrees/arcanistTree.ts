@@ -99,6 +99,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     position: { X: -20, Y: 13 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Each time you pick up an Innervation Orb, gain a Damage Shield equal to 10% of Magic Defense.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_Repulsion',
   },
   {
@@ -297,6 +299,7 @@ const Defensive: ArchetypeTreeEntry[] = [
     position: { X: 0, Y: 28 },
     color: '7B78FF',
     attributes: [],
+    description: 'Adds a Guard Type Echo Slot',
     icon: 'Icons/UI_EchoSlot_TypeSymbol_2A_trim_Small',
   },
   {
@@ -455,6 +458,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     position: { X: 20, Y: 13 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Each time a Wayfinder ability is used, gain a Damage Shield equal to 7% of Magic Defense.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_Feedback',
   },
   {
@@ -567,6 +572,8 @@ const Defensive: ArchetypeTreeEntry[] = [
     position: { X: 0, Y: 24 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Gain a Damage Shield equal to 30% of Magic Defense after using your Ultimate. If you are hit while you have a Damage Shield active, deal damage equal to 25% of your Magic Defense back to your attacker.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_Reactivity',
   },
 ];
@@ -671,6 +678,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     position: { X: -20, Y: 13 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Each time you pick up an Innervation Orb, lower your Wayfinder Ability Cooldowns by 20%.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_QuickeningInnervation',
   },
   {
@@ -941,6 +950,7 @@ const Offensive: ArchetypeTreeEntry[] = [
     position: { X: 0, Y: 28 },
     color: '7B78FF',
     attributes: [],
+    description: 'Adds an Attack Type Echo Slot',
     icon: 'Icons/UI_EchoSlot_TypeSymbol_1A_trim_Small',
   },
   {
@@ -997,6 +1007,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     position: { X: 20, Y: 13 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Each time a Wayfinder ability is used, have a 50% chance create an Innervation Orb.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_BountifulInnervation',
   },
   {
@@ -1126,6 +1138,8 @@ const Offensive: ArchetypeTreeEntry[] = [
     position: { X: 0, Y: 24 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Each time a Wayfinder ability is used, gain a stack of Overwhelming Arcana. Overwhelming Arcana increases Ability Power 5% per stack. Overwhelming Arcana can stack up to 5 times.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_OverwhelmingArcana',
   },
 ];
@@ -1213,6 +1227,8 @@ const Support: ArchetypeTreeEntry[] = [
     position: { X: -20, Y: 13 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Each time you Critically hit, gain a moderate amount of Ultimate Meter Charge. This effect has an internal cooldown of 1 second.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_TemporalCoherence',
   },
   {
@@ -1500,6 +1516,8 @@ const Support: ArchetypeTreeEntry[] = [
     position: { X: 20, Y: 13 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Each time you pick up an Innervation Orb, gain 10% increased Crit Rating, stacking up to 3 times.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_ProbabilityDensity',
   },
   {
@@ -1630,6 +1648,7 @@ const Support: ArchetypeTreeEntry[] = [
     position: { X: 0, Y: 28 },
     color: '7B78FF',
     attributes: [],
+    description: 'Adds a Balance Type Echo Slot',
     icon: 'Icons/UI_EchoSlot_TypeSymbol_3A_trim_Small',
   },
   {
@@ -1683,6 +1702,8 @@ const Support: ArchetypeTreeEntry[] = [
     position: { X: 0, Y: 24 },
     color: 'FFAD00',
     attributes: [],
+    description:
+      'Gain stacks of Observation when using your Ultimate or dealing Critical Hits. When stacks reach 100, a Wave Form Collapse is triggered, granting a random buff to you and nearby allies, increasing Damage, refreshing Cooldowns, or increasing Speed and Stamina.',
     icon: 'Icons/Talents/T_UI_Talent_Arcanist_WaveFunctionCollapse',
   },
 ];
