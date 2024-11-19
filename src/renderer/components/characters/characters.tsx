@@ -35,6 +35,9 @@ const rankLevelToExp = (level: number, curveObject: number[]) => {
 };
 
 export const Characters = () => {
+  const [selectedCharacterArchetype, setSelectedCharacterArchetype] =
+    useState<string>();
+
   const { assetsPath, saveStructure, saveNewValues } = useSaveContext();
 
   const characters = Object.keys(CharacterInfo);
@@ -132,87 +135,102 @@ export const Characters = () => {
 
   return (
     <div className="flex flex-col max-h-full">
-      <ArchetypeTree />
-      <Label htmlFor="wayfinderRank">Wayfinder Rank</Label>
-      <Select
-        name="wayfinderRank"
-        onValueChange={(val) => setCurrentWayfinderRank(+val)}
-        defaultValue={`${currentWayfinderRank}`}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder="Select desired rarity for echo" />
-        </SelectTrigger>
-        <SelectContent>
-          {Array(31)
-            .fill(1)
-            .map((_, idx) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <SelectItem key={idx} value={`${idx}`}>
-                {`${idx}`}
-              </SelectItem>
+      {selectedCharacterArchetype ? (
+        <ArchetypeTree
+          character={selectedCharacterArchetype}
+          onClose={() => setSelectedCharacterArchetype(undefined)}
+        />
+      ) : (
+        <>
+          <Label htmlFor="wayfinderRank">Wayfinder Rank</Label>
+          <Select
+            name="wayfinderRank"
+            onValueChange={(val) => setCurrentWayfinderRank(+val)}
+            defaultValue={`${currentWayfinderRank}`}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select desired rarity for echo" />
+            </SelectTrigger>
+            <SelectContent>
+              {Array(31)
+                .fill(1)
+                .map((_, idx) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <SelectItem key={idx} value={`${idx}`}>
+                    {`${idx}`}
+                  </SelectItem>
+                ))}
+            </SelectContent>
+          </Select>
+
+          <Separator className="my-4" />
+
+          <div className="flex flex-col items-center overflow-auto">
+            {charactersData?.map((character) => (
+              <>
+                <div className="flex flex-wrap gap-[25px]">
+                  <div className="flex flex-col gap-2">
+                    <img
+                      className="w-[150px] h-[150px]"
+                      src={`file://${assetsPath}/${CharacterInfo[character.name as keyof typeof CharacterInfo]?.icon}.png`}
+                      alt={character.name}
+                    />
+                    <Select
+                      defaultValue={`${expToRankLevel(
+                        character.spec.itemSpec.currentExp,
+                        CharacterLevelCurve,
+                      )}`}
+                      value={`${expToRankLevel(
+                        character.spec.itemSpec.currentExp,
+                        CharacterLevelCurve,
+                      )}`}
+                      onValueChange={(level) =>
+                        onWayfinderLevelChange(character.name, +level)
+                      }
+                    >
+                      <SelectTrigger className="min-w-[100px]">
+                        <SelectValue placeholder="Select Awakening Level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Array(30)
+                          .fill(0)
+                          .map((_, idx) => (
+                            <SelectItem
+                              value={`${idx}`}
+                            >{`${idx + 1}`}</SelectItem>
+                          ))}
+                      </SelectContent>
+                    </Select>
+                    <Button
+                      className="w-full"
+                      onClick={() =>
+                        setSelectedCharacterArchetype(character.name)
+                      }
+                    >
+                      Talent Tree
+                    </Button>
+                  </div>
+                  {character.spec.itemSpec.talentItems.map((talent) => (
+                    <TalentCard
+                      key={talent.talentItem.iD}
+                      characterName={character.name}
+                      talent={talent}
+                      onTalentChange={onTalentChange}
+                    />
+                  ))}
+                </div>
+                <Separator className="my-4" />
+              </>
             ))}
-        </SelectContent>
-      </Select>
-
-      <Separator className="my-4" />
-
-      <div className="flex flex-col items-center overflow-auto">
-        {charactersData?.map((character) => (
-          <>
-            <div className="flex flex-wrap gap-[25px]">
-              <div className="flex flex-col gap-2">
-                <img
-                  className="w-[150px] h-[150px]"
-                  src={`file://${assetsPath}/${CharacterInfo[character.name as keyof typeof CharacterInfo]?.icon}.png`}
-                  alt={character.name}
-                />
-                <Select
-                  defaultValue={`${expToRankLevel(
-                    character.spec.itemSpec.currentExp,
-                    CharacterLevelCurve,
-                  )}`}
-                  value={`${expToRankLevel(
-                    character.spec.itemSpec.currentExp,
-                    CharacterLevelCurve,
-                  )}`}
-                  onValueChange={(level) =>
-                    onWayfinderLevelChange(character.name, +level)
-                  }
-                >
-                  <SelectTrigger className="min-w-[100px]">
-                    <SelectValue placeholder="Select Awakening Level" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Array(30)
-                      .fill(0)
-                      .map((_, idx) => (
-                        <SelectItem value={`${idx}`}>{`${idx + 1}`}</SelectItem>
-                      ))}
-                  </SelectContent>
-                </Select>
-                <Button className="w-full" onClick={() => {}}>
-                  Talent Tree
-                </Button>
-              </div>
-              {character.spec.itemSpec.talentItems.map((talent) => (
-                <TalentCard
-                  key={talent.talentItem.iD}
-                  characterName={character.name}
-                  talent={talent}
-                  onTalentChange={onTalentChange}
-                />
-              ))}
-            </div>
-            <Separator className="my-4" />
-          </>
-        ))}
-      </div>
-      <Button
-        className="w-full min-h-[50px] rounded-none mt-4"
-        onClick={onSaveChanges}
-      >
-        Save
-      </Button>
+          </div>
+          <Button
+            className="w-full min-h-[50px] rounded-none mt-4"
+            onClick={onSaveChanges}
+          >
+            Save
+          </Button>
+        </>
+      )}
     </div>
   );
 };
