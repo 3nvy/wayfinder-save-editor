@@ -142,26 +142,28 @@ export const Characters = () => {
         />
       ) : (
         <>
-          <Label htmlFor="wayfinderRank">Wayfinder Rank</Label>
-          <Select
-            name="wayfinderRank"
-            onValueChange={(val) => setCurrentWayfinderRank(+val)}
-            defaultValue={`${currentWayfinderRank}`}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select desired rarity for echo" />
-            </SelectTrigger>
-            <SelectContent>
-              {Array(31)
-                .fill(1)
-                .map((_, idx) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <SelectItem key={idx} value={`${idx}`}>
-                    {`${idx}`}
-                  </SelectItem>
-                ))}
-            </SelectContent>
-          </Select>
+          <div className="flex justify-center items-center mt-3">
+            <Label htmlFor="wayfinderRank">Wayfinder Rank</Label>
+            <Select
+              name="wayfinderRank"
+              onValueChange={(val) => setCurrentWayfinderRank(+val)}
+              defaultValue={`${currentWayfinderRank}`}
+            >
+              <SelectTrigger className="w-[125px]">
+                <SelectValue placeholder="Select desired rarity for echo" />
+              </SelectTrigger>
+              <SelectContent>
+                {Array(31)
+                  .fill(1)
+                  .map((_, idx) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <SelectItem key={idx} value={`${idx}`}>
+                      {`${idx}`}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+          </div>
 
           <Separator className="my-4" />
 
