@@ -9,7 +9,7 @@
 // match the expected interface, even if the JSON is valid.
 
 export type SaveData = {
-  header?: Header;
+  header: Header;
   playerData: PlayerData;
   clientPlayerData?: ClientPlayerData;
 };
@@ -168,7 +168,24 @@ export type MInprogressAchivement = {
 
 export type MArchetypeTreeData = {
   m_Version: number;
-  m_UnlockedTreeData: any[];
+  m_UnlockedTreeData: MUnlockedTreeData[];
+};
+
+export type MUnlockedTreeData = {
+  characterName: string;
+  unlockedNodes: {
+    nodeId: string;
+    bIsNetworked: boolean;
+    bIsNetworkUnlocked: boolean;
+    treeType: string;
+    treeIndex: number;
+  }[];
+  unlockableNodes: {
+    connectedNodeId: string;
+    treeType: string;
+    index: number;
+  }[];
+  fogSoulSlotIndexes: number[];
 };
 
 export type MAwakenedWeaponsData = {
@@ -539,4 +556,23 @@ export type MSignalFireDatum = {
 export type UnlockedSignalFire = {
   unlockedSignalFireId: string;
   unlockedSignalFireDisplayName: string;
+};
+
+export type ArchetypeTreeEntry = {
+  id: string;
+  type: string;
+  bIsNetworked: boolean;
+  connectedNodes: { id: string; type: string; index: number }[];
+  connectedNodeNetwork: { id: string; type: string; index: number }[];
+  position: {
+    X: number;
+    Y: number;
+  };
+  color: string;
+  attributes: {
+    name: string;
+    value: number;
+  }[];
+  icon: string;
+  description?: string;
 };

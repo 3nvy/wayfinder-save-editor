@@ -10,6 +10,7 @@ import { useSaveContext } from '../../../context/context';
 import { EssentialAccessoryData } from '../accessories';
 import { getAccessoryLevel } from '../utils';
 
+// eslint-disable-next-line no-undef
 type CardProps = React.ComponentProps<typeof Card> & {
   accessory: EssentialAccessoryData;
 };
@@ -36,6 +37,7 @@ export function AccessoryCard({ accessory, children, ...props }: CardProps) {
           className="rounded-full p-[5px]"
           src={`file://${assetsPath}/${accessory.icon}.png`}
           width={60}
+          alt={`accessory-${accessory.name}`}
         />
         <CardTitle className="text-md/[18px]">{accessory.name}</CardTitle>
         <CardDescription className="flex flex-col">

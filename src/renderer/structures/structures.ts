@@ -117,4 +117,8 @@ export type INVENTORY_ITEM = {
   };
   equipmentSlot?: string;
   packName?: string;
+  equipmentData?: {
+    setName?: string;
+    attributes: string[];
+  };
 };

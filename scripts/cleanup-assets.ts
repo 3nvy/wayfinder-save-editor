@@ -40,10 +40,29 @@ import { LORA_ARMOR_SET } from '../src/renderer/tables/armorItems/LoraArmorItems
 import { LORA_PERSONAL_ITEMS } from '../src/renderer/tables/cosmetics/LoraPersonaItems';
 import { XP_SCROLL_ITEMS } from '../src/renderer/tables/exp-scrolls';
 import { DYES_ITEMS } from '../src/renderer/tables/dyes';
+import ARCANIST_TREE from '../src/renderer/tables/archetypeTrees/arcanistTree';
+import SURVIVALIST_TREE from '../src/renderer/tables/archetypeTrees/survivalistTree';
+import WARMASTER_TREE from '../src/renderer/tables/archetypeTrees/warmasterTree';
+import { AttributesMetadata } from '../src/renderer/tables/attributesMetadata';
+import {
+  AbilitiesInfo,
+  AspectInfo,
+  CharacterInfo,
+} from '../src/renderer/curves/character-level-curve';
 
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
+
+const ARCHETYPE_TREES = [
+  ...ARCANIST_TREE,
+  ...SURVIVALIST_TREE,
+  ...WARMASTER_TREE,
+].filter((i) => i.icon);
+
+const ATTRIBUTES_METADATA = Object.values(AttributesMetadata).filter(
+  (i) => i.icon,
+);
 
 const REQUIRED_ASSETS = [
   ...CURRENCIES,
@@ -85,6 +104,11 @@ const REQUIRED_ASSETS = [
   ...LORA_PERSONAL_ITEMS,
   ...XP_SCROLL_ITEMS,
   ...DYES_ITEMS,
+  ...ARCHETYPE_TREES,
+  ...ATTRIBUTES_METADATA,
+  ...Object.values(AbilitiesInfo),
+  ...Object.values(CharacterInfo),
+  ...Object.values(AspectInfo),
 ]
   .map((i) => `${i.icon}.png`)
   .concat([
