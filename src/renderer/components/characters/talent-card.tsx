@@ -57,7 +57,7 @@ export const TalentCard = ({
           className="rounded-full p-[5px]"
           src={`file://${assetsPath}/${icon}.png`}
           width={60}
-          alt="ptara"
+          alt={talentName}
         />
         <CardTitle className="text-md/[18px]">{name}</CardTitle>
         <CardDescription className="flex flex-col gap-3">
