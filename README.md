@@ -88,4 +88,4 @@ to ch1pset for providing the groundwork for ue save decoding https://github.com/
 
 ## If you like my work, consider buying me a coffe
 
-<a href="buymeacoffee.com/3nvy_"><img src="bmc_qr.png" width="200"></a>
+[<img src="bmc_qr.png" width="200">](https://buymeacoffee.com/3nvy_)
