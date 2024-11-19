@@ -74,7 +74,11 @@ export const TalentCard = ({
               {Array(talent.talentItem.data.rowName.includes('Aspect') ? 26 : 4)
                 .fill(0)
                 .map((_, idx) => (
-                  <SelectItem value={`${idx}`}>{`${idx}`}</SelectItem>
+                  <SelectItem
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={idx}
+                    value={`${idx}`}
+                  >{`${idx}`}</SelectItem>
                 ))}
             </SelectContent>
           </Select>
