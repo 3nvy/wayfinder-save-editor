@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import {
+  CollapseProps,
   GraphCanvas,
+  GraphEdge,
+  GraphNode,
   Icon,
   InternalGraphNode,
   NodePositionArgs,
@@ -241,13 +245,67 @@ export const ArchetypeTree = ({ character, onClose }: ArchetypeTreeProps) => {
     );
   }, [saveStructure?.playerData.m_ArchetypeTreeData.m_UnlockedTreeData]);
 
+  const nodes: GraphNode[] = useMemo(() => {
+    const treeNodes =
+      ArchetypeTrees[characterInfo.archtypeTree as keyof typeof ArchetypeTrees];
+    return treeNodes.map((node) => ({
+      id: `${node.type}:${node.id}`,
+      label: `${node.type}:${node.id}`,
+      subLabel: node.description,
+      fill: `#${node.color}`,
+      data: {
+        ...node.position,
+        attributes: node.attributes,
+      },
+      cluster: node.type,
+      icon: `file://${assetsPath}/${node.icon || AttributesMetadata[node.attributes[0]?.name as AttributesMetadataProps]?.icon}.png`,
+      ...(node.type === 'All' && {
+        icon: `file://${assetsPath}/${characterInfo.icon}.png`,
+      }),
+      size: node.type === 'All' ? 100 : 30,
+    }));
+  }, [assetsPath, characterInfo.archtypeTree, characterInfo.icon]);
+
+  const edges: GraphEdge[] = useMemo(() => {
+    const treeNodes =
+      ArchetypeTrees[characterInfo.archtypeTree as keyof typeof ArchetypeTrees];
+    const edgesMap = new Map();
+
+    treeNodes.forEach((node) =>
+      node.connectedNodes.forEach((cn) => {
+        const idx = [`${node.type}:${node.id}`, `${cn.type}:${cn.id}`]
+          .sort()
+          .toString();
+
+        edgesMap.set(idx, {
+          id: `${node.type}:${node.id}->${cn.type}:${cn.id}`,
+          source: `${node.type}:${node.id}`,
+          target: `${cn.type}:${cn.id}`,
+          size: 4,
+        });
+      }),
+    );
+
+    return [...edgesMap].map(([, v]) => v);
+  }, [characterInfo.archtypeTree]);
+
   const [activeNodes, setActiveNodes] = useState(() => {
     const tree = archetreeData.find(
       (entry) => entry.characterName === characterInfo.name,
     );
-    return (
-      tree?.unlockedNodes.map((node) => `${node.treeType}:${node.nodeId}`) ?? []
-    );
+
+    const newData =
+      tree?.unlockedNodes.map((node) => `${node.treeType}:${node.nodeId}`) ??
+      [];
+
+    const selectedEdges = edges
+      .filter((edge) => {
+        const [id1, id2] = edge.id.split('->');
+        return newData.includes(id1) && newData.includes(id2);
+      })
+      .map((edge) => edge.id);
+
+    return [...newData, ...selectedEdges];
   });
 
   const onTalentTreeSave = useCallback(() => {
@@ -306,49 +364,68 @@ export const ArchetypeTree = ({ character, onClose }: ArchetypeTreeProps) => {
     saveStructure,
   ]);
 
-  const nodes = useMemo(() => {
-    const treeNodes =
-      ArchetypeTrees[characterInfo.archtypeTree as keyof typeof ArchetypeTrees];
-    return treeNodes.map((node) => ({
-      id: `${node.type}:${node.id}`,
-      label: `${node.type}:${node.id}`,
-      subLabel: node.description,
-      fill: `#${node.color}`,
-      data: {
-        ...node.position,
-        attributes: node.attributes,
-      },
-      cluster: node.type,
-      icon: `file://${assetsPath}/${node.icon || AttributesMetadata[node.attributes[0]?.name as AttributesMetadataProps]?.icon}.png`,
-      ...(node.type === 'All' && {
-        icon: `file://${assetsPath}/${characterInfo.icon}.png`,
-      }),
-      size: node.type === 'All' ? 100 : 30,
-    }));
-  }, [assetsPath, characterInfo.archtypeTree, characterInfo.icon]);
+  const onNodeClick = useCallback(
+    ({ id }: InternalGraphNode, _: CollapseProps | undefined, event: any) => {
+      event?.stopPropagation();
 
-  const edges = useMemo(() => {
-    const treeNodes =
-      ArchetypeTrees[characterInfo.archtypeTree as keyof typeof ArchetypeTrees];
-    const edgesMap = new Map();
+      if (id === 'All:0') return;
 
-    treeNodes.forEach((node) =>
-      node.connectedNodes.forEach((cn) => {
-        const idx = [`${node.type}:${node.id}`, `${cn.type}:${cn.id}`]
-          .sort()
-          .toString();
+      setActiveNodes((currentActiveNodes) => {
+        const hasEntry = currentActiveNodes.find((nodeID) => nodeID === id);
+        const newData = (
+          hasEntry
+            ? currentActiveNodes.filter((nodeID) => nodeID !== id)
+            : [...currentActiveNodes, id]
+        ).filter((nodeID) => !nodeID.includes('->'));
 
-        edgesMap.set(idx, {
-          id: `${node.type}:${node.id}->${cn.type}:${cn.id}`,
-          source: `${node.type}:${node.id}`,
-          target: `${cn.type}:${cn.id}`,
-          size: 4,
-        });
-      }),
-    );
+        const selectedEdges = edges
+          .filter((edge) => {
+            const [id1, id2] = edge.id.split('->');
+            return newData.includes(id1) && newData.includes(id2);
+          })
+          .map((edge) => edge.id);
 
-    return [...edgesMap].map(([, v]) => v);
-  }, [characterInfo.archtypeTree]);
+        return [...newData, ...selectedEdges];
+      });
+    },
+    [edges],
+  );
+
+  /**
+   * Node Bulk Actions
+   */
+  const onSelectAll = useCallback(() => {
+    setActiveNodes([...nodes.map((n) => n.id), ...edges.map((e) => e.id)]);
+  }, [edges, nodes]);
+
+  const onSelectAllOfType = useCallback(
+    (type: string) => {
+      const selectedTypeNodeIDs = nodes
+        .filter((node) => node.id.includes(type))
+        .map((node) => node.id);
+
+      const nonDefensiveActiveNodesIDs = activeNodes.filter(
+        (nodeID) => !nodeID.includes('->') && !nodeID.includes(type),
+      );
+
+      const newSelectedNodes = [
+        ...selectedTypeNodeIDs,
+        ...nonDefensiveActiveNodesIDs,
+      ];
+
+      const selectedEdges = edges
+        .filter((edge) => {
+          const [id1, id2] = edge.id.split('->');
+          return (
+            newSelectedNodes.includes(id1) && newSelectedNodes.includes(id2)
+          );
+        })
+        .map((edge) => edge.id);
+
+      setActiveNodes([...newSelectedNodes, ...selectedEdges]);
+    },
+    [activeNodes, edges, nodes],
+  );
 
   return (
     <div className="z-40 absolute top-0 left-0 w-[calc(100vw-40px)] h-[calc(100vh-105px)] mt-[85px] ml-[20px]">
@@ -383,6 +460,20 @@ export const ArchetypeTree = ({ character, onClose }: ArchetypeTreeProps) => {
           <ArrowLeftIcon /> Go Back
         </Button>
         <Button onClick={onTalentTreeSave}>Save</Button>
+      </div>
+
+      <div className="z-40 absolute right-0 flex flex-col gap-3 m-6">
+        <Button onClick={() => setActiveNodes([])}>Clear All</Button>
+        <Button onClick={onSelectAll}>Select All</Button>
+        <Button onClick={() => onSelectAllOfType('Offensive')}>
+          Select All Offensive
+        </Button>
+        <Button onClick={() => onSelectAllOfType('Support')}>
+          Select All Support
+        </Button>
+        <Button onClick={() => onSelectAllOfType('Defensive')}>
+          Select All Defensive
+        </Button>
       </div>
 
       <GraphCanvas
@@ -463,29 +554,7 @@ export const ArchetypeTree = ({ character, onClose }: ArchetypeTreeProps) => {
             />
           );
         }}
-        onNodeClick={({ id }, _, event) => {
-          event?.stopPropagation();
-
-          if (id === 'All:0') return;
-
-          setActiveNodes((currentActiveNodes) => {
-            const hasEntry = currentActiveNodes.find((nodeID) => nodeID === id);
-            const newData = (
-              hasEntry
-                ? currentActiveNodes.filter((nodeID) => nodeID !== id)
-                : [...currentActiveNodes, id]
-            ).filter((nodeID) => !nodeID.includes('->'));
-
-            const selectedEdges = edges
-              .filter((edge) => {
-                const [id1, id2] = edge.id.split('->');
-                return newData.includes(id1) && newData.includes(id2);
-              })
-              .map((edge) => edge.id);
-
-            return [...newData, ...selectedEdges];
-          });
-        }}
+        onNodeClick={onNodeClick}
         onNodePointerOver={(node) => {
           if (node.id !== 'All:0') setSelectedNodeData(node);
         }}
