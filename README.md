@@ -68,16 +68,6 @@ This panel allows to add new accessories to your inventory, and allows to edit t
 ![alt text](image-14.png)
 ![alt text](image-15.png)
 
-## Experimental Features
-
-### This will have a set of experimental features. Currently it has:
-
-- Replace current default for a bigger one
-
-- Fix Kyros when added via Founders tab on previous versions
-
-![alt text](image-3.png)
-
 ## Free text edit of the entire save structure (Advanced)
 
 ![alt text](image-4.png)
