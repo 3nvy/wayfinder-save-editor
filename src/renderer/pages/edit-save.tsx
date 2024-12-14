@@ -1,10 +1,9 @@
 /* eslint-disable react/button-has-type */
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
-import { useContext } from 'react';
 import { BattlePassPropForm } from '../components/battlepass-prop-form/battlepass-prop-form';
 import { RawPropForm } from '../components/raw-prop-form/raw-prop-form';
-import { SaveEditorContext } from '../context/context';
+import { useSaveContext } from '../context/context';
 import { Inventory } from '../components/inventory/inventory';
 import { Echos } from '../components/echos/echos';
 import { Accessories } from '../components/accessories/accessories';
@@ -13,7 +12,7 @@ import { Wayfinders } from '../components/wayfinders/wayfinders';
 import { Characters } from '../components/characters/characters';
 
 export const EditSavePage = () => {
-  const { fileName } = useContext(SaveEditorContext);
+  const { fileName } = useSaveContext();
   return (
     <>
       <div className="absolute w-full bg-slate-500 p-1 text-white flex justify-between">

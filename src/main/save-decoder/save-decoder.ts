@@ -3,11 +3,11 @@ import fs from 'fs';
 import { Gvas, Serializer } from '../gvas-decoder';
 
 export const decodeSave = (buffer: any) => {
-  const gvas = new Gvas();
+  const gvas: any = new Gvas();
   const serial = new Serializer(Buffer.from([...buffer]));
   gvas.deserialize(serial);
 
-  const decodedSave = JSON.parse(JSON.stringify(gvas));
+  const decodedSave: any = JSON.parse(JSON.stringify(gvas));
 
   const fileSaveType = decodedSave.Properties.Name.replace(
     /[^a-zA-Z0-9\/.]/g,
@@ -26,8 +26,8 @@ export const decodeSave = (buffer: any) => {
     // Returns META structure, containing the current and next save index
     saveStructure =
       decodedSave.Properties.Properties[0].Properties[0].Properties.reduce(
-        (acc, x) => {
-          acc[x.Name.replace(/[^a-zA-Z0-9\/.]/g, '')] = x.Property[1];
+        (acc: { [key: string]: any }, x: any) => {
+          acc[x.Name.replace(/[^a-zA-Z0-9\/.]/g, '')] = x.Property;
           return acc;
         },
         {},

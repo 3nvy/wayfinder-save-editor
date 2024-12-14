@@ -1,15 +1,5 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { SaveEditorContext } from '../../context/context';
 
 type FileMetadata = {
@@ -22,24 +12,19 @@ const FileChooser: React.FC = () => {
   const fileMetadata = useRef<FileMetadata>();
   const { saveDecodedStructure } = useContext(SaveEditorContext);
 
-  // META DIALOG
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentSaveIndex, setCurrentSaveIndex] = useState(0);
-
   useEffect(() => {
     window.electron.ipcRenderer.once(
       'decode-file',
       ({ decodedSave, saveStructure, fileSaveType }: any) => {
+        saveDecodedStructure({
+          fileMetadata: fileMetadata.current,
+          decodedSave,
+          saveStructure,
+        });
         if (fileSaveType === '/Script/Wayfinder.WFSaveGame') {
-          saveDecodedStructure({
-            fileMetadata: fileMetadata.current,
-            decodedSave,
-            saveStructure,
-          });
           navigate('/edit-save');
         } else {
-          setCurrentSaveIndex(saveStructure.CurrentSaveGameIndex);
-          setIsDialogOpen(true);
+          navigate('/edit-account');
         }
       },
     );
@@ -56,10 +41,6 @@ const FileChooser: React.FC = () => {
       };
       reader.readAsArrayBuffer(file);
     });
-  };
-
-  const onMetaDialogClose = () => {
-    window.location.reload();
   };
 
   const handleFileChange = async (
@@ -80,26 +61,6 @@ const FileChooser: React.FC = () => {
 
   return (
     <div>
-      <Dialog open={isDialogOpen} onOpenChange={onMetaDialogClose}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>{fileMetadata.current?.name}</DialogTitle>
-            <DialogDescription>
-              The current save is <b>WayfinderSave_{currentSaveIndex}.sav</b>
-            </DialogDescription>
-          </DialogHeader>
-
-          <DialogFooter className="sm:justify-start">
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={onMetaDialogClose}
-            >
-              Close
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
       <input type="file" onChange={handleFileChange} accept=".sav" />
     </div>
   );
