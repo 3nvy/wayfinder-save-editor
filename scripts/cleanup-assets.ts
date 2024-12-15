@@ -49,6 +49,7 @@ import {
   AspectInfo,
   CharacterInfo,
 } from '../src/renderer/curves/character-level-curve';
+import DLC_ITEMS from '../src/renderer/tables/dlc-items';
 
 const fs = require('fs');
 const path = require('path');
@@ -106,6 +107,7 @@ const REQUIRED_ASSETS = [
   ...DYES_ITEMS,
   ...ARCHETYPE_TREES,
   ...ATTRIBUTES_METADATA,
+  ...DLC_ITEMS,
   ...Object.values(AbilitiesInfo),
   ...Object.values(CharacterInfo),
   ...Object.values(AspectInfo),
