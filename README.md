@@ -26,9 +26,9 @@ The savefiles structure is the following `WayfinderSave[slot number]_[save numbe
 
 Steam cloud saves are known for causing conflicts with the modified saves. If you are having issues editing your save, try disabling it.
 
-## Manage Wayfinder Rank & Wayfinders level, afinity, abilities and talent tree
+## Manage Save Difficulty, Wayfinder Rank & Wayfinders level, affinity, abilities and talent tree
 
-![alt text](image-16.png)
+![alt text](image-18.png)
 ![alt text](image-17.png)
 
 ## Manage Inventory Items: Currencies, Resources, Imbuements, Mounts (w/ Saddles), Housing Items & Awakening Stones
