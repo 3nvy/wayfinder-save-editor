@@ -71,3 +71,38 @@ export const encodeSave = (
     return 500;
   }
 };
+
+export const encodeMetaSave = (
+  fileMetadata: any,
+  decodedSave: any,
+  newSaveStructure: any,
+) => {
+  try {
+    const challengesEntry =
+      decodedSave.Properties.Properties[0].Properties[0].Properties.find(
+        (p: any) => p.Name.startsWith('CompletedChallenges'),
+      );
+
+    if (challengesEntry) {
+      challengesEntry.Property = newSaveStructure.CompletedChallenges;
+    } else {
+      decodedSave.Properties.Properties[0].Properties[0].Properties.push({
+        Name: 'CompletedChallenges\u0000',
+        Type: 'ArrayProperty\u0000',
+        StoredPropertyType: 'StructProperty\u0000',
+        Property: newSaveStructure.CompletedChallenges,
+      });
+    }
+
+    const gvas2 = Gvas.from(decodedSave);
+    const compressedAgain = gvas2.serialize();
+
+    fs.writeFile(fileMetadata.path, compressedAgain, (err) => {
+      if (err) throw err;
+    });
+
+    return 200;
+  } catch (err) {
+    return 500;
+  }
+};

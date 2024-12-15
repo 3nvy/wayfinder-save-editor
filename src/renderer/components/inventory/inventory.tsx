@@ -30,7 +30,7 @@ export const Inventory = () => {
         <TabsTrigger value="housing">Housing</TabsTrigger>
         <TabsTrigger value="founders">Founders</TabsTrigger>
         <TabsTrigger value="critical">Critical Pack</TabsTrigger>
-        <TabsTrigger value="dlc">Extra DLC Stuff</TabsTrigger>
+        <TabsTrigger value="dlc">DLC / Nightmare</TabsTrigger>
       </TabsList>
       <TabsContent value="currency">
         <CurrencyTab />

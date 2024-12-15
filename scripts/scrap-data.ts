@@ -96,6 +96,14 @@ const parseAttributeMetadata = (data) => {
   }, {});
 };
 
+const parseChallenges = (data) => {
+  return Object.entries(data.Rows).map(([k, i]) => ({
+    key: k,
+    name: i.Name_Loc.SourceString,
+    desciprion: i.DescriptionText_Loc.SourceString,
+    rewards: i.Rewards[0].Rewards.map((r) => r.Item.RowName),
+  }));
+};
 // Function to read and parse JSON files
 function readJSONFiles() {
   try {
@@ -126,9 +134,14 @@ function readJSONFiles() {
         const jsonData = fs.readFileSync(filePath, 'utf8');
         const parsedData = JSON.parse(jsonData)?.[0];
 
+        resultData[parsedData.Name] = parseItems(parsedData);
+
+        // resultData = parseChallenges(parsedData);
+        // console.log(resultData);
+
         // Archetype
-        const data = parseArchtypeTree(parsedData);
-        resultData.push(data);
+        // const data = parseArchtypeTree(parsedData);
+        // resultData.push(data);
 
         // Attribute Metadata
         // resultData = JSON.stringify(parseAttributeMetadata(parsedData));
@@ -138,16 +151,21 @@ function readJSONFiles() {
     });
 
     // Items
-    // const parsedData = Object.entries(resultData).reduce((acc, [k, v]) => {
-    //   acc += `const ${k.replace('2', 'Two')}: INVENTORY_ITEM[] = ${JSON.stringify(v)}; `;
-    //   return acc;
-    // }, "import { INVENTORY_ITEM } from '@/src/renderer/structures/structures'; ");
+    const parsedData = Object.entries(resultData).reduce((acc, [k, v]) => {
+      acc += `const ${k.replace('2', 'Two')}: INVENTORY_ITEM[] = ${JSON.stringify(v)}; `;
+      return acc;
+    }, "import { INVENTORY_ITEM } from '@/src/renderer/structures/structures'; ");
+
+    // CHallenges
+    // const parsedData = `
+    //   const CHALLENGES = ${JSON.stringify(resultData)}
+    // `;
 
     // Archetree
-    const parsedData = resultData.reduce((acc, d) => {
-      acc += `const ${d[0]}: ArchetypeTreeEntry[] = ${JSON.stringify(d[1])};`;
-      return acc;
-    }, "import { ArchetypeTreeEntry } from '../../saveFileTypes';");
+    // const parsedData = resultData.reduce((acc, d) => {
+    //   acc += `const ${d[0]}: ArchetypeTreeEntry[] = ${JSON.stringify(d[1])};`;
+    //   return acc;
+    // }, "import { ArchetypeTreeEntry } from '../../saveFileTypes';");
 
     fs.writeFile('./raw/scrapped.ts', parsedData, (err) => {
       if (err) throw err;

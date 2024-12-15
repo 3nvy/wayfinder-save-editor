@@ -13,6 +13,7 @@ import { NON_FUNGIBLE_ITEM_STRUCTURE } from '@/src/renderer/structures/structure
 import { generateSeed, generateUniqueID } from '@/src/renderer/utils';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { NIGHTMARE_HOUSING_ITEMS } from '@/src/renderer/tables/dlc-items';
 import { ItemCard } from './item-card/item-card';
 
 export type EssentialItemData = {
@@ -36,6 +37,9 @@ type GroupedItemData = {
 };
 
 const HOUSING_ITEMS = [
+  ...NIGHTMARE_HOUSING_ITEMS.filter(
+    (item) => !item.key.includes('Recipe'),
+  ).sort((a, b) => a.localizedString.localeCompare(b.localizedString)),
   ...CRITICAL_PACK_HOUSING_ITEMS.sort((a, b) =>
     a.localizedString.localeCompare(b.localizedString),
   ),

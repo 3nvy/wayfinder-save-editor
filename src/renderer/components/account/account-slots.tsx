@@ -17,7 +17,7 @@ export const AccountSlots = () => {
   return (
     <div className="flex flex-col max-h-full gap-10">
       {saveSlotData.map((slot: any) => (
-        <Alert>
+        <Alert key={slot.idx}>
           <AlertTitle>Slot number {slot.idx + 1}</AlertTitle>
           <AlertDescription>{slot.name}</AlertDescription>
         </Alert>

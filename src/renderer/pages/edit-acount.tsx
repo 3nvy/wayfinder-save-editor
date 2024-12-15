@@ -1,7 +1,8 @@
 /* eslint-disable react/button-has-type */
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useSaveContext } from '../context/context';
-import { AccountSlots } from '../components/account-slots/account-slots';
+import { AccountSlots } from '../components/account/account-slots';
+import { AccountChallenges } from '../components/account/account-challenges';
 
 export const EditAccountPage = () => {
   const { fileName } = useSaveContext();
@@ -14,18 +15,18 @@ export const EditAccountPage = () => {
         <button onClick={() => window.location.reload()}>Reload</button>
       </div>
       <Tabs
-        defaultValue="save-slots"
+        defaultValue="challenges"
         className="w-dvw h-dvh flex items-center flex-col p-5 pt-10"
       >
         <TabsList>
-          <TabsTrigger value="save-slots">Save Slots</TabsTrigger>
-          <TabsTrigger value="challenges">Challenges</TabsTrigger>
+          {/* <TabsTrigger value="save-slots">Save Slots</TabsTrigger> */}
+          <TabsTrigger value="challenges">Nightmare Challenges</TabsTrigger>
         </TabsList>
         <TabsContent value="save-slots">
           <AccountSlots />
         </TabsContent>
         <TabsContent value="challenges">
-          <p>Challenges</p>
+          <AccountChallenges />
         </TabsContent>
       </Tabs>
     </>

@@ -1,5 +1,9 @@
 import { ipcMain } from 'electron';
-import { decodeSave, encodeSave } from './save-decoder/save-decoder';
+import {
+  decodeSave,
+  encodeMetaSave,
+  encodeSave,
+} from './save-decoder/save-decoder';
 import { ipcChannels } from '../config/ipc-channels';
 import { RESOURCES_PATH } from './paths';
 
@@ -22,6 +26,18 @@ export default {
       async (event, fileMetadata, decodedSave, newSaveData) => {
         const resultCode = encodeSave(fileMetadata, decodedSave, newSaveData);
         event.reply(ipcChannels.ENCODE_FILE, resultCode);
+      },
+    );
+
+    ipcMain.on(
+      ipcChannels.ENCODE_META_FILE,
+      async (event, fileMetadata, decodedSave, newSaveData) => {
+        const resultCode = encodeMetaSave(
+          fileMetadata,
+          decodedSave,
+          newSaveData,
+        );
+        event.reply(ipcChannels.ENCODE_META_FILE, resultCode);
       },
     );
 
