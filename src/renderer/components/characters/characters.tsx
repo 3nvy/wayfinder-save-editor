@@ -35,6 +35,8 @@ const rankLevelToExp = (level: number, curveObject: number[]) => {
   return curveObject[level];
 };
 
+const difficulties = ['Story', 'Normal', 'Challenging', 'Heroic', 'Nightmare'];
+
 export const Characters = () => {
   const [selectedCharacterArchetype, setSelectedCharacterArchetype] =
     useState<string>();
@@ -48,6 +50,10 @@ export const Characters = () => {
       saveStructure?.playerData.m_WayfinderRankData.m_WayfinderExperience ?? 0,
       WayfinderRankLevelCurve,
     ),
+  );
+
+  const [currentDifficulty, setCurrentDifficulty] = useState(
+    saveStructure?.header?.difficulty ?? 'Story',
   );
 
   const [charactersData, setCharactersData] = useState<MNonFungibleItem[]>(
@@ -101,6 +107,9 @@ export const Characters = () => {
   const onSaveChanges = useCallback(() => {
     const newSaveData = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
 
+    // Save Difficulty
+    newSaveData.header.difficulty = currentDifficulty;
+
     // Save WayfinderRank Data
     newSaveData.playerData.m_WayfinderRankData.m_WayfinderExperience =
       rankLevelToExp(currentWayfinderRank, WayfinderRankLevelCurve);
@@ -132,7 +141,13 @@ export const Characters = () => {
       newNonFungibleItems;
 
     saveNewValues(newSaveData);
-  }, [charactersData, currentWayfinderRank, saveNewValues, saveStructure]);
+  }, [
+    charactersData,
+    currentDifficulty,
+    currentWayfinderRank,
+    saveNewValues,
+    saveStructure,
+  ]);
 
   return (
     <div className="flex flex-col max-h-full">
@@ -143,27 +158,49 @@ export const Characters = () => {
         />
       ) : (
         <>
-          <div className="flex justify-center items-center mt-3">
-            <Label htmlFor="wayfinderRank">Wayfinder Rank</Label>
-            <Select
-              name="wayfinderRank"
-              onValueChange={(val) => setCurrentWayfinderRank(+val)}
-              defaultValue={`${currentWayfinderRank}`}
-            >
-              <SelectTrigger className="w-[125px]">
-                <SelectValue placeholder="Select desired rarity for echo" />
-              </SelectTrigger>
-              <SelectContent>
-                {Array(31)
-                  .fill(1)
-                  .map((_, idx) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <SelectItem key={idx} value={`${idx}`}>
-                      {`${idx}`}
+          <div className="flex justify-center items-center gap-7">
+            <div className="flex items-center mt-3 gap-3">
+              <Label htmlFor="wayfinderRank">Wayfinder Rank</Label>
+              <Select
+                name="wayfinderRank"
+                onValueChange={(val) => setCurrentWayfinderRank(+val)}
+                defaultValue={`${currentWayfinderRank}`}
+              >
+                <SelectTrigger className="w-[125px]">
+                  <SelectValue placeholder="Select desired rarity for echo" />
+                </SelectTrigger>
+                <SelectContent>
+                  {Array(31)
+                    .fill(1)
+                    .map((_, idx) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <SelectItem key={idx} value={`${idx}`}>
+                        {`${idx}`}
+                      </SelectItem>
+                    ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex justify-center items-center mt-3 gap-3">
+              <Label htmlFor="wayfinderRank">Difficulty</Label>
+              <Select
+                name="difficulty"
+                onValueChange={setCurrentDifficulty}
+                defaultValue={currentDifficulty}
+              >
+                <SelectTrigger className="w-[125px]">
+                  <SelectValue placeholder="Select desired rarity for echo" />
+                </SelectTrigger>
+                <SelectContent>
+                  {difficulties.map((difficulty) => (
+                    <SelectItem key={difficulty} value={difficulty}>
+                      {difficulty}
                     </SelectItem>
                   ))}
-              </SelectContent>
-            </Select>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <Separator className="my-4" />

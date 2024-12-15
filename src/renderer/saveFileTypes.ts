@@ -33,6 +33,7 @@ export type Header = {
   currentQuestName: string;
   areaName: string;
   timestamp: string;
+  difficulty: string;
 };
 
 export type EquippedCharacter = {
