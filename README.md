@@ -26,6 +26,12 @@ The savefiles structure is the following `WayfinderSave[slot number]_[save numbe
 
 Steam cloud saves are known for causing conflicts with the modified saves. If you are having issues editing your save, try disabling it.
 
+## Manage Account Level Challenges
+
+Allows to unlock Nightmare challenges account wide. To do so, load the `WayfinderSave_Meta.sav` file instead.
+
+![alt text](image-16.png)
+
 ## Manage Save Difficulty, Wayfinder Rank & Wayfinders level, affinity, abilities and talent tree
 
 ![alt text](image-18.png)
