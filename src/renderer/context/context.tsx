@@ -7,7 +7,11 @@ import {
   useContext,
 } from 'react';
 import { useToast } from '@/components/ui/use-toast';
-import { ipcChannels } from '@/src/config/ipc-channels';
+import {
+  ENCODE_FILE,
+  ENCODE_META_FILE,
+  ipcChannels,
+} from '@/src/config/ipc-channels';
 import { SaveData } from '../saveFileTypes';
 
 type Structure = { [key: string]: any };
@@ -55,13 +59,39 @@ export const SaveEditorProvider = ({ children }: any) => {
   const saveNewValues = useCallback(
     (newSaveData: SaveData) => {
       window.electron.ipcRenderer.sendMessage(
-        'encode-file',
+        ENCODE_FILE,
         fileMetadata,
         decodedFile,
         newSaveData,
       );
 
-      window.electron.ipcRenderer.once('encode-file', (responseCode) => {
+      window.electron.ipcRenderer.once(ENCODE_FILE, (responseCode) => {
+        if (responseCode === 200)
+          toast({
+            title: 'Save File Updated!',
+          });
+        else
+          toast({
+            variant: 'destructive',
+            title: 'Failed to update the Save File',
+          });
+      });
+
+      setSaveStructure(newSaveData);
+    },
+    [fileMetadata, decodedFile, toast],
+  );
+
+  const saveNewMetaValues = useCallback(
+    (newSaveData: SaveData) => {
+      window.electron.ipcRenderer.sendMessage(
+        ENCODE_META_FILE,
+        fileMetadata,
+        decodedFile,
+        newSaveData,
+      );
+
+      window.electron.ipcRenderer.once(ENCODE_META_FILE, (responseCode) => {
         if (responseCode === 200)
           toast({
             title: 'Save File Updated!',
@@ -89,6 +119,7 @@ export const SaveEditorProvider = ({ children }: any) => {
     () => ({
       saveDecodedStructure,
       saveNewValues,
+      saveNewMetaValues,
       decodedFile,
       saveStructure,
       assetsPath,
@@ -97,6 +128,7 @@ export const SaveEditorProvider = ({ children }: any) => {
     [
       saveDecodedStructure,
       saveNewValues,
+      saveNewMetaValues,
       decodedFile,
       saveStructure,
       assetsPath,

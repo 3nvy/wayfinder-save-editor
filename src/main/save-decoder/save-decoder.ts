@@ -3,11 +3,11 @@ import fs from 'fs';
 import { Gvas, Serializer } from '../gvas-decoder';
 
 export const decodeSave = (buffer: any) => {
-  const gvas = new Gvas();
+  const gvas: any = new Gvas();
   const serial = new Serializer(Buffer.from([...buffer]));
   gvas.deserialize(serial);
 
-  const decodedSave = JSON.parse(JSON.stringify(gvas));
+  const decodedSave: any = JSON.parse(JSON.stringify(gvas));
 
   const fileSaveType = decodedSave.Properties.Name.replace(
     /[^a-zA-Z0-9\/.]/g,
@@ -26,8 +26,8 @@ export const decodeSave = (buffer: any) => {
     // Returns META structure, containing the current and next save index
     saveStructure =
       decodedSave.Properties.Properties[0].Properties[0].Properties.reduce(
-        (acc, x) => {
-          acc[x.Name.replace(/[^a-zA-Z0-9\/.]/g, '')] = x.Property[1];
+        (acc: { [key: string]: any }, x: any) => {
+          acc[x.Name.replace(/[^a-zA-Z0-9\/.]/g, '')] = x.Property;
           return acc;
         },
         {},
@@ -58,6 +58,41 @@ export const encodeSave = (
 
     decodedSave.Properties.Properties[2].Property.Data = compressedData;
     decodedSave.Properties.Properties[2].Property.Count = compressedSize;
+
+    const gvas2 = Gvas.from(decodedSave);
+    const compressedAgain = gvas2.serialize();
+
+    fs.writeFile(fileMetadata.path, compressedAgain, (err) => {
+      if (err) throw err;
+    });
+
+    return 200;
+  } catch (err) {
+    return 500;
+  }
+};
+
+export const encodeMetaSave = (
+  fileMetadata: any,
+  decodedSave: any,
+  newSaveStructure: any,
+) => {
+  try {
+    const challengesEntry =
+      decodedSave.Properties.Properties[0].Properties[0].Properties.find(
+        (p: any) => p.Name.startsWith('CompletedChallenges'),
+      );
+
+    if (challengesEntry) {
+      challengesEntry.Property = newSaveStructure.CompletedChallenges;
+    } else {
+      decodedSave.Properties.Properties[0].Properties[0].Properties.push({
+        Name: 'CompletedChallenges\u0000',
+        Type: 'ArrayProperty\u0000',
+        StoredPropertyType: 'StructProperty\u0000',
+        Property: newSaveStructure.CompletedChallenges,
+      });
+    }
 
     const gvas2 = Gvas.from(decodedSave);
     const compressedAgain = gvas2.serialize();

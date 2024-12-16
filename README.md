@@ -20,15 +20,15 @@ Then run the **Wayfinder - Save Editor.exe** file to start the save editor
 
 Once booted, press the button to load the save file from the location above.
 
-The save file you want to edit is usually the last modified one, but if you are in doubt, you can load the "\_Meta" file, and it will tell you which save file you need to load
+The savefiles structure is the following `WayfinderSave[slot number]_[save number].sav`, and the one you want to edit for each slot is the last modified one. For eg: `WayfinderSave1_9.sav` to edit the file on slot 1.
 
 ## Steam Cloud Saves
 
 Steam cloud saves are known for causing conflicts with the modified saves. If you are having issues editing your save, try disabling it.
 
-## Manage Wayfinder Rank & Wayfinders level, afinity, abilities and talent tree
+## Manage Save Difficulty, Wayfinder Rank & Wayfinders level, affinity, abilities and talent tree
 
-![alt text](image-16.png)
+![alt text](image-18.png)
 ![alt text](image-17.png)
 
 ## Manage Inventory Items: Currencies, Resources, Imbuements, Mounts (w/ Saddles), Housing Items & Awakening Stones
