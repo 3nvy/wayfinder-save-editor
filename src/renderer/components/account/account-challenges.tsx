@@ -135,7 +135,6 @@ export const AccountChallenges = ({ type }: AccountChallengesProps) => {
         return acc;
       }, [] as any);
 
-      debugger;
       newSaveStructure.CompletedChallenges = {
         Name: 'CompletedChallenges\x00',
         Type: 'StructProperty\x00',
