@@ -29,5 +29,5 @@ npm-debug.log.*
 *.scss.d.ts
 
 # Temp
-assets/
+assets/icons/
 raw/
