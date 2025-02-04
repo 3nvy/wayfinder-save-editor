@@ -140,13 +140,6 @@ export const NIGHTMARE_CHALLENGES: NightmareChallengeProps[] = [
       'ProfileTitle_004_NM',
       'Housing_Deco_Statue_02',
       'DLC_GobStackGrnPersona',
-      'DLC_GobStackKyrPersona',
-      'DLC_GobStackLorPersona',
-      'DLC_GobStackNisPersona',
-      'DLC_GobStackSenPersona',
-      'DLC_GobStackSilPersona',
-      'DLC_GobStackVenPersona',
-      'DLC_GobStackWinPersona',
     ],
   },
 ];

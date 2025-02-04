@@ -15,18 +15,26 @@ export const EditAccountPage = () => {
         <button onClick={() => window.location.reload()}>Reload</button>
       </div>
       <Tabs
-        defaultValue="challenges"
+        defaultValue="nightmare-challenges"
         className="w-dvw h-dvh flex items-center flex-col p-5 pt-10"
       >
         <TabsList>
           {/* <TabsTrigger value="save-slots">Save Slots</TabsTrigger> */}
-          <TabsTrigger value="challenges">Nightmare Challenges</TabsTrigger>
+          <TabsTrigger value="nightmare-challenges">
+            Nightmare Challenges
+          </TabsTrigger>
+          <TabsTrigger value="hardcore-challenges">
+            Hardcore Challenges
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="save-slots">
           <AccountSlots />
         </TabsContent>
-        <TabsContent value="challenges">
-          <AccountChallenges />
+        <TabsContent value="nightmare-challenges">
+          <AccountChallenges type="Nightmare" />
+        </TabsContent>
+        <TabsContent value="hardcore-challenges">
+          <AccountChallenges type="Hardcore" />
         </TabsContent>
       </Tabs>
     </>

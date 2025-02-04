@@ -7,9 +7,10 @@ import {
 } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Fragment, useCallback, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { LockIcon } from 'lucide-react';
+import { LockIcon, SkullIcon } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useSaveContext } from '../../context/context';
 import {
   CharacterInfo,
@@ -36,14 +37,19 @@ const rankLevelToExp = (level: number, curveObject: number[]) => {
 };
 
 const difficulties = ['Story', 'Normal', 'Challenging', 'Heroic', 'Nightmare'];
+const characters = Object.keys(CharacterInfo);
+const normalizedCharacterName = Object.entries(CharacterInfo).reduce<{
+  [key: string]: string;
+}>((acc, [k, v]) => {
+  acc[k] = v.name;
+  return acc;
+}, {});
 
 export const Characters = () => {
   const [selectedCharacterArchetype, setSelectedCharacterArchetype] =
     useState<string>();
 
   const { assetsPath, saveStructure, saveNewValues } = useSaveContext();
-
-  const characters = Object.keys(CharacterInfo);
 
   const [currentWayfinderRank, setCurrentWayfinderRank] = useState(() =>
     expToRankLevel(
@@ -56,6 +62,16 @@ export const Characters = () => {
     saveStructure?.header?.difficulty ?? 'Story',
   );
 
+  const [isHardcore, setIsHardcore] = useState(
+    saveStructure?.header?.bHardcoreMode ?? false,
+  );
+
+  const [deadCharacters, setDeadCharacters] = useState(
+    saveStructure?.playerData.m_PersistedHardcoreDeadCharacterData?.m_DeadCharacters.map(
+      (character) => character.m_CharacterName,
+    ) ?? [],
+  );
+
   const [charactersData, setCharactersData] = useState<MNonFungibleItem[]>(
     () => {
       const data =
@@ -65,6 +81,29 @@ export const Characters = () => {
       return JSON.parse(JSON.stringify(data)) as MNonFungibleItem[];
     },
   );
+
+  const sortedCharacters = useMemo(() => {
+    return characters?.sort((characterA, characterB) => {
+      const characterAEntry = charactersData.find(
+        (character) => character.name === characterA,
+      );
+      const characterAEntryAlive = !deadCharacters?.includes(
+        normalizedCharacterName[characterAEntry?.name ?? ''],
+      );
+
+      const characterBEntry = charactersData.find(
+        (character) => character.name === characterB,
+      );
+      const characterBEntryAlive = !deadCharacters?.includes(
+        normalizedCharacterName[characterBEntry?.name ?? ''],
+      );
+
+      if (characterAEntry && !characterBEntry) return -1;
+      if (characterAEntryAlive && !characterBEntryAlive) return -1;
+
+      return 0;
+    });
+  }, [charactersData, deadCharacters]);
 
   // Updates assigned points for characters talent entries
   const onTalentChange = useCallback(
@@ -104,11 +143,49 @@ export const Characters = () => {
     [],
   );
 
+  const onCharacterRevive = useCallback(
+    (characterName: string) => {
+      const name = normalizedCharacterName[characterName];
+      setDeadCharacters(deadCharacters?.filter((c) => c !== name));
+    },
+    [deadCharacters],
+  );
+
   const onSaveChanges = useCallback(() => {
     const newSaveData = JSON.parse(JSON.stringify(saveStructure)) as SaveData;
 
     // Save Difficulty
     newSaveData.header.difficulty = currentDifficulty;
+
+    // Set Hardcore Mode
+    if ('bHardcoreMode' in newSaveData.header)
+      newSaveData.header.bHardcoreMode = isHardcore;
+
+    // Check for revived characters
+    if (newSaveData.playerData.m_PersistedHardcoreDeadCharacterData) {
+      const currentDeadCharactersCount =
+        newSaveData.playerData.m_PersistedHardcoreDeadCharacterData
+          .m_DeadCharacters.length ?? 0;
+
+      if (deadCharacters.length !== currentDeadCharactersCount) {
+        const newDeadCharacterList =
+          newSaveData?.playerData.m_PersistedHardcoreDeadCharacterData.m_DeadCharacters.filter(
+            (character) =>
+              deadCharacters.some(
+                (dCharacter) => dCharacter === character.m_CharacterName,
+              ),
+          );
+
+        // Makes save usable again (because there are now alive characters)
+        newSaveData.playerData.m_PersistedHardcoreDeadCharacterData.m_bSaveLocked =
+          false;
+
+        newSaveData.playerData.m_PersistedHardcoreDeadCharacterData.m_DeadCharacters =
+          newDeadCharacterList;
+
+        newSaveData.header.hardcoreCharacterData = newDeadCharacterList;
+      }
+    }
 
     // Save WayfinderRank Data
     newSaveData.playerData.m_WayfinderRankData.m_WayfinderExperience =
@@ -145,6 +222,8 @@ export const Characters = () => {
     charactersData,
     currentDifficulty,
     currentWayfinderRank,
+    deadCharacters,
+    isHardcore,
     saveNewValues,
     saveStructure,
   ]);
@@ -183,7 +262,7 @@ export const Characters = () => {
             </div>
 
             <div className="flex justify-center items-center mt-3 gap-3">
-              <Label htmlFor="wayfinderRank">Difficulty</Label>
+              <Label htmlFor="difficulty">Difficulty</Label>
               <Select
                 name="difficulty"
                 onValueChange={setCurrentDifficulty}
@@ -201,27 +280,53 @@ export const Characters = () => {
                 </SelectContent>
               </Select>
             </div>
+
+            <div className="flex justify-center items-center mt-3 gap-3">
+              <Label htmlFor="hardcore">Hardcore Mode</Label>
+              <Checkbox
+                id="hardcore"
+                name="hardcore"
+                checked={isHardcore}
+                onCheckedChange={() => setIsHardcore(!isHardcore)}
+              />
+            </div>
           </div>
 
           <Separator className="my-4" />
 
           <div className="flex flex-col items-center overflow-auto">
-            {characters?.map((characterID) => {
+            {sortedCharacters.map((characterID) => {
               const characterEntry = charactersData.find(
                 (character) => character.name === characterID,
               );
               const characterInfo =
                 CharacterInfo[characterID as keyof typeof CharacterInfo];
+
+              const characterIsDead =
+                isHardcore &&
+                deadCharacters?.includes(
+                  normalizedCharacterName[characterEntry?.name ?? ''],
+                );
+
               return (
                 <Fragment key={characterID}>
                   <div className="flex flex-wrap gap-[25px] items-center">
                     <div className="flex flex-col gap-2">
-                      <img
-                        className="w-[150px] h-[150px]"
-                        src={`file://${assetsPath}/${characterInfo?.icon}.png`}
-                        alt={characterInfo.name}
-                      />
-                      {characterEntry && (
+                      <div className="relative">
+                        <img
+                          className="w-[150px] h-[150px]"
+                          src={`file://${assetsPath}/${characterInfo?.icon}.png`}
+                          alt={characterInfo.name}
+                        />
+                        {characterIsDead && (
+                          <img
+                            className="w-[150px] h-[150px] absolute top-0"
+                            src={`file://${assetsPath}/dead.png`}
+                            alt={characterInfo.name}
+                          />
+                        )}
+                      </div>
+                      {characterEntry && !characterIsDead && (
                         <>
                           <Select
                             defaultValue={`${expToRankLevel(
@@ -265,7 +370,25 @@ export const Characters = () => {
                         </>
                       )}
                     </div>
-                    {characterEntry ? (
+                    {!characterEntry && (
+                      <>
+                        <LockIcon /> <p>Character Locked</p>
+                      </>
+                    )}
+                    {characterEntry && characterIsDead && (
+                      <div className="flex flex-col gap-4">
+                        <div className="flex gap-2">
+                          <SkullIcon /> <p>Character Is Dead</p>
+                        </div>
+                        <Button
+                          onClick={() => onCharacterRevive(characterEntry.name)}
+                        >
+                          Revive
+                        </Button>
+                      </div>
+                    )}
+                    {characterEntry &&
+                      !characterIsDead &&
                       characterEntry.spec.itemSpec.talentItems.map((talent) => (
                         <TalentCard
                           key={talent.talentItem.iD}
@@ -273,12 +396,7 @@ export const Characters = () => {
                           talent={talent}
                           onTalentChange={onTalentChange}
                         />
-                      ))
-                    ) : (
-                      <>
-                        <LockIcon /> <p>Character Locked</p>
-                      </>
-                    )}
+                      ))}
                   </div>
                   <Separator className="my-4" />
                 </Fragment>

@@ -29,7 +29,7 @@ import {
 } from '@/components/ui/select';
 import { useState } from 'react';
 import { useSaveContext } from '@/src/renderer/context/context';
-import { getWeaponLevel } from '../../utils';
+import { getWeaponLevel, weaponLevelCurve } from '../../utils';
 import { EssentialWeaponData } from '../inventory-weapons';
 
 type EditWeaponDialogProps = {
@@ -49,7 +49,12 @@ export function EditWeaponDialog({
   const [echoSlots, setEchoSlots] = useState([...weapon.echoSlots]);
 
   const formSchema = z.object({
-    level: z.coerce.number().min(1).max(38, { message: '38 is the max level' }),
+    level: z.coerce
+      .number()
+      .min(1)
+      .max(weaponLevelCurve.length, {
+        message: `${weaponLevelCurve.length} is the max level`,
+      }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({

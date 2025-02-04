@@ -29,5 +29,7 @@ npm-debug.log.*
 *.scss.d.ts
 
 # Temp
-assets/
+assets/icons/
+assets/ProfileBackgrounds/
+assets/EchoMenu/
 raw/
