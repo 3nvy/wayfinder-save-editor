@@ -345,15 +345,24 @@ export const ArchetypeTree = ({ character, onClose }: ArchetypeTreeProps) => {
 
     const tree = archetreeData.find(
       (entry) => entry.characterName === characterInfo.name,
-    )!;
+    );
 
-    tree.unlockedNodes = unlockedNodes;
-    tree.unlockableNodes = unlockableNodes;
+    if (tree) {
+      tree.unlockedNodes = unlockedNodes;
+      tree.unlockableNodes = unlockableNodes;
+    } else {
+      const newArchTree: MUnlockedTreeData = {
+        characterName: characterInfo.name,
+        unlockedNodes,
+        unlockableNodes,
+        fogSoulSlotIndexes: [],
+      };
+
+      archetreeData.push(newArchTree);
+    }
 
     newSaveData.playerData.m_ArchetypeTreeData.m_UnlockedTreeData =
       archetreeData;
-
-    // debugger;
     saveNewValues(newSaveData);
   }, [
     activeNodes,
@@ -439,7 +448,7 @@ export const ArchetypeTree = ({ character, onClose }: ArchetypeTreeProps) => {
               <p>{selectedNodeData.subLabel}</p>
             ) : (
               selectedNodeData.data.attributes.map((attr: any) => (
-                <p>
+                <p key={attr.id}>
                   +
                   {attr.value *
                     AttributesMetadata[attr.name as AttributesMetadataProps]

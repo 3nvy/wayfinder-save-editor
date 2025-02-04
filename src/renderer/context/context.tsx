@@ -18,7 +18,7 @@ type Structure = { [key: string]: any };
 
 type InitialValue = {
   decodedFile?: Structure;
-  saveStructure?: SaveData;
+  saveStructure: SaveData;
   fileName?: string;
   assetsPath?: string;
   saveDecodedStructure: ({
@@ -43,7 +43,7 @@ export const SaveEditorProvider = ({ children }: any) => {
   const { toast } = useToast();
   const [fileMetadata, saveFileMetadata] = useState<any>();
   const [decodedFile, setDecodedFile] = useState<Structure>();
-  const [saveStructure, setSaveStructure] = useState<SaveData>();
+  const [saveStructure, setSaveStructure] = useState<SaveData>({} as SaveData);
   const [assetsPath, setAssetsPath] = useState('');
 
   const saveDecodedStructure = useCallback(
