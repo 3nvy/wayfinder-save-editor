@@ -26,6 +26,16 @@ export type MMapData = {
 
 export type MFogOfWarTextures = {};
 
+export type MDeathCharacter = {
+  m_CharacterName: string;
+  m_SiteOfDeath: {
+    dataTable: string;
+    rowName: string;
+  };
+  m_WayfinderPowerLevel: number;
+  m_WayfinderLevel: number;
+};
+
 export type Header = {
   equippedCharacter: EquippedCharacter;
   equippedPowerLevel: number;
@@ -34,6 +44,9 @@ export type Header = {
   areaName: string;
   timestamp: string;
   difficulty: string;
+  bHardcoreMode: boolean;
+  bHardcoreLocked: boolean;
+  hardcoreCharacterData: MDeathCharacter[];
 };
 
 export type EquippedCharacter = {
@@ -155,6 +168,7 @@ export type PlayerData = {
   m_WayfinderLevelStatusData: MWayfinderLevelStatusData;
   m_PersistedEffectData: MPersistedEffectData;
   m_PersistedSortSelectionData: MPersistedSortSelectionData;
+  m_PersistedHardcoreDeadCharacterData?: MPersistedHardcoreDeadCharacterData;
 };
 
 export type MAchievementData = {
@@ -390,6 +404,11 @@ export type MPersistedEffectData = {
 
 export type MPersistedSortSelectionData = {
   m_SortMethods: MSortMethod[];
+};
+
+export type MPersistedHardcoreDeadCharacterData = {
+  m_DeadCharacters: MDeathCharacter[];
+  m_bSaveLocked: boolean;
 };
 
 export type MSortMethod = {
