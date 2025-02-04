@@ -30,4 +30,6 @@ npm-debug.log.*
 
 # Temp
 assets/icons/
+assets/ProfileBackgrounds/
+assets/EchoMenu/
 raw/

@@ -22,9 +22,18 @@ import { useSaveContext } from '../../context/context';
 import { NIGHTMARE_CHALLENGES } from '../../tables/nightmare-challenges';
 import { ItemCard } from '../item-card/item-card';
 import DLC_ITEMS from '../../tables/dlc-items';
+import { HARDCORE_CHALLENGES } from '../../tables/hardcore-challenges';
 
-export const AccountChallenges = () => {
+type ChallengeType = 'Nightmare' | 'Hardcore';
+type AccountChallengesProps = {
+  type: ChallengeType;
+};
+
+export const AccountChallenges = ({ type }: AccountChallengesProps) => {
   const { saveStructure, saveNewMetaValues }: any = useSaveContext();
+
+  const CHALLENGES =
+    type === 'Hardcore' ? HARDCORE_CHALLENGES : NIGHTMARE_CHALLENGES;
 
   const unlockedChallenges = useMemo(
     () =>
@@ -36,19 +45,16 @@ export const AccountChallenges = () => {
 
   const formSchema = useMemo(() => {
     return z.object(
-      NIGHTMARE_CHALLENGES.reduce<{ [key: string]: z.ZodBoolean }>(
-        (acc, chlg) => {
-          acc[chlg.key] = z.boolean();
-          return acc;
-        },
-        {},
-      ),
+      CHALLENGES.reduce<{ [key: string]: z.ZodBoolean }>((acc, chlg) => {
+        acc[chlg.key] = z.boolean();
+        return acc;
+      }, {}),
     );
-  }, []);
+  }, [CHALLENGES]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: NIGHTMARE_CHALLENGES.reduce<{ [key: string]: boolean }>(
+    defaultValues: CHALLENGES.reduce<{ [key: string]: boolean }>(
       (acc, chlg) => {
         acc[chlg.key] = unlockedChallenges.includes(chlg.key);
         return acc;
@@ -61,6 +67,10 @@ export const AccountChallenges = () => {
     (values: z.infer<typeof formSchema>) => {
       const newSaveStructure = JSON.parse(JSON.stringify(saveStructure));
 
+      const complementaryChallengeEntries =
+        newSaveStructure.CompletedChallenges.Properties.filter((p: any) =>
+          p.Properties.some((pp: any) => !pp.Property.startsWith(type)),
+        );
       const challengeEntries = Object.entries(values).reduce((acc, [k, v]) => {
         if (v) {
           acc.push({
@@ -70,8 +80,7 @@ export const AccountChallenges = () => {
               {
                 Name: 'DataTable\x00',
                 Type: 'ObjectProperty\x00',
-                Property:
-                  '/Game/Data/Quests/Achievements/Nightmare_Challenge_Quests.Nightmare_Challenge_Quests\x00',
+                Property: `/Game/Data/Quests/Achievements/${type}_Challenge_Quests.${type}_Challenge_Quests\x00`,
               },
               {
                 Name: 'RowName\x00',
@@ -80,6 +89,8 @@ export const AccountChallenges = () => {
               },
             ],
           });
+
+          // Handle Hidden Nightmare Challenge
           if (k === 'NightmareChallenge_14' && v) {
             acc.push({
               Name: 'DataTableRowHandle\x00',
@@ -99,20 +110,42 @@ export const AccountChallenges = () => {
               ],
             });
           }
+
+          // Handle Hidden Hardcore Challenge
+          if (k === 'HardcoreChallenge_12' && v) {
+            acc.push({
+              Name: 'DataTableRowHandle\x00',
+              Type: 'Tuple',
+              Properties: [
+                {
+                  Name: 'DataTable\x00',
+                  Type: 'ObjectProperty\x00',
+                  Property:
+                    '/Game/Data/Quests/Achievements/Hardcore_Challenge_Quests.Hardcore_Challenge_Quests\x00',
+                },
+                {
+                  Name: 'RowName\x00',
+                  Type: 'NameProperty\x00',
+                  Property: 'Hidden_Hardcore_TofuBlockReward\x00',
+                },
+              ],
+            });
+          }
         }
         return acc;
       }, [] as any);
 
+      debugger;
       newSaveStructure.CompletedChallenges = {
         Name: 'CompletedChallenges\x00',
         Type: 'StructProperty\x00',
         StoredPropertyType: 'DataTableRowHandle\x00',
-        Properties: challengeEntries,
+        Properties: [...complementaryChallengeEntries, ...challengeEntries],
       };
 
       saveNewMetaValues(newSaveStructure);
     },
-    [saveNewMetaValues, saveStructure],
+    [saveNewMetaValues, saveStructure, type],
   );
 
   return (
@@ -126,7 +159,7 @@ export const AccountChallenges = () => {
           collapsible
           className="w-full overflow-auto p-5"
         >
-          {NIGHTMARE_CHALLENGES.map((challenge) => (
+          {CHALLENGES.map((challenge) => (
             <AccordionItem value={challenge.key}>
               <AccordionTrigger>
                 <p>
